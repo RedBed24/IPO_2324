@@ -1,0 +1,4 @@
+R01 - Autentificación de Usuarios. Debe permitir a los usuarios autentificarse para acceder a la aplicación a través de su cuenta. Requiere la introducción de credenciales. Estás consistirán en una identificación y clave.
+R02 - Consulta de Datos. Debe permitir a los usuarios autorizados consultar información relacionada con los pacientes y su atención en el hospital. Esto incluye datos personales de pacientes, historiales médicos, citas atendidas y programadas, así como la información referente al personal contratado.
+R03 - Modificación de Datos. Debe permitir modificar los datos para poder actualizar la información.  Para ello, será necesario confirmar la modificación a través de un botón.
+R04 - Adaptación de Interfaz de Usuario. Debe permitir a los usuarios personalizar la aplicación para satisfacer sus preferencias y necesidades. Cambiar el tipo de fuente, tamaño, layout, etc.
