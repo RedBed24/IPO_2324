@@ -73,11 +73,11 @@ Para ello, será necesario confirmar la modificación a través de un botón.
 Debe permitir a los usuarios personalizar la aplicación para satisfacer sus preferencias y necesidades.
 Cambiar el tipo de fuente, tamaño, layout, etc.
 
-### R05 Creación de Pacientes
+### R05 Creación de Pacientes o Personal
 
 Debe permitir a los usuarios autorizados registrar nuevos pacientes o personal en la base de datos.
 
-### R06 Eliminación de Pacientes
+### R06 Eliminación de Pacientes o Personal
 
 Debe permitir a los usuarios autorizados eliminar pacientes o personal de la base de datos.
 
