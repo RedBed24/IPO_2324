@@ -95,8 +95,6 @@ Debe permitir a los usuarios autorizados eliminar pacientes o personal de la bas
 
 ![Ventana_principal_pacientes_edicion](images/Ventana_principal_pacientes_edicion.png)
 
-![Confirmar_operacion](images/Confirmar_operacion.png)
-
 ![Ventana_principal_historial_lectura](images/Ventana_principal_historial_lectura.png)
 
 ![Ventana_principal_historial_edicion](images/Ventana_principal_historial_edicion.png)
@@ -111,3 +109,4 @@ Debe permitir a los usuarios autorizados eliminar pacientes o personal de la bas
 
 ![help_tipo](images/help_tipo.png)
 
+![Confirmar_operacion](images/Confirmar_operacion.png)
