@@ -23,10 +23,14 @@
 
    4. [Capacidad de cambiar formatos y layout acorde al usuario (*opcional*)](#r04-adaptación-de-interfaz-de-usuario)
 
-   5. [Altas/Bajas](#r05-creación/eliminación-de-pacientes)
+   5. [Bajas](#r05-creación-de-pacientes-o-personal)
+
+   6. [Altas](#r06-eliminación-de-pacientes-o-personal) 
+      
+      
 
 
-2. [Bocetos](#bocetos)
+3. [Bocetos](#bocetos)
 
 
 <!-- Para separar en páginas al crear el PDF-->
@@ -71,11 +75,11 @@ Cambiar el tipo de fuente, tamaño, layout, etc.
 
 ### R05 Creación de Pacientes
 
-Debe permitir a los usuarios autorizados registrar nuevos pacientes en la base de datos.
+Debe permitir a los usuarios autorizados registrar nuevos pacientes o personal en la base de datos.
 
 ### R06 Eliminación de Pacientes
 
-Debe permitir a los usuarios autorizados eliminar pacientes de la base de datos.
+Debe permitir a los usuarios autorizados eliminar pacientes o personal de la base de datos.
 
 ## Bocetos
 
