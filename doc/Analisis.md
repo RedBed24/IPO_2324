@@ -23,11 +23,10 @@
 
    4. [Capacidad de cambiar formatos y layout acorde al usuario (*opcional*)](#r04-adaptación-de-interfaz-de-usuario)
 
-   5. Altas/Bajas
+   5. [Altas/Bajas](#r05-creación/eliminación-de-pacientes)
+
 
 2. [Bocetos](#bocetos)
-
-
 
 
 <!-- Para separar en páginas al crear el PDF-->
@@ -70,10 +69,17 @@ Para ello, será necesario confirmar la modificación a través de un botón.
 Debe permitir a los usuarios personalizar la aplicación para satisfacer sus preferencias y necesidades.
 Cambiar el tipo de fuente, tamaño, layout, etc.
 
+### R05 Creación de Pacientes
+
+Debe permitir a los usuarios autorizados registrar nuevos pacientes en la base de datos.
+
+### R06 Eliminación de Pacientes
+
+Debe permitir a los usuarios autorizados eliminar pacientes de la base de datos.
+
 ## Bocetos
 
 <!-- En la previsualización, el link no funciona, pero una vez se exporta y SE PONE EN LA CARPETA build, el link funciona, por ser relativo -->
-[PDF interactivo con los bocetos](BocetoSinHistorial.pdf)
 
 ![login](images/login.png)
 
