@@ -1,0 +1,11 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="861" measuredH="241" mockupW="281" mockupH="161">
+  <controls>
+    <control controlID="180" controlTypeID="com.balsamiq.mockups::Alert" x="580" y="80" w="281" h="161" measuredW="200" measuredH="133" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>menu_usuario%26bm%3Bmenu_usuario.bmml%26bm%3Bmenu_usuario.bmml%26bm%3Bmenu_usuario.bmml%2Cmenu_usuario%26bm%3Bmenu_usuario.bmml%26bm%3Bmenu_usuario.bmml%26bm%3Bmenu_usuario.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%221%2C123%2C139.5%2C160%22%20href%3D%22menu_usuario.bmml%22%20alt%3D%22menu_usuario%22%20id%3D%22180%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22141.5%2C123%2C280%2C160%22%20href%3D%22menu_usuario.bmml%22%20alt%3D%22menu_usuario%22%20id%3D%22180%22/%3E</map>
+        <text>AVISO%0AEst%E1s%20apunto%20de%20modificar%20los%20datos%2C%20%BFest%E1s%20seguro%3F%0ANo%2C%20Si</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
