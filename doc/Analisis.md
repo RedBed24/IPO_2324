@@ -27,8 +27,6 @@
 
 2. [Bocetos](#bocetos)
 
-![login](images/login.png)
-![Ventana_principal_citas_edicion](images/Ventana_principal_citas_edicion.png)
 
 
 
@@ -76,4 +74,18 @@ Cambiar el tipo de fuente, tamaño, layout, etc.
 
 <!-- En la previsualización, el link no funciona, pero una vez se exporta y SE PONE EN LA CARPETA build, el link funciona, por ser relativo -->
 [PDF interactivo con los bocetos](BocetoSinHistorial.pdf)
+
+![login](images/login.png)
+![help_login](images/help_login.png)
+![Menu_usuario](images/Menu_usuario.png)
+![help_tipo](images/help_tipo.png)
+![Ventana_principal_personal_lectura](images/Ventana_principal_personal_lectura.png)
+![Ventana_principal_personal_edicion](images/Ventana_principal_personal_edicion.png)
+![Ventana_principal_pacientes_lectura](images/Ventana_principal_pacientes_lectura.png)
+![Ventana_principal_pacientes_edicion](images/Ventana_principal_pacientes_edicion.png)
+![Ventana_principal_historial_lectura](images/Ventana_principal_historial_lectura.png)
+![Ventana_principal_historial_edicion](images/Ventana_principal_historial_edicion.png)
+![Ventana_principal_citas_lectura](images/Ventana_principal_citas_lectura.png)
+![Confirmar_operacion](images/Confirmar_operacion.png)
+![Ventana_principal_citas_edicion](images/Ventana_principal_citas_edicion.png)
 
