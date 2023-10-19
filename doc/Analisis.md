@@ -27,6 +27,11 @@
 
 2. [Bocetos](#bocetos)
 
+![login](images/login.png)
+![Ventana_principal_citas_edicion](images/Ventana_principal_citas_edicion.png)
+
+
+
 <!-- Para separar en páginas al crear el PDF-->
 $$\pagebreak$$
 
