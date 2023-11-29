@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Gestor de Usuarios" Height="450" Width="800">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Pacientes">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Historial">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Citas">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Personal">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
