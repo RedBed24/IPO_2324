@@ -23,6 +23,23 @@ namespace hospital_gui_wpf
         public MainWindow()
         {
             InitializeComponent();
+
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Establece el estado de la ventana a maximizado
+            WindowState = WindowState.Maximized;
+
+            // Deshabilita el botón de minimizar
+            ResizeMode = ResizeMode.NoResize;
+        }
+
     }
 }

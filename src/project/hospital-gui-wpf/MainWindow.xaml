@@ -5,28 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
-        Title="Gestor de Usuarios" Height="450" Width="800">
+        Title="Gestor de Usuarios" Height="487" Width="847" 
+        Closing="Window_Closing" 
+        Loaded="Window_Loaded">
     <Grid>
-        <TabControl>
-            <TabItem Header="Pacientes">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="409*"/>
+        </Grid.RowDefinitions>
+        <TabControl Margin="0,1,0,0" Grid.Row="1">
+            <TabItem Header="Pacientes" Background="WhiteSmoke">
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="211*"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="569*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5"/>
+
+                    <ListBox x:Name="lstListaPacientes">
+
+                    </ListBox>
+                    <Grid Grid.Column="2" Background="WhiteSmoke">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27*"/>
+                            <RowDefinition Height="368*"/>
+                            <RowDefinition Height="20*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="291*"/>
+                            <ColumnDefinition Width="270*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Margin="8,25,286,10" Grid.RowSpan="2" Grid.ColumnSpan="3">
+
+                            <Label x:Name="lblNombre" Content="Nombre:" HorizontalAlignment="Left" Margin="0,10,242,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblApellido" Content="Apellido:" HorizontalAlignment="Left" Margin="0,65,242,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblEdad" Content="Edad:" HorizontalAlignment="Left" Margin="0,118,245,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblTelefono" Content="Teléfono:" HorizontalAlignment="Left" Margin="0,173,245,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblDireccion" Content="Dirección:" HorizontalAlignment="Left" Margin="0,232,245,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblCorreo" Content="Correo:" HorizontalAlignment="Left" Margin="0,291,245,0" VerticalAlignment="Top"/>
+                            <Label x:Name="lblSexo" Content="Sexo:" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" />
+                            <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="63,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtApellido" HorizontalAlignment="Left" Margin="63,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtEdad" HorizontalAlignment="Left" Margin="63,122,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtTelefono" HorizontalAlignment="Left" Margin="63,178,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="18"/>
+                            <TextBox x:Name="txtCorreo" HorizontalAlignment="Left" Margin="63,295,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="63,236,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                            <RadioButton x:Name="radioFemenino" Content="F" HorizontalAlignment="Left" Margin="206,41,0,0" VerticalAlignment="Top"/>
+                            <RadioButton x:Name="radioMasculino" Content="M" HorizontalAlignment="Left" Margin="246,41,0,0" VerticalAlignment="Top"/>
+                            <Border BorderBrush="Black" BorderThickness="1"/>
+
+                        </Grid>
+                        <Grid Grid.Column="2" Grid.Row="1" Margin="0,0,0,10" Background="WhiteSmoke">
+                            <Button x:Name="btnConfirmarModificacion" Content="Confirmar modificación" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" Width="160"/>
+                            <Image Height="257" Margin="33,33,33,68" Width="220"
+                                   Source="/imagenes/usuario_cualquiera.jpg"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Historial" Background="WhiteSmoke">
                 <Grid Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Historial">
+            <TabItem Header="Citas" Background="WhiteSmoke">
                 <Grid Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Citas">
-                <Grid Background="#FFE5E5E5">
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Personal">
+            <TabItem Header="Personal" Background="WhiteSmoke">
                 <Grid Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="btnAlta" Content="Dar de alta" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Center" Width="74" Background="WhiteSmoke"/>
+        <Button x:Name="btnBaja" Content="Dar de baja" HorizontalAlignment="Left" Margin="119,0,0,0" VerticalAlignment="Center" Width="74" Background="WhiteSmoke"/>
     </Grid>
 </Window>
