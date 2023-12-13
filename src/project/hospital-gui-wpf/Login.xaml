@@ -31,22 +31,5 @@
              BorderThickness="2" 
              VerticalContentAlignment="Center" Margin="10,10,0,23" FontSize="16" />
 
-        <Label x:Name="lblContrasena" 
-        Grid.Row="3" Grid.Column="1"  
-        Content="Contraseña" 
-        Margin="5,10,0,0" 
-        VerticalContentAlignment="Bottom" 
-        HorizontalContentAlignment="Stretch" FontSize="20" >
-            <Label.Foreground>
-                <SolidColorBrush Color="Black" Opacity="0.98"/>
-            </Label.Foreground>
-        </Label>
-        <PasswordBox x:Name="passContrasena" 
-             Grid.Row="4" Grid.Column="1" 
-             PasswordChar="*"
-             BorderThickness="2" 
-               VerticalContentAlignment="Center" 
-                Margin="10,10,0,23" FontSize="16"
-             IsEnabled="False" />
     </Grid>
 </Window>
