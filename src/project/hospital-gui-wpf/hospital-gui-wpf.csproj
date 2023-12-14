@@ -101,9 +101,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="imagenes\ipo_login.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="imagenes\usuario_cualquiera.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\icono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\cruz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\check.png" />
+    <Resource Include="imagenes\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\corazon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\e1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\e2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
