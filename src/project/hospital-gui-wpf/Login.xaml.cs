@@ -108,6 +108,9 @@ namespace hospital_gui_wpf
                 txtPass, imgPass))
             {
                 //Application.Current.Shutdown(); 
+                MainWindow ventana_principal = new MainWindow();
+                ventana_principal.Visibility = Visibility.Visible;
+                this.Visibility = Visibility.Hidden;
             }
         }
 
