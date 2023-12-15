@@ -195,6 +195,10 @@
                         <Label x:Name="lblTipoPersonal" Content="Tipo:" HorizontalAlignment="Left" Margin="162,16,0,10" Grid.Column="1" Width="38" Grid.Row="7" />
                         <RadioButton x:Name="radioSanitarioPersonal" Content="S" HorizontalAlignment="Left" Margin="202,24,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="25" Grid.Row="7"/>
                         <RadioButton x:Name="radioLimpiezaPersonal" Content="L" HorizontalAlignment="Left" Margin="239,24,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="30" Grid.Row="7"/>
+                        <Image Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="269,18,0,0" Grid.Row="7" VerticalAlignment="Top" Width="27" 
+                               ToolTip="S Sanitario - L Limpieza" 
+                               Source="\imagenes\interrogacion.jpg"
+                               />
                     </Grid>
 
                 </Grid>

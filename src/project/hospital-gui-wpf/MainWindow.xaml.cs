@@ -41,5 +41,9 @@ namespace hospital_gui_wpf
             ResizeMode = ResizeMode.NoResize;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

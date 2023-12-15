@@ -120,5 +120,11 @@
   <ItemGroup>
     <Resource Include="imagenes\pregunta.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\interrogacion_tooltips.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\interrogacion.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
