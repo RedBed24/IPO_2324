@@ -38,7 +38,11 @@ namespace hospital_gui_wpf
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Establece el estado de la ventana a maximizado
+            WindowState = WindowState.Maximized;
 
+            // Deshabilita el botón de minimizar
+            ResizeMode = ResizeMode.NoResize;
             imgUser.Source = imagQuestion;
         }
 
@@ -168,6 +172,11 @@ namespace hospital_gui_wpf
         private void imgPass_MouseLeave(object sender, MouseEventArgs e)
         {
             blockPass.Visibility = Visibility.Hidden;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
         }
     }
 }
