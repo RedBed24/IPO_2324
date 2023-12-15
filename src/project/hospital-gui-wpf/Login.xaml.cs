@@ -124,26 +124,18 @@ namespace hospital_gui_wpf
             switch (imgUser.Source)
             {
                 case var _ when imgUser.Source == imagCheck:
-                   // blockUser.Text = "User correcto";
-                    //blockUser.Foreground = Brushes.Green;
-                    
+                    imgUser.ToolTip = "User correcto";
+
+
                     break;
                 case var _ when imgUser.Source == imagCross:
-                   // blockUser.Text = "User incorrecto";
-                   // blockUser.Foreground = Brushes.Red;
+                    imgUser.ToolTip = "User incorrecto";
+
                     break;
                 default:
-                   // blockUser.Text = "Introduce el usuario";
+                    imgUser.ToolTip = "DNI+letra";
                     break;
             }
-
-            //blockUser.Visibility = Visibility.Visible;
-            //blockUser.Background = Brushes.White;
-        }
-
-        private void imgUser_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //blockUser.Visibility = Visibility.Hidden;
 
         }
 
@@ -153,29 +145,22 @@ namespace hospital_gui_wpf
             switch (imgPass.Source)
             {
                 case var _ when imgPass.Source == imagCheck:
-                    blockPass.Text = "Password correcta";
+                    imgPass.ToolTip = "Password correcta";
                     blockPass.Foreground = Brushes.Green;
                     break;
                 case var _ when imgPass.Source == imagCross:
-                    blockPass.Text = "Password incorrecta";
+                    imgPass.ToolTip = "Password incorrecta";
                     blockPass.Foreground = Brushes.Red;
                     break;
                 default:
-                    blockPass.Text = "Introduce la password";
+                    
                     break;
             }
-
-            blockPass.Visibility = Visibility.Visible;
-            blockPass.Background = Brushes.White;
-        }
-
-        private void imgPass_MouseLeave(object sender, MouseEventArgs e)
-        {
-            blockPass.Visibility = Visibility.Hidden;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+
             MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
         }
     }
