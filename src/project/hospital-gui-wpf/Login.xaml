@@ -141,12 +141,12 @@
                 <Image x:Name="imgUserPhoto" Width="30"  Margin="1" Source="/imagenes/baseline_person_white_24dp.png"/>
                 <TextBox x:Name="txtUser" FontSize="13" Foreground="White" BorderThickness="2" VerticalContentAlignment="Center" 
                             Background="#FF504E59" BorderBrush="White" KeyDown="txtUsuario_KeyDown" Margin="1" Width="160" Height="26"/>
-                <Image x:Name="imgUser" Width="30"  MouseEnter="imgUser_MouseEnter" MouseLeave="imgUser_MouseLeave" />
+                <Image x:Name="imgUser" Width="30"  MouseEnter="imgUser_MouseEnter" MouseLeave="imgUser_MouseLeave" ToolTip="DNI+letra"  />
 
 
             </StackPanel>
 
-            <TextBlock x:Name="blockUser" Text="" Grid.Column="4" Grid.ColumnSpan="5" Grid.Row="8" Visibility="Hidden"  TextAlignment="Left" TextWrapping="Wrap" />
+            
 
 
             <TextBlock Text="Password" Foreground="White" FontSize="16" Grid.Column="2" Grid.Row="10" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center" Width="72"/>

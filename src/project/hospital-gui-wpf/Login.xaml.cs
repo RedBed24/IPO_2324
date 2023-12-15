@@ -124,26 +124,26 @@ namespace hospital_gui_wpf
             switch (imgUser.Source)
             {
                 case var _ when imgUser.Source == imagCheck:
-                    blockUser.Text = "User correcto";
-                    blockUser.Foreground = Brushes.Green;
+                   // blockUser.Text = "User correcto";
+                    //blockUser.Foreground = Brushes.Green;
                     
                     break;
                 case var _ when imgUser.Source == imagCross:
-                    blockUser.Text = "User incorrecto";
-                    blockUser.Foreground = Brushes.Red;
+                   // blockUser.Text = "User incorrecto";
+                   // blockUser.Foreground = Brushes.Red;
                     break;
                 default:
-                    blockUser.Text = "Introduce el usuario";
+                   // blockUser.Text = "Introduce el usuario";
                     break;
             }
 
-            blockUser.Visibility = Visibility.Visible;
-            blockUser.Background = Brushes.White;
+            //blockUser.Visibility = Visibility.Visible;
+            //blockUser.Background = Brushes.White;
         }
 
         private void imgUser_MouseLeave(object sender, MouseEventArgs e)
         {
-            blockUser.Visibility = Visibility.Hidden;
+            //blockUser.Visibility = Visibility.Hidden;
 
         }
 
