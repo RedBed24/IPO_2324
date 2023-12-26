@@ -67,6 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Personal.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -76,6 +77,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Historial.cs" />
+    <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,9 +114,6 @@
     <Resource Include="imagenes\icono.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imagenes\person.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="imagenes\check.png" />
     <Resource Include="imagenes\cross.png" />
   </ItemGroup>
@@ -121,10 +121,28 @@
     <Resource Include="imagenes\pregunta.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imagenes\interrogacion_tooltips.png" />
+    <Resource Include="imagenes\interrogacion.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imagenes\interrogacion.jpg" />
+    <Resource Include="Datos\persona.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\pacienteH1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\pacienteM1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\pacienteM2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\pacienteO1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Datos\historial.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Datos\personal.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
