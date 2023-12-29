@@ -133,19 +133,19 @@
                             <ColumnDefinition Width="26"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label x:Name="lblNombreHistorial" Content="Nombre:" HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Center" Height="26" Width="56" Grid.Column="1" Grid.Row="1"/>
-                        <Label x:Name="lblApellidoHistorial" Content="Apellido:" HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Center" Height="26" Width="56" Grid.Column="1" Grid.Row="2"/>
-                        <Label x:Name="lblEdadHistorial" Content="Edad:" HorizontalAlignment="Left" Margin="27,0,0,0" VerticalAlignment="Center" Height="26" Width="40" Grid.Column="1" Grid.Row="3" RenderTransformOrigin="0.737,0.661"/>
-                        <Label x:Name="lblTelefonoHistorial" Content="Teléfono:" HorizontalAlignment="Left" Margin="9,0,0,0" VerticalAlignment="Center" Height="26" Width="58" Grid.Column="1" Grid.Row="4"/>
-                        <Label x:Name="lblDireccionHistorial" Content="Dirección:" Margin="5,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="5" HorizontalAlignment="Left" Width="62" Grid.Column="1"/>
-                        <Label x:Name="lblCorreoHistorial" Content="Correo:" HorizontalAlignment="Left" Margin="18,0,0,0" VerticalAlignment="Center" Height="26" Width="49" Grid.Column="1" Grid.Row="6"/>
-                        <Label x:Name="lblSexoHistorial" Content="Sexo:" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Center" Grid.Column="1" Height="26" Width="38" Grid.Row="7" />
-                        <TextBox x:Name="txtnombreHistorial" Margin="9,0,29,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Height="18" Grid.Row="1"/>
-                        <TextBox x:Name="txtApellidoHistorial" Margin="9,0,29,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Height="18" RenderTransformOrigin="0.5,0.5" Grid.Row="2"/>
-                        <TextBox x:Name="txtEdadHistorial" Margin="9,0,29,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Height="18" Grid.Row="3"/>
-                        <TextBox x:Name="txtTelefonoHistorial" Margin="9,0,29,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Height="18" Grid.Column="2" Grid.Row="4"/>
-                        <TextBox x:Name="txtCorreoHistorial" Margin="9,0,29,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Height="18" Grid.Row="6"/>
-                        <TextBox x:Name="txtDireccionHistorial" Margin="9,0,29,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Height="18" Grid.Row="5"/>
+                        <Label x:Name="lblNombreHistorial" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+                        <Label x:Name="lblApellidoHistorial" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"/>
+                        <Label x:Name="lblEdadHistorial" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+                        <Label x:Name="lblTelefonoHistorial" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"/>
+                        <Label x:Name="lblDireccionHistorial" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+                        <Label x:Name="lblCorreoHistorial" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
+                        <Label x:Name="lblSexoHistorial" Content="Sexo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+                        <TextBox x:Name="txtnombreHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"/>
+                        <TextBox x:Name="txtApellidoHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"/>
+                        <TextBox x:Name="txtEdadHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"/>
+                        <TextBox x:Name="txtTelefonoHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
+                        <TextBox x:Name="txtCorreoHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"/>
+                        <TextBox x:Name="txtDireccionHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"/>
                         <RadioButton x:Name="radioFemeninoHistorial" Content="F" HorizontalAlignment="Left" Margin="3,22,0,0" VerticalAlignment="Top" Grid.Column="2" Height="14" Width="32" Grid.Row="7"/>
                         <RadioButton x:Name="radioMasculinoHistorial" Content="M" HorizontalAlignment="Left" Margin="49,22,0,0" VerticalAlignment="Top" Grid.Column="2" Height="14" Width="30" Grid.Row="7"/>
                         <Button x:Name="btnConfirmarModificacionHistorial" Content="Confirmar modificación" Margin="79,19,96,0" Grid.Column="3" Height="20" VerticalAlignment="Top" Grid.Row="7" Grid.ColumnSpan="2"/>
