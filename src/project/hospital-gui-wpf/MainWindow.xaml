@@ -146,8 +146,11 @@
                         <TextBox x:Name="txtTelefonoHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
                         <TextBox x:Name="txtCorreoHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"/>
                         <TextBox x:Name="txtDireccionHistorial" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"/>
-                        <RadioButton x:Name="radioFemeninoHistorial" Content="F" HorizontalAlignment="Left" Margin="3,22,0,0" VerticalAlignment="Top" Grid.Column="2" Height="14" Width="32" Grid.Row="7"/>
-                        <RadioButton x:Name="radioMasculinoHistorial" Content="M" HorizontalAlignment="Left" Margin="49,22,0,0" VerticalAlignment="Top" Grid.Column="2" Height="14" Width="30" Grid.Row="7"/>
+                        <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
+                            <RadioButton x:Name="radioFemeninoHistorial" Content="F" Width="40" VerticalAlignment="Center"/>
+                            <RadioButton x:Name="radioMasculinoHistorial" Content="M" Width="40" VerticalAlignment="Center"/>
+                            <RadioButton x:Name="radioOtroHistorial" Content="O" Width="40" VerticalAlignment="Center"/>
+                        </StackPanel>
                         <Button x:Name="btnConfirmarModificacionHistorial" Content="Confirmar modificación" Margin="79,19,96,0" Grid.Column="3" Height="20" VerticalAlignment="Top" Grid.Row="7" Grid.ColumnSpan="2"/>
                         <Image Margin="10,19,10,3"
                             Source="/imagenes/usuario_cualquiera.jpg"
