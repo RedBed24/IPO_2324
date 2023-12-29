@@ -242,7 +242,6 @@
 
                 </Grid>
             </TabItem>
-            <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"/>
         </TabControl>
         <Button x:Name="btnAlta" Content="Dar de alta" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Center" Width="74" Background="WhiteSmoke" Click="btnAltaPaciente"/>
         <Button x:Name="btnBaja" Content="Dar de baja" HorizontalAlignment="Left" Margin="119,0,0,0" VerticalAlignment="Center" Width="74" Background="WhiteSmoke" Click="btnBajaPaciente"/>
