@@ -18,11 +18,11 @@
                 <Grid Background="WhiteSmoke">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="211*"/>
-                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="12"/>
                         <ColumnDefinition Width="569*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GridSplitter x:Name="splitterPacientes" Grid.Column="1" Margin="0,0,5,0" Width="5" HorizontalAlignment="Stretch" />
+                    <GridSplitter x:Name="splitterPacientes" Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                     <ListBox x:Name="lstListaPacientes">
                         <ListBox.ItemTemplate>
