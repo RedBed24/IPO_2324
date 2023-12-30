@@ -144,5 +144,10 @@
   <ItemGroup>
     <Resource Include="Datos\personal.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\baseline_help_white_24dp.png" />
+    <Resource Include="imagenes\baseline_lock_white_24dp.png" />
+    <Resource Include="imagenes\baseline_person_white_24dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

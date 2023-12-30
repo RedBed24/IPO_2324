@@ -15,6 +15,7 @@ namespace hospital_gui_wpf
     }
     public class Persona
     {
+        public int Id;
         public string Nombre { set; get; }
         public string Apellido { set; get; }
         public int Edad { set; get; }
@@ -24,8 +25,9 @@ namespace hospital_gui_wpf
         public Uri Imagen { set; get; }
         public string Correo { set; get; }
 
-        public Persona(string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo)
+        public Persona(int id, string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo)
         {
+            Id = id;
             Nombre = nombre;
             Apellido = apellido;
             Edad = edad;

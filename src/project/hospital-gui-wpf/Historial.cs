@@ -10,8 +10,8 @@ namespace hospital_gui_wpf
     {
         public string Descripcion { get; set; }
 
-        public Historial(string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo, string descripcion)
-            : base(nombre, apellido, edad, telefono, direccion, genero, imagen, correo)
+        public Historial(int id, string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo, string descripcion)
+            : base(id, nombre, apellido, edad, telefono, direccion, genero, imagen, correo)
         {
             Descripcion = descripcion;
         }
