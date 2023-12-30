@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace hospital_gui_wpf
         private List<Persona> listadoPacientes;
         private List<Historial> listadoHistorial;
         private List<Personal> listadoPersonal;
+        XmlDocument doc;
 
         public MainWindow()
         {
@@ -60,21 +62,22 @@ namespace hospital_gui_wpf
         private List<Persona> CargarPacientesXML()
         {
             List<Persona> listado = new List<Persona>();
-            
+
             XmlDocument doc = new XmlDocument();
             var fichero = Application.GetResourceStream(new Uri("Datos/persona.xml", UriKind.Relative));
             doc.Load(fichero.Stream);
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
-                var persona = new Persona("", "", 0, 0, "", Genero.Otro, null, "");
-                persona.Nombre = node.Attributes["Nombre"].Value;
-                persona.Apellido = node.Attributes["Apellido"].Value;
-                persona.Edad = Convert.ToInt32(node.Attributes["Edad"].Value);
-                persona.Telefono = Convert.ToInt32(node.Attributes["Telefono"].Value);
-                persona.Direccion = node.Attributes["Direccion"].Value;
-                persona.Genero = (Genero)Enum.Parse(typeof(Genero), node.Attributes["Genero"].Value, true);
-                persona.Imagen = new Uri(node.Attributes["Imagen"].Value, UriKind.Relative); 
-                persona.Correo = node.Attributes["Correo"].Value;
+                var persona = new Persona(0,"", "", 0, 0, "", Genero.Otro, null, "");
+                persona.Id = Convert.ToInt32(node["Id"].InnerText);
+                persona.Nombre = node["Nombre"].InnerText;
+                persona.Apellido = node["Apellido"].InnerText;
+                persona.Edad = Convert.ToInt32(node["Edad"].InnerText);
+                persona.Telefono = Convert.ToInt32(node["Telefono"].InnerText);
+                persona.Direccion = node["Direccion"].InnerText;
+                persona.Genero = (Genero)Enum.Parse(typeof(Genero), node["Genero"].InnerText, true);
+                persona.Imagen = new Uri(node["Imagen"].InnerText, UriKind.Relative);
+                persona.Correo = node["Correo"].InnerText;
                 listado.Add(persona);
             }
             return listado;
@@ -85,20 +88,21 @@ namespace hospital_gui_wpf
             List<Historial> listadoHistorial = new List<Historial>();
 
             XmlDocument doc = new XmlDocument();
-            var fichero = Application.GetResourceStream(new Uri("Datos/persona.xml", UriKind.Relative));
+            var fichero = Application.GetResourceStream(new Uri("Datos/historial.xml", UriKind.Relative));
             doc.Load(fichero.Stream);
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
-                var historial = new Historial("", "", 0, 0, "", Genero.Otro, null, "", "");
-                historial.Nombre = node.Attributes["Nombre"].Value;
-                historial.Apellido = node.Attributes["Apellido"].Value;
-                historial.Edad = Convert.ToInt32(node.Attributes["Edad"].Value);
-                historial.Telefono = Convert.ToInt32(node.Attributes["Telefono"].Value);
-                historial.Direccion = node.Attributes["Direccion"].Value;
-                historial.Genero = (Genero)Enum.Parse(typeof(Genero), node.Attributes["Genero"].Value, true);
-                historial.Imagen = new Uri(node.Attributes["Imagen"].Value, UriKind.Relative);
-                historial.Correo = node.Attributes["Correo"].Value;
-                historial.Descripcion = node.Attributes["Descripcion"].Value;
+                var historial = new Historial(0,"", "", 0, 0, "", Genero.Otro, null, "", "");
+                historial.Id = Convert.ToInt32(node["Id"].InnerText);
+                historial.Nombre = node["Nombre"].InnerText;
+                historial.Apellido = node["Apellido"].InnerText;
+                historial.Edad = Convert.ToInt32(node["Edad"].InnerText);
+                historial.Telefono = Convert.ToInt32(node["Telefono"].InnerText);
+                historial.Direccion = node["Direccion"].InnerText;
+                historial.Genero = (Genero)Enum.Parse(typeof(Genero), node["Genero"].InnerText, true);
+                historial.Imagen = new Uri(node["Imagen"].InnerText, UriKind.Relative);
+                historial.Correo = node["Correo"].InnerText;
+                historial.Descripcion = node["Descripcion"].InnerText;
                 listadoHistorial.Add(historial);
             }
             return listadoHistorial;
@@ -109,20 +113,21 @@ namespace hospital_gui_wpf
             List<Personal> listadoPersonal = new List<Personal>();
 
             XmlDocument doc = new XmlDocument();
-            var fichero = Application.GetResourceStream(new Uri("Datos/persona.xml", UriKind.Relative));
+            var fichero = Application.GetResourceStream(new Uri("Datos/personal.xml", UriKind.Relative));
             doc.Load(fichero.Stream);
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
-                var personal = new Personal("", "", 0, 0, "", Genero.Otro, null, "", TipoPersonal.Sanitario);
-                personal.Nombre = node.Attributes["Nombre"].Value;
-                personal.Apellido = node.Attributes["Apellido"].Value;
-                personal.Edad = Convert.ToInt32(node.Attributes["Edad"].Value);
-                personal.Telefono = Convert.ToInt32(node.Attributes["Telefono"].Value);
-                personal.Direccion = node.Attributes["Direccion"].Value;
-                personal.Genero = (Genero)Enum.Parse(typeof(Genero), node.Attributes["Genero"].Value, true);
-                personal.Imagen = new Uri(node.Attributes["Imagen"].Value, UriKind.Relative);
-                personal.Correo = node.Attributes["Correo"].Value;
-                personal.Tipo = (TipoPersonal)Enum.Parse(typeof(TipoPersonal), node.Attributes["Tipo"].Value, true);
+                var personal = new Personal(0, "", "", 0, 0, "", Genero.Otro, null, "", TipoPersonal.Sanitario);
+                personal.Id = Convert.ToInt32(node["Id"].InnerText);
+                personal.Nombre = node["Nombre"].InnerText;
+                personal.Apellido = node["Apellido"].InnerText;
+                personal.Edad = Convert.ToInt32(node["Edad"].InnerText);
+                personal.Telefono = Convert.ToInt32(node["Telefono"].InnerText);
+                personal.Direccion = node["Direccion"].InnerText;
+                personal.Genero = (Genero)Enum.Parse(typeof(Genero), node["Genero"].InnerText, true);
+                personal.Imagen = new Uri(node["Imagen"].InnerText, UriKind.Relative);
+                personal.Correo = node["Correo"].InnerText;
+                personal.Tipo = (TipoPersonal)Enum.Parse(typeof(TipoPersonal), node["Tipo"].InnerText, true);
                 listadoPersonal.Add(personal);
             }
             return listadoPersonal;
@@ -135,47 +140,136 @@ namespace hospital_gui_wpf
 
         private void btnAltaPaciente(object sender, RoutedEventArgs e)
         {
-            
-        }
+            string idPacienteSeleccionado = txtIdPacientes.Text;
+            string nombrePacienteSeleccionado = txtnombrePacientes.Text;
+            string apellidoPacienteSeleccionado = txtApellidoPacientes.Text;
+            string edadPacienteSeleccionado = txtEdadPacientes.Text;
+            string telefonoPacienteSeleccionado = txtTelefonoPacientes.Text;
+            string correoPacienteSeleccionado = txtCorreoPacientes.Text;
+            string direccionPacienteSeleccionado = txtDireccionPacientes.Text;
+            string imagenPacienteSeleccionado = imagenPacientes.Source.ToString().Replace("pack://application:,,,", "");
 
-        private void btnBajaPaciente(object sender, RoutedEventArgs e)
-        {
-            //string nombrePacienteSeleccionado = txtnombrePacientes.Text;
-            string nombrePacienteSeleccionado = "Natalia";
+            string generoPacienteSeleccionado = "";
+            if (radioFemeninoPacientes.IsChecked == true)
+            {
+                generoPacienteSeleccionado = "Mujer";
+            }
+            else if (radioMasculinoPacientes.IsChecked == true)
+            {
+                generoPacienteSeleccionado = "Hombre";
+            }
+            else if (radioOtroPacientes.IsChecked == true)
+            {
+                generoPacienteSeleccionado = "Otro";
+            }
 
-            //var fichero = Application.GetResourceStream(new Uri("Datos/persona.xml", UriKind.Relative));
-            //XDocument doc = XDocument.Load(fichero.Stream);
-            string path = AppDomain.CurrentDomain.BaseDirectory + "Datos/persona.xml";
+            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
+
             XDocument doc = XDocument.Load(path);
 
-            //var pacienteSeleccionado = doc.Descendants("Persona")
-            //    .Where(p => p.Element("Nombre") == nombrePacienteSeleccionado).First().Value();
+            XElement nuevoPaciente = new XElement("Persona",
+                new XElement("Id", idPacienteSeleccionado),
+                new XElement("Nombre", nombrePacienteSeleccionado),
+                new XElement("Apellido", apellidoPacienteSeleccionado),
+                new XElement("Edad", edadPacienteSeleccionado),
+                new XElement("Genero", generoPacienteSeleccionado),
+                new XElement("Telefono", telefonoPacienteSeleccionado),
+                new XElement("Correo", correoPacienteSeleccionado),
+                new XElement("Direccion", direccionPacienteSeleccionado),
+                new XElement("Imagen", imagenPacienteSeleccionado)
+            );
+
+         
+            doc.Root.Add(nuevoPaciente);
+
+            doc.Save(path);
+
+        }
+        private void btnBajaPaciente(object sender, RoutedEventArgs e)
+        {
+            string idPacienteSeleccionado = txtIdPacientes.Text;
+            string nombrePacienteSeleccionado = txtnombrePacientes.Text;
+            string apellidoPacienteSeleccionado = txtApellidoPacientes.Text;
+            string edadPacienteSeleccionado = txtEdadPacientes.Text;
+            string telefonoPacienteSeleccionado = txtTelefonoPacientes.Text;
+            string correoPacienteSeleccionado = txtCorreoPacientes.Text;
+            string direccionPacienteSeleccionado = txtDireccionPacientes.Text;
+            string imagenPacienteSeleccionado = imagenPacientes.Source.ToString().Replace("pack://application:,,,", "");
+         
+            string generoPacienteSeleccionado = "";
+            if (radioFemeninoPacientes.IsChecked == true)
+            {
+               generoPacienteSeleccionado = "Mujer";
+            }
+            else if (radioMasculinoPacientes.IsChecked == true)
+            {
+               generoPacienteSeleccionado = "Hombre";
+            }
+            else if (radioOtroPacientes.IsChecked == true)
+            {
+               generoPacienteSeleccionado = "Otro";
+            }
+
+            
+            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
+
+            XDocument doc = XDocument.Load(path);
 
             var pacienteSeleccionado = doc.Descendants("Persona")
-                .Where(p => (string)p.Attribute("Nombre") == nombrePacienteSeleccionado)
-                .FirstOrDefault();
-            
-            //Dictionary<int, Dictionary<string, string>> dict = doc.Descendants("TestDriveRequest")
-           //.GroupBy(x => (int)x.Attribute("Record"), y => y.Elements("element")
-            //.GroupBy(a => (string)a.Attribute("name"), b => (string)b)
-            //.ToDictionary(a => a.Key, b => b.FirstOrDefault()))
-        //.ToDictionary(x => x.Key, y => y.FirstOrDefault());
+                            .Where(p =>
+                            {
+                                var IdElem = p.Element("Id");
+                                var nombreElem = p.Element("Nombre");
+                                var apellidoElem = p.Element("Apellido");
+                                var edadElem = p.Element("Edad");
+                                var telefonoElem = p.Element("Telefono");
+                                var correoElem = p.Element("Correo");
+                                var direccionElem = p.Element("Direccion");
+                                var generoElem = p.Element("Genero");
+                                var imagenElem = p.Element("Imagen"); 
 
-            if (pacienteSeleccionado != null)
+                                return nombreElem.Value.Equals(nombrePacienteSeleccionado) &&
+                                       apellidoElem.Value.Equals(apellidoPacienteSeleccionado) &&
+                                       edadElem.Value.Equals(edadPacienteSeleccionado) &&
+                                       telefonoElem.Value.Equals(telefonoPacienteSeleccionado) &&
+                                       correoElem.Value.Equals(correoPacienteSeleccionado) &&
+                                       direccionElem.Value.Equals(direccionPacienteSeleccionado) &&
+                                       generoElem.Value.Equals(generoPacienteSeleccionado) &&
+                                       imagenElem.Value.Equals(imagenPacienteSeleccionado);
+                            }).ToList();
+
+            foreach (var paciente in pacienteSeleccionado)
             {
-                pacienteSeleccionado.Remove();
-             
-                doc.Save(path);
+                paciente.Remove();
             }
-            else
-            {
-                MessageBox.Show("Paciente no encontrado");
-            }
+
+            doc.Save(path);
         }
 
-        private void PrintDialog(string v)
+
+
+        private void btnConfirmarModificacion(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            string nombrePacienteSeleccionado = "XD";
+            string nuevoNombre = "Miriam";
+
+            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
+
+            XDocument doc = XDocument.Load(path);
+
+            var pacienteSeleccionado = doc.Descendants("Persona")
+            .Where(p => {
+                var nombreElem = p.Element("Nombre");
+                return nombreElem.Value.Equals(nombrePacienteSeleccionado);
+            }).ToList();
+
+            foreach (var paciente in pacienteSeleccionado)
+            {
+                paciente.Element("Nombre").Value = nuevoNombre;
+            }
+
+            doc.Save(path);
+
         }
     }
 }
