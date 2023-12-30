@@ -114,7 +114,8 @@ namespace hospital_gui_wpf
                 //Application.Current.Shutdown(); 
                 MainWindow ventana_principal = new MainWindow();
                 ventana_principal.Visibility = Visibility.Visible;
-                this.Visibility = Visibility.Hidden;
+                //this.Visibility = Visibility.Hidden;
+                this.Visibility = Visibility.Collapsed;
             }
         }
 
