@@ -15,8 +15,8 @@ namespace hospital_gui_wpf
     {
         public TipoPersonal Tipo { get; set; }
 
-        public Personal(string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo, TipoPersonal tipo)
-            : base(nombre, apellido, edad, telefono, direccion, genero, imagen, correo)
+        public Personal(int id, string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo, TipoPersonal tipo)
+            : base(id, nombre, apellido, edad, telefono, direccion, genero, imagen, correo)
         {
             Tipo = tipo;
         }
