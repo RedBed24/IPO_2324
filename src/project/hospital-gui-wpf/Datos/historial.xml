@@ -1,48 +1,49 @@
-<Historial>
-	<Historial
-    Nombre="Natalia"
-    Apellido="Patinio"
-    Edad="25"
-    Telefono="620203687"
-    Direccion="Calle Aben Canes"
-    Genero="Mujer"
-    Imagen="/imagenes/pacienteM1.jpg"
-    Correo="natalia.patinio14@gmail.com"
-	Descripcion="Paciente con problemas de ansiedad"
-    />
-	<Historial
-    Nombre="Laura"
-    Apellido="Pérez"
-    Edad="30"
-    Telefono="620453678"
-    Direccion="Plaza de Agustín Salido"
-    Genero="Mujer"
-    Imagen="/imagenes/pacienteM2.jpg"
-    Correo="lauraperez@gmail.com"
-	Descripcion="Paciente con problemas de depresión"
-    />
-	<Historial
-    Nombre="Rubén"
-    Apellido="Gómez"
-    Edad="32"
-    Telefono="610328877"
-    Direccion="Avenida Alfonso X El Sabio"
-    Genero="Hombre"
-    Imagen="/imagenes/pacienteH1.jpg"
-    Correo="rubengomez56@gmail.com"
-	Descripcion="Paciente con problemas de ansiedad"
-    />
-	<Historial
-    Nombre="Iciar"
-    Apellido="Carmona"
-    Edad="18"
-    Telefono="610328877"
-    Direccion="Calle Alfonso XI"
-    Genero="Otro"
-    Imagen="/imagenes/pacienteO1.jpg"
-    Correo="iciarCarmona@gmail.com"
-	Descripcion="Paciente con problemas de depresión"
-    />
+<Historiales>
+	<Historial>
+		<Nombre>Natalia</Nombre>
+		<Apellido>Patinio</Apellido>
+		<Edad>25</Edad>
+		<Telefono>620203687</Telefono>
+		<Direccion>Calle Aben Canes</Direccion>
+		<Genero>Mujer</Genero>
+		<Imagen>/imagenes/pacienteM1.jpg</Imagen>
+		<Correo>natalia.patinio14@gmail.com</Correo>
+		<Descripcion>Paciente con problemas de ansiedad</Descripcion>
+	</Historial>
 
+	<Historial>
+		<Nombre>Laura</Nombre>
+		<Apellido>Pérez</Apellido>
+		<Edad>30</Edad>
+		<Telefono>620453678</Telefono>
+		<Direccion>Plaza de Agustín Salido</Direccion>
+		<Genero>Mujer</Genero>
+		<Imagen>/imagenes/pacienteM2.jpg</Imagen>
+		<Correo>lauraperez@gmail.com</Correo>
+		<Descripcion>Paciente con problemas de depresión</Descripcion>
+	</Historial>
+	<Historial>
+		<Nombre>Rubén</Nombre>
+		<Apellido>Gómez</Apellido>
+		<Edad>32</Edad>
+		<Telefono>610328877</Telefono>
+		<Direccion>Avenida Alfonso X El Sabio</Direccion>
+		<Genero>Hombre</Genero>
+		<Imagen>/imagenes/pacienteH1.jpg</Imagen>
+		<Correo>rubengomez56@gmail.com</Correo>
+		<Descripcion>Paciente con problemas de ansiedad</Descripcion>
+	</Historial>
 
-</Historial>
+	<Historial>
+		<Nombre>Iciar</Nombre>
+		<Apellido>Carmona</Apellido>
+		<Edad>18</Edad>
+		<Telefono>610328877</Telefono>
+		<Direccion>Calle Alfonso XI</Direccion>
+		<Genero>Otro</Genero>
+		<Imagen>/imagenes/pacienteO1.jpg</Imagen>
+		<Correo>iciarCarmona@gmail.com</Correo>
+		<Descripcion>Paciente con problemas de depresión</Descripcion>
+	</Historial>
+
+</Historiales>
