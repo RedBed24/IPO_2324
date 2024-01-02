@@ -258,11 +258,11 @@
                         <TextBox x:Name="txtDireccionPersonal" Margin="78,0,37,0" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Height="18" Grid.Row="5"
                                  Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Direccion}" FontSize="16" FontWeight="SemiBold"/>
                         <RadioButton x:Name="radioFemeninoPersonal" Content="F" HorizontalAlignment="Left" Margin="72,22,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="25" Grid.Row="7"
-                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}"/>
+                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" GroupName="Genero"/>
                         <RadioButton x:Name="radioMasculinoPersonal" Content="M" HorizontalAlignment="Left" Margin="102,22,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="30" Grid.Row="7"
-                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}"/>
+                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" GroupName="Genero"/>
                         <RadioButton x:Name="radioOtroPErsonal" Content="O" HorizontalAlignment="Left" Margin="137,23,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="31" Grid.Row="7"
-                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" />
+                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" GroupName="Genero" />
                         <Button x:Name="btnConfirmarModificacionPersonal" Content="Confirmar modificación" Margin="29,19,37,0" Grid.Column="2" Height="20" VerticalAlignment="Top" Grid.Row="7"/>
                         <Image Margin="29,36,37,39"
                             Source="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Imagen}"
@@ -273,9 +273,9 @@
                         <Rectangle Grid.ColumnSpan="7" Grid.Row="8" Fill="CadetBlue"/>
                         <Label x:Name="lblTipoPersonal" Content="Tipo:" HorizontalAlignment="Left" Margin="173,14,0,14" Grid.Column="1" Width="38" Grid.Row="7" />
                         <RadioButton x:Name="radioSanitarioPersonal" Content="S" HorizontalAlignment="Left" Margin="211,22,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="25" Grid.Row="7"
-                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Sanitario, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}"/>
+                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Sanitario, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}" GroupName="Tipo"/>
                         <RadioButton x:Name="radioLimpiezaPersonal" Content="L" HorizontalAlignment="Left" Margin="241,22,0,0" VerticalAlignment="Top" Grid.Column="1" Height="14" Width="30" Grid.Row="7"
-                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Limpieza, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}"/>
+                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Limpieza, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}" GroupName="Tipo"/>
                         <Image Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="271,16,0,0" Grid.Row="7" VerticalAlignment="Top" Width="27" 
                                ToolTip="S Sanitario - L Limpieza" 
                                Source="\imagenes\interrogacion.jpg"
