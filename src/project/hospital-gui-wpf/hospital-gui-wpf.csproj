@@ -134,8 +134,6 @@
     <Resource Include="datos\imagenes\pacienteH1.jpg" />
     <Resource Include="datos\imagenes\pregunta.png" />
     <Resource Include="datos\imagenes\usuario_cualquiera.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="datos\imagenes\confirmar_modificacion.png" />
     <Resource Include="datos\imagenes\femenino.png" />
     <Resource Include="datos\imagenes\limpieza.png" />
