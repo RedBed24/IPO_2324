@@ -8,161 +8,127 @@ using System.Windows.Media.Imaging;
 
 namespace hospital_gui_wpf
 {
-    /// <summary>
-    /// Lógica de interacción para Login.xaml
-    /// </summary>
-    public partial class Login : Window
-    {
-        private BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
-        private BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
-        private BitmapImage imagQuestion = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
-        private Dictionary<string, string> usuarios = new Dictionary<string, string>
-        {
-            { "noelia", "1234" },
-            { "samuel", "E5pej0" },
-            { "antonio", "contrasena"}
-    
-        };
+	/// <summary>
+	/// Lógica de interacción para Login.xaml
+	/// </summary>
+	public partial class Login : Window
+	{
+		private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
+		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
+		private readonly Dictionary<string, string> usuarios = new Dictionary<string, string>
+		{
+			{ "noelia", "1234" },
+			{ "samuel", "E5pej0" },
+			{ "antonio", "contrasena"}
+		};
 
-        public Login()
-        {
-            InitializeComponent();
-        }
+		public Login()
+		{
+			InitializeComponent();
+		}
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            imgUser.Source = imagQuestion;
-        }
+		private void btnMinimize_Click(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = WindowState.Minimized;
+		}
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
+		private void btnClose_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnEnlarge_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-                this.WindowState = WindowState.Normal;
-            else
-                this.WindowState = WindowState.Maximized;
-        }
+		private void btnEnlarge_Click(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+		}
 
 
-        private bool ComprobarEntradaNombre(string valorIntroducido,
-        Control componenteEntrada, Image imagenFeedBack)
-        {
-            bool valido = false;
-            if (usuarios.ContainsKey(valorIntroducido))
-            {
-                componenteEntrada.BorderBrush = Brushes.Green;
-                componenteEntrada.Background = Brushes.LightGreen;
-                imagenFeedBack.Source = imagCheck;
-                valido = true;
-            
-            }
-            else
-            {
-                // El nombre de usuario no existe
-                componenteEntrada.BorderBrush = Brushes.Red;
-                componenteEntrada.Background = Brushes.LightCoral;
-                imagenFeedBack.Source = imagCross;
-            }
+		private bool ComprobarEntradaNombre(string valorIntroducido, Control componenteEntrada, Image imagenFeedBack)
+		{
+			bool valido = false;
+			if (usuarios.ContainsKey(valorIntroducido))
+			{
+				componenteEntrada.BorderBrush = Brushes.Green;
+				componenteEntrada.Background = Brushes.LightGreen;
+				imagenFeedBack.Source = imagCheck;
+				valido = true;
+				imagenFeedBack.ToolTip = "Usuario correcto";
+				txtPass.Focus();
+				componenteEntrada.IsEnabled = false;
+			}
+			else
+			{
+				// El nombre de usuario no existe
+				componenteEntrada.BorderBrush = Brushes.Red;
+				componenteEntrada.Background = Brushes.LightCoral;
+				imagenFeedBack.Source = imagCross;
+				imagenFeedBack.ToolTip = "Usuario incorrecto";
+				componenteEntrada.Focus();
+			}
 
-            return valido;
-        }
+			return valido;
+		}
 
-        private bool ComprobarEntradaContraseña(string valorIntroducido, string valorValido,
-        Control componenteEntrada, Image imagenFeedBack)
-        {
-            bool valido = false;
-            if (usuarios[valorIntroducido].Equals(valorValido))
-            {
-                componenteEntrada.BorderBrush = Brushes.Green;
-                componenteEntrada.Background = Brushes.LightGreen;
-                imagenFeedBack.Source = imagCheck;
-                valido = true;
-            }
-            else
-            {
-                componenteEntrada.BorderBrush = Brushes.Red;
-                componenteEntrada.Background = Brushes.LightCoral;
-                imagenFeedBack.Source = imagCross;
-            }
+		private bool ComprobarEntradaContraseña(string valorIntroducido, string valorValido, Control componenteEntrada, Image imagenFeedBack)
+		{
+			bool valido = false;
+			if (usuarios[valorIntroducido].Equals(valorValido))
+			{
+				componenteEntrada.BorderBrush = Brushes.Green;
+				componenteEntrada.Background = Brushes.LightGreen;
+				imagenFeedBack.Source = imagCheck;
+				imgPass.ToolTip = "Contraseña correcta";
+				valido = true;
+			}
+			else
+			{
+				componenteEntrada.BorderBrush = Brushes.Red;
+				componenteEntrada.Background = Brushes.LightCoral;
+				imgPass.ToolTip = "Contraseña incorrecta";
+				imagenFeedBack.Source = imagCross;
+			}
    
-            return valido;
-        }
+			return valido;
+		}
 
-        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                if (ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser))
-                {
-                    txtPass.IsEnabled = true;
-                    txtPass.Focus();
-                    txtUser.IsEnabled = false;
-                }
-            }
-        }
+		private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Return || e.Key == Key.Tab)
+			{
+				ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser);
+			}
+		}
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            if (ComprobarEntradaContraseña(txtUser.Text, txtPass.Password, txtPass, imgPass))
-            {
-                MainWindow ventana_principal = new MainWindow();
-                ventana_principal.Visibility = Visibility.Visible;
-                //this.Visibility = Visibility.Hidden;
-                this.Visibility = Visibility.Collapsed;
-            }
-        }
+		private void btnLogin_Click(object sender, RoutedEventArgs e)
+		{
+			if (ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser) && ComprobarEntradaContraseña(txtUser.Text, txtPass.Password, txtPass, imgPass))
+			{
+				MainWindow ventana_principal = new MainWindow();
+				ventana_principal.Visibility = Visibility.Visible;
+				this.Visibility = Visibility.Collapsed;
+			}
+		}
 
-        private void imgUser_MouseEnter(object sender, MouseEventArgs e)
-        {
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
+		}
 
-            switch (imgUser.Source)
-            {
-                case var _ when imgUser.Source == imagCheck:
-                    imgUser.ToolTip = "Usuario correcto";
+		private void txtPass_GotFocus(object sender, RoutedEventArgs e)
+		{
+			ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser);
+		}
 
 
-                    break;
-                case var _ when imgUser.Source == imagCross:
-                    imgUser.ToolTip = "Usuario incorrecto";
+		private void Image_MouseEnter(object sender, MouseEventArgs e)
+		{
+			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
+		}
 
-                    break;
-                default:
-                    imgUser.ToolTip = "DNI+letra";
-                    break;
-            }
-
-        }
-
-        private void imgPass_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-            switch (imgPass.Source)
-            {
-                case var _ when imgPass.Source == imagCheck:
-                    imgPass.ToolTip = "Contraseña correcta";
-                    break;
-                case var _ when imgPass.Source == imagCross:
-                    imgPass.ToolTip = "Contraseña incorrecta";
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-            MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
-        }
-    }
+		private void Image_MouseLeave(object sender, MouseEventArgs e)
+		{
+			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
+		}
+	}
 }
 
