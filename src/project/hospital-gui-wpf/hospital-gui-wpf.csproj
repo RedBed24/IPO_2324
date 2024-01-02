@@ -135,5 +135,13 @@
     <Resource Include="datos\imagenes\pregunta.png" />
     <Resource Include="datos\imagenes\usuario_cualquiera.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="datos\imagenes\confirmar_modificacion.png" />
+    <Resource Include="datos\imagenes\femenino.png" />
+    <Resource Include="datos\imagenes\limpieza.png" />
+    <Resource Include="datos\imagenes\masculino.png" />
+    <Resource Include="datos\imagenes\otro.png" />
+    <Resource Include="datos\imagenes\sanitario.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

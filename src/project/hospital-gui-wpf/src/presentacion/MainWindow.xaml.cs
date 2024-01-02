@@ -68,7 +68,7 @@ namespace hospital_gui_wpf
             doc.Load(fichero.Stream);
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
-                var persona = new Persona(0,"", "", 0, 0, "", Genero.Otro, null, "");
+                var persona = new Persona(0, "", "", 0, 0, "", Genero.Otro, null, "");
                 persona.Id = Convert.ToInt32(node["Id"].InnerText);
                 persona.Nombre = node["Nombre"].InnerText;
                 persona.Apellido = node["Apellido"].InnerText;
@@ -92,7 +92,7 @@ namespace hospital_gui_wpf
             doc.Load(fichero.Stream);
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
-                var historial = new Historial(0,"", "", 0, 0, "", Genero.Otro, null, "", "");
+                var historial = new Historial(0, "", "", 0, 0, "", Genero.Otro, null, "", "");
                 historial.Id = Convert.ToInt32(node["Id"].InnerText);
                 historial.Nombre = node["Nombre"].InnerText;
                 historial.Apellido = node["Apellido"].InnerText;
@@ -176,10 +176,10 @@ namespace hospital_gui_wpf
                 new XElement("Telefono", telefonoPacienteSeleccionado),
                 new XElement("Correo", correoPacienteSeleccionado),
                 new XElement("Direccion", direccionPacienteSeleccionado)
-                //new XElement("Imagen", imagenPacienteSeleccionado)
+            //new XElement("Imagen", imagenPacienteSeleccionado)
             );
 
-         
+
             doc.Root.Add(nuevoPaciente);
 
             doc.Save(path);
@@ -195,22 +195,22 @@ namespace hospital_gui_wpf
             string correoPacienteSeleccionado = txtCorreoPacientes.Text;
             string direccionPacienteSeleccionado = txtDireccionPacientes.Text;
             //string imagenPacienteSeleccionado = imagenPacientes.Source.ToString().Replace("pack://application:,,,", "");
-         
+
             string generoPacienteSeleccionado = "";
             if (radioFemeninoPacientes.IsChecked == true)
             {
-               generoPacienteSeleccionado = "Mujer";
+                generoPacienteSeleccionado = "Mujer";
             }
             else if (radioMasculinoPacientes.IsChecked == true)
             {
-               generoPacienteSeleccionado = "Hombre";
+                generoPacienteSeleccionado = "Hombre";
             }
             else if (radioOtroPacientes.IsChecked == true)
             {
-               generoPacienteSeleccionado = "Otro";
+                generoPacienteSeleccionado = "Otro";
             }
 
-            
+
             string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
 
             XDocument doc = XDocument.Load(path);
@@ -235,7 +235,7 @@ namespace hospital_gui_wpf
                                        correoElem.Value.Equals(correoPacienteSeleccionado) &&
                                        direccionElem.Value.Equals(direccionPacienteSeleccionado) &&
                                        generoElem.Value.Equals(generoPacienteSeleccionado);
-                                       //imagenElem.Value.Equals(imagenPacienteSeleccionado);
+                                //imagenElem.Value.Equals(imagenPacienteSeleccionado);
                             }).ToList();
 
             foreach (var paciente in pacienteSeleccionado)
@@ -245,33 +245,73 @@ namespace hospital_gui_wpf
 
             doc.Save(path);
         }
-
-
-
-        private void btnConfirmarModificacion(object sender, RoutedEventArgs e)
+        private void btnConfirmarModificacionPacientes_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            string nombrePacienteSeleccionado = "XD";
-            string nuevoNombre = "Miriam";
+            // Primera confirmación
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {   // Segunda confirmación
+                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
+                if (result == MessageBoxResult.Yes)
+                {
+                    string nombrePacienteSeleccionado = "XD";
+                    string nuevoNombre = "Miriam";
 
-            XDocument doc = XDocument.Load(path);
+                    string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
 
-            var pacienteSeleccionado = doc.Descendants("Persona")
-            .Where(p => {
-                var nombreElem = p.Element("Nombre");
-                return nombreElem.Value.Equals(nombrePacienteSeleccionado);
-            }).ToList();
+                    XDocument doc = XDocument.Load(path);
 
-            foreach (var paciente in pacienteSeleccionado)
-            {
-                paciente.Element("Nombre").Value = nuevoNombre;
+                    var pacienteSeleccionado = doc.Descendants("Persona")
+                    .Where(p => {
+                        var nombreElem = p.Element("Nombre");
+                        return nombreElem.Value.Equals(nombrePacienteSeleccionado);
+                    }).ToList();
+
+                    foreach (var paciente in pacienteSeleccionado)
+                    {
+                        paciente.Element("Nombre").Value = nuevoNombre;
+                    }
+
+                    doc.Save(path);
+                }
+
             }
 
-            doc.Save(path);
 
+        }
+
+        private void btnConfirmarModificacionHistorial_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Primera confirmación
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {   // Segunda confirmación
+                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+
+                }
+
+            }
+        }
+
+        private void btnConfirmarModificacionPersonal_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Primera confirmación
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {   // Segunda confirmación
+                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+
+                }
+
+            }
         }
     }
 }
-
 
