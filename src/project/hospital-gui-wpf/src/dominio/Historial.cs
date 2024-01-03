@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace hospital_gui_wpf
+namespace hospital_gui_wpf.src.dominio
 {
-    public class Historial : Persona
+    public class Historial
     {
-        public string Descripcion { get; set; }
+        public string Dolencias { get; set; }
+        public string Tratamientos { get; set; }
+        public DateTime FechaAtencion { get; set; }
+        public Uri Foto { get; set; }
 
-        public Historial(int id, string nombre, string apellido, int edad, int telefono, string direccion, Genero genero, Uri imagen, string correo, string descripcion)
-            : base(id, nombre, apellido, edad, telefono, direccion, genero, imagen, correo)
+        public Historial(string dolencias, string tratamientos, DateTime fechaAtencion, Uri foto)
         {
-            Descripcion = descripcion;
-        }
+			Dolencias = dolencias;
+			Tratamientos = tratamientos;
+			FechaAtencion = fechaAtencion;
+			Foto = foto;
+		}
+
     }
 }
