@@ -58,7 +58,15 @@
     </ApplicationDefinition>
     <Compile Include="src\dominio\Cita.cs" />
     <Compile Include="src\dominio\Paciente.cs" />
+    <Compile Include="src\dominio\Usuario.cs" />
+    <Compile Include="src\presentacion\CambiarContrasena.xaml.cs">
+      <DependentUpon>CambiarContrasena.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\presentacion\TipoPersonalConverter.cs" />
+    <Page Include="src\presentacion\CambiarContrasena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="src\presentacion\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:hospital_gui_wpf.src.presentacion"
+        xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
         Title="Gestor de Usuarios" Height="487" Width="847" 
         Closing="Window_Closing" 
@@ -195,7 +195,7 @@
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
-                        <Image x:Name="btnConfirmarModificacionPacientes" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png"/>
+                        <Image x:Name="btnConfirmarModificacionPacientes" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
                         <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="4" Grid.RowSpan="6" Grid.Row="1">
                             <Image Source="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
                         </Border>
@@ -327,7 +327,7 @@
                         <TextBox x:Name="txtHistorial" TextWrapping="Wrap" Grid.Column="3" Grid.Row="2" Margin="15,0,15,0" Grid.RowSpan="5"
                                  Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Descripcion}" FontSize="14" FontWeight="SemiBold" BorderBrush="LightSkyBlue" BorderThickness="2"/>
 
-                        <Image x:Name="btnConfirmarModificacionHistorial" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionHistorial_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png"/>
+                        <Image x:Name="btnConfirmarModificacionHistorial" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionHistorial_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
                         <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="4" Grid.RowSpan="6" Grid.Row="1">
                             <Image Source="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
                         </Border>
@@ -481,7 +481,7 @@
                             </GroupBox>
                         </Grid>
 
-                        <Image x:Name="btnConfirmarModificacionPersonal" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPersonal_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png"/>
+                        <Image x:Name="btnConfirmarModificacionPersonal" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPersonal_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
                         <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="6" Grid.Row="1">
                             <Image Source="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
                         </Border>

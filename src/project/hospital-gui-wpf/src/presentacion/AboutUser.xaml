@@ -5,20 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
-        Title="AboutUser" Height="443" Width="270">
-    <Grid>
+        Title="Perfil de usuario" Height="440" Width="276">
+
+    <Grid Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="58"/>
             <ColumnDefinition Width="160"/>
-            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="58"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="160"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="173*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Content="Label" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Grid.RowSpan="2"/>
+
+
+
+
+        <TextBox x:Name="txtNombreUsuario" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"
+                 Text="{Binding NombreUsuario}" TextAlignment="Center" FontSize="16" FontWeight="DemiBold" Margin="5,10,5,0" BorderBrush="LightSkyBlue" BorderThickness="2" Height="25"/>
+
+        <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1">
+            <Image Source="{Binding Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+        </Border>
+
+        <Label x:Name="lblNombreRealUsuario" Content="Nombre:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" FontWeight="DemiBold" Height="26" Width="58"/>
+        <TextBox x:Name="txtNombreRealUsuario" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"
+                 Text="{Binding Nombre}" TextAlignment="Center" FontSize="12" FontWeight="DemiBold" Margin="5,25,5,0" BorderBrush="LightSkyBlue" BorderThickness="2" Height="20"/>
+
+        <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1" FontWeight="DemiBold" Height="26" Width="58"/>
+        <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"
+                 Text="{Binding Apellido}" TextAlignment="Center" FontSize="12" FontWeight="DemiBold" Margin="5,25,5,0" BorderBrush="LightSkyBlue" BorderThickness="2" Height="20"/>
+
+        <Label x:Name="lblFechaContratacion" Content="Fecha de contratación:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="4" Grid.Column="1" FontWeight="DemiBold" Height="26" Width="132"/>
+        <TextBox x:Name="txtFechaContratacion" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="4" Grid.Column="1"
+                 Text="{Binding fechaContratacion, StringFormat='dd/MM/yyyy'}" TextAlignment="Center" FontSize="12" FontWeight="DemiBold" Margin="5,26,5,0" BorderBrush="LightSkyBlue" BorderThickness="2" Height="20"/>
+
+        <Image x:Name="btnModificarContraseña" Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" Height="20" Source="\datos\imagenes\cambiarContra.png" ToolTip="Modificar contraseña" MouseDown="btnModificarContraseña_MouseDown"/>
+
     </Grid>
 </Window>
