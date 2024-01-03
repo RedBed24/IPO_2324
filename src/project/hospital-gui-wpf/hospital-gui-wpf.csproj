@@ -79,7 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="src\persistencia\DataReader.cs" />
     <Compile Include="src\presentacion\AboutUser.xaml.cs">
       <DependentUpon>AboutUser.xaml</DependentUpon>
     </Compile>
@@ -151,6 +150,9 @@
     <Resource Include="datos\imagenes\masculino.png" />
     <Resource Include="datos\imagenes\otro.png" />
     <Resource Include="datos\imagenes\sanitario.png" />
+    <Resource Include="datos\imagenes\Antonio.jpg" />
+    <Resource Include="datos\imagenes\cambiarContra.png" />
   </ItemGroup>
+  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
