@@ -56,7 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="src\dominio\TipoPersonalConverter.cs" />
+    <Compile Include="src\dominio\Cita.cs" />
+    <Compile Include="src\dominio\Paciente.cs" />
+    <Compile Include="src\presentacion\TipoPersonalConverter.cs" />
     <Page Include="src\presentacion\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -69,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="src\persistencia\DataReader.cs" />
     <Compile Include="src\presentacion\AboutUser.xaml.cs">
       <DependentUpon>AboutUser.xaml</DependentUpon>
     </Compile>
@@ -76,7 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\dominio\GeneroConverter.cs" />
+    <Compile Include="src\presentacion\GeneroConverter.cs" />
     <Compile Include="src\dominio\Personal.cs" />
     <Compile Include="src\presentacion\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
-using System.Windows.Media;
+using hospital_gui_wpf.src.dominio;
 
-namespace hospital_gui_wpf
+namespace hospital_gui_wpf.src.presentacion
 {
     public class TipoPersonalConverter : IValueConverter
     {

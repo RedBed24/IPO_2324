@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace hospital_gui_wpf
+namespace hospital_gui_wpf.src.presentacion
 {
 	/// <summary>
 	/// Lógica de interacción para Login.xaml
@@ -26,6 +26,7 @@ namespace hospital_gui_wpf
 		public Login()
 		{
 			InitializeComponent();
+			txtUser.Focus();
 		}
 
 		private void btnMinimize_Click(object sender, RoutedEventArgs e)
