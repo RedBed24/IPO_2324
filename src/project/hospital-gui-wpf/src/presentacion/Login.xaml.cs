@@ -13,7 +13,8 @@ namespace hospital_gui_wpf
 	/// </summary>
 	public partial class Login : Window
 	{
-		private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
+        private TextBlock txtPassWatermark;
+        private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
 		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
 		private readonly Dictionary<string, string> usuarios = new Dictionary<string, string>
 		{
@@ -117,7 +118,9 @@ namespace hospital_gui_wpf
 		private void txtPass_GotFocus(object sender, RoutedEventArgs e)
 		{
 			ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser);
-		}
+            txtPassWatermark = (TextBlock)txtPass.Template.FindName("txtPassWatermark", txtPass);
+            txtPassWatermark.Visibility = Visibility.Collapsed;
+        }
 
 
 		private void Image_MouseEnter(object sender, MouseEventArgs e)
@@ -129,6 +132,28 @@ namespace hospital_gui_wpf
 		{
 			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
 		}
-	}
+
+        private void txtUser_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtUserWatermark.Visibility = Visibility.Collapsed;
+        }
+
+        private void txtUser_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUser.Text))
+            {
+                txtUserWatermark.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtPass_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtPassWatermark = (TextBlock)txtPass.Template.FindName("txtPassWatermark", txtPass);
+            if (string.IsNullOrEmpty(txtPass.Password))
+            {
+                txtPassWatermark.Visibility = Visibility.Visible;
+            }
+        }
+    }
 }
 
