@@ -244,14 +244,6 @@
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="1">
                     <Button x:Name="btnLogin" Content="Iniciar sesión" Foreground="White" Click="btnLogin_Click"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="98" Width="313"  >
-                        <Button.RenderTransform>
-                             <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="0.026"/>
-                                <TranslateTransform/>
-                                </TransformGroup>
-                        </Button.RenderTransform>
                     <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Height="70" Width="300" CornerRadius="30" Background="#FF343437">
