@@ -7,22 +7,23 @@
         mc:Ignorable="d"
         Title="Perfil de usuario" Height="440" Width="276">
 
+
     <Grid Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="58"/>
-            <ColumnDefinition Width="160"/>
-            <ColumnDefinition Width="58"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="58*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
 
 
