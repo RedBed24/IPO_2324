@@ -24,5 +24,9 @@ namespace hospital_gui_wpf
             fechaContratacion = fecha;
             Imagen = imagen;
         }
+        public bool ValidarContrasena(string contrasenaActual)
+        {
+            return Contrasena == contrasenaActual;
+        }
     }
 }

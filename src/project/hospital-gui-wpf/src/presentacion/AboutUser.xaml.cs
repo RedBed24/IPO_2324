@@ -24,15 +24,11 @@ namespace hospital_gui_wpf.src.presentacion
 
             if (result == true)
             {
-                // Obtener la nueva contraseña desde la ventana CambiarContrasenaWindow
                 string nuevaContrasena = cambiarContrasenaWindow.NuevaContrasena;
-
-                // Aquí puedes realizar acciones adicionales con la nueva contraseña
                 MessageBox.Show($"La nueva contraseña es: {nuevaContrasena}");
             }
             else
             {
-                // El usuario canceló el cambio de contraseña
                 MessageBox.Show("Cambio de contraseña cancelado.");
             }
         }
