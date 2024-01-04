@@ -57,8 +57,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="src\dominio\Cita.cs" />
+    <Compile Include="src\dominio\Gestor.cs" />
     <Compile Include="src\dominio\Paciente.cs" />
     <Compile Include="src\dominio\Usuario.cs" />
+    <Compile Include="src\persistencia\DataReader.cs" />
     <Compile Include="src\presentacion\CambiarContrasena.xaml.cs">
       <DependentUpon>CambiarContrasena.xaml</DependentUpon>
     </Compile>
