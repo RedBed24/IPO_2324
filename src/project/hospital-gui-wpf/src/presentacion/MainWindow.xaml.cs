@@ -40,9 +40,6 @@ namespace hospital_gui_wpf.src.presentacion
         {
             // Establece el estado de la ventana a maximizado
             WindowState = WindowState.Maximized;
-
-            // Deshabilita el botón de minimizar
-            ResizeMode = ResizeMode.NoResize;
         }
 
         private void btnAltaPaciente(object sender, RoutedEventArgs e)
