@@ -13,6 +13,7 @@ namespace hospital_gui_wpf.src.presentacion
 	/// </summary>
 	public partial class Login : Window
 	{
+        private bool cerrarDesdeCodigo = false;
         private TextBlock txtPassWatermark;
         private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
 		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
@@ -107,13 +108,16 @@ namespace hospital_gui_wpf.src.presentacion
 			{
 				MainWindow ventana_principal = new MainWindow();
 				ventana_principal.Visibility = Visibility.Visible;
-				this.Visibility = Visibility.Collapsed;
+				cerrarDesdeCodigo = true;
+				this.Close();
 			}
 		}
-
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
+				if (!cerrarDesdeCodigo)
+				{
+					MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
+				}
 		}
 
 		private void txtPass_GotFocus(object sender, RoutedEventArgs e)
