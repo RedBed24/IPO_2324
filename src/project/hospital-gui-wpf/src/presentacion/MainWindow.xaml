@@ -509,7 +509,7 @@
                     <EllipseGeometry Center="30,30" RadiusX="27" RadiusY="27"/>
                 </Border.Clip>
                 <Image x:Name="btnPerfilUsuario" VerticalAlignment="Top" HorizontalAlignment="Center" Width="40" Stretch="Uniform"
-                   Source="/datos/imagenes/Antonio.jpg"/>
+                   Source="/datos/imagenes/Antonio.jpg" MouseDown="btnPerfilUsuario_MouseDown"/>
             </Border>
         </Viewbox>
     </Grid>

@@ -225,6 +225,21 @@ namespace hospital_gui_wpf.src.presentacion
 
             }
         }
+
+        private void btnPerfilUsuario_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AboutUser aboutuser = new AboutUser();
+            aboutuser.Closed += AboutUserClosed;
+            aboutuser.Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void AboutUserClosed(object sender, EventArgs e)
+        {
+            // Este método se ejecutará cuando la ventana AboutUser.xaml se cierre
+            this.Visibility = Visibility.Visible; 
+            
+        }
     }
 }
 
