@@ -125,9 +125,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="datos\persona.xml" />
     <Resource Include="datos\historial.xml" />
     <Resource Include="datos\personal.xml" />
+    <Resource Include="datos\citas.xml" />
+    <Resource Include="datos\usuarios.xml" />
+    <Resource Include="datos\pacientes.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="datos\imagenes\baseline_help_white_24dp.png" />
