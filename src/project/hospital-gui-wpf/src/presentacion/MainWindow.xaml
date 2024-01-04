@@ -72,14 +72,14 @@
             <TabItem Header="Pacientes" Background="LightBlue">
                 <Grid Background="WhiteSmoke">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210*"/>
-                        <ColumnDefinition Width="12"/>
-                        <ColumnDefinition Width="569*"/>
+                        <ColumnDefinition Width="113*"/>
+                        <ColumnDefinition Width="122.002"/>
+                        <ColumnDefinition Width="606*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GridSplitter x:Name="splitterPacientes" Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <GridSplitter x:Name="splitterPacientes" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Margin="5,0,4,0"/>
 
-                    <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2">
+                    <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -92,7 +92,7 @@
                         </ListBox.ItemTemplate>
 
                     </ListBox>
-                    <Grid Grid.Column="2" Background="WhiteSmoke" MinWidth="210">
+                    <Grid Grid.Column="1" Background="WhiteSmoke" Grid.ColumnSpan="2" Margin="14,0,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="26"/>
                             <RowDefinition Height="52*"/>
@@ -108,95 +108,103 @@
                             <ColumnDefinition Width="26"/>
                             <ColumnDefinition Width="70*"/>
                             <ColumnDefinition Width="233*"/>
-                            <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="210*"/>
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="26"/>
                         </Grid.ColumnDefinitions>
-                        <GroupBox x:Name="DatosPersonalesPaciente" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosPersonalesPaciente"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <Label x:Name="lblNombrePacientes" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                <TextBox x:Name="txtnombrePacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Label x:Name="lblNombrePacientes" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <Viewbox Grid.Column="1" Grid.Row="0">
+                                        <TextBox x:Name="txtnombrePacientes" TextWrapping="Wrap" VerticalAlignment="Center" 
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
-
-                                <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    </Viewbox>
+                                    <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                <Label x:Name="lblEdadPacientes" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                <TextBox x:Name="txtEdadPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblEdadPacientes" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtEdadPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
-                            </Grid>
-                        </GroupBox>
-                        <GroupBox x:Name="DatosContactoPaciente" Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosContactoPaciente"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <Label x:Name="lblTelefonoPacientes" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                <TextBox x:Name="txtTelefonoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Label x:Name="lblTelefonoPacientes" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <TextBox x:Name="txtTelefonoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                  Text="{Binding ElementName=lstListaPacientes,
                                    Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                <Label x:Name="lblDireccionPacientes" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                <TextBox x:Name="txtDireccionPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    <Label x:Name="lblDireccionPacientes" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtDireccionPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                  Text="{Binding ElementName=lstListaPacientes,
                                    Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                <Label x:Name="lblCorreoPacientes" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                <TextBox x:Name="txtCorreoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblCorreoPacientes" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtCorreoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                  Text="{Binding ElementName=lstListaPacientes,
                                    Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                            </Grid>
-                        </GroupBox>
-                        <GroupBox x:Name="DatosSexoPaciente" Grid.Row="7" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="2" Header="Sexo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Label x:Name="lblSexoPacientes" Content="Género:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="51"/>
-                                <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
-                                    <RadioButton x:Name="radioFemeninoPacientes" VerticalAlignment="Center"
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1">
+                            <GroupBox x:Name="DatosSexoPaciente" Grid.Row="7" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="2" Header="Sexo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="356">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label x:Name="lblSexoPacientes" Content="Género:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="51"/>
+                                    <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
+                                        <RadioButton x:Name="radioFemeninoPacientes" VerticalAlignment="Center"
                                                  IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                        <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
-                                    </RadioButton>
-                                    <RadioButton x:Name="radioMasculinoPacientes" VerticalAlignment="Center"
+                                            <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
+                                        </RadioButton>
+                                        <RadioButton x:Name="radioMasculinoPacientes" VerticalAlignment="Center"
                                                  IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                        <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
-                                    </RadioButton>
-                                    <RadioButton x:Name="radioOtroPacientes" VerticalAlignment="Center"
+                                            <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
+                                        </RadioButton>
+                                        <RadioButton x:Name="radioOtroPacientes" VerticalAlignment="Center"
                                                  IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                        <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
-                                    </RadioButton>
-                                </StackPanel>
-                            </Grid>
-                        </GroupBox>
-                        <Image x:Name="btnConfirmarModificacionPacientes" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
-                        <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="4" Grid.RowSpan="6" Grid.Row="1">
+                                            <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
+                                        </RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3" Grid.Row="7">
+                            <Image x:Name="btnConfirmarModificacionPacientes"  VerticalAlignment="Center" Height="20" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
+                        </Viewbox>
+                        <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="6" Grid.Row="1">
                             <Image Source="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
                         </Border>
                         <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
