@@ -2,16 +2,16 @@
 	<Historial>
 		<Paciente>1234</Paciente>
 		<Dolencias>Dolor de espalda por cargar con el peso de aprobar ISO2</Dolencias>
-		<Tratamiento>Cargar con IPO</Tratamiento>
-		<Fecha>2023/12/22</Fecha>
+		<Tratamientos>Cargar con IPO</Tratamientos>
+		<FechaAtencion>2023/12/22</FechaAtencion>
 		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
 	</Historial>
 
 	<Historial>
 		<Paciente>1234</Paciente>
 		<Dolencias>Insomio por cargar con ISO2</Dolencias>
-		<Tratamiento>Cargar con IPO</Tratamiento>
-		<Fecha>2023/11/22</Fecha>
+		<Tratamientos>Cargar con IPO</Tratamientos>
+		<FechaAtencion>2023/11/22</FechaAtencion>
 		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
 	</Historial>
 </Historiales>

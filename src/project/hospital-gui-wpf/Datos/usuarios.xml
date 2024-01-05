@@ -5,7 +5,7 @@
 		<Nombre>Samuel</Nombre>
 		<Apellido>Espejo</Apellido>
 		<Contrasena>E5pej0</Contrasena>
-		<FechaContratacion>2023/9/20</FechaContratacion>
+		<FechaContratacion>2023/09/20</FechaContratacion>
 		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
 	</Usuario>
 </Usuarios>

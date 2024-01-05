@@ -108,8 +108,8 @@ namespace hospital_gui_wpf.src.persistencia
 			doc.Load(filename);
 			foreach (XmlNode node in doc.DocumentElement.ChildNodes)
 			{
-				fechaCita = DateTime.ParseExact(node["FechaCita"].InnerText, "yyyy/MM/dd HH:mm:ss", null);
-				duracion = TimeSpan.ParseExact(node["Duracion"].InnerText, "HH:mm:ss", null);
+				fechaCita = DateTime.ParseExact(node["FechaCita"].InnerText, "yyyy/MM/dd HH:mm", null);
+				duracion = TimeSpan.ParseExact(node["Duracion"].InnerText, @"hh\:mm", null);
 
 				paciente = pacientes.Find(p => p.Id == Convert.ToInt32(node["Paciente"].InnerText));
 				medico = personal.Find(p => p.Id == Convert.ToInt32(node["Medico"].InnerText));
