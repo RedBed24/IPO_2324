@@ -9,7 +9,7 @@ namespace hospital_gui_wpf.src.dominio
         Limpieza
     }
 
-    internal class Personal : Persona
+    public class Personal : Persona
     {
         public TipoPersonal Tipo { get; set; }
 
