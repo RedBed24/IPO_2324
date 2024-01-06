@@ -11,24 +11,10 @@ namespace hospital_gui_wpf.src.presentacion
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Persona> listadoPacientes;
-        private List<Historial> listadoHistorial;
-        private List<Personal> listadoPersonal;
 
         public MainWindow()
         {
             InitializeComponent();
-            listadoPacientes = new List<Persona>();
-            //listadoPacientes = CargarPacientesXML();
-            lstListaPacientes.ItemsSource = listadoPacientes;
-
-            listadoHistorial = new List<Historial>();
-            //listadoHistorial = CargarHistorialXML();
-            lstListaHistoriales.ItemsSource = listadoHistorial;
-
-            listadoPersonal = new List<Personal>();
-            //listadoPersonal = CargarPersonalXML();
-            lstListaPersonal.ItemsSource = listadoPersonal;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -70,29 +56,6 @@ namespace hospital_gui_wpf.src.presentacion
                 generoPacienteSeleccionado = "Otro";
             }
 
-            /*
-            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
-
-            XDocument doc = XDocument.Load(path);
-
-            XElement nuevoPaciente = new XElement("Persona",
-                //new XElement("Id", idPacienteSeleccionado),
-                new XElement("Nombre", nombrePacienteSeleccionado),
-                new XElement("Apellido", apellidoPacienteSeleccionado),
-                new XElement("Edad", edadPacienteSeleccionado),
-                new XElement("Genero", generoPacienteSeleccionado),
-                new XElement("Telefono", telefonoPacienteSeleccionado),
-                new XElement("Correo", correoPacienteSeleccionado),
-                new XElement("Direccion", direccionPacienteSeleccionado)
-            //new XElement("Imagen", imagenPacienteSeleccionado)
-            );
-
-
-            doc.Root.Add(nuevoPaciente);
-
-            doc.Save(path);
-            */
-
         }
         private void btnBajaPaciente(object sender, RoutedEventArgs e)
         {
@@ -119,42 +82,6 @@ namespace hospital_gui_wpf.src.presentacion
                 generoPacienteSeleccionado = "Otro";
             }
 
-
-            /*
-            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
-
-            XDocument doc = XDocument.Load(path);
-
-            var pacienteSeleccionado = doc.Descendants("Persona")
-                            .Where(p =>
-                            {
-                                var IdElem = p.Element("Id");
-                                var nombreElem = p.Element("Nombre");
-                                var apellidoElem = p.Element("Apellido");
-                                var edadElem = p.Element("Edad");
-                                var telefonoElem = p.Element("Telefono");
-                                var correoElem = p.Element("Correo");
-                                var direccionElem = p.Element("Direccion");
-                                var generoElem = p.Element("Genero");
-                                var imagenElem = p.Element("Imagen");
-
-                                return nombreElem.Value.Equals(nombrePacienteSeleccionado) &&
-                                       apellidoElem.Value.Equals(apellidoPacienteSeleccionado) &&
-                                       edadElem.Value.Equals(edadPacienteSeleccionado) &&
-                                       telefonoElem.Value.Equals(telefonoPacienteSeleccionado) &&
-                                       correoElem.Value.Equals(correoPacienteSeleccionado) &&
-                                       direccionElem.Value.Equals(direccionPacienteSeleccionado) &&
-                                       generoElem.Value.Equals(generoPacienteSeleccionado);
-                                //imagenElem.Value.Equals(imagenPacienteSeleccionado);
-                            }).ToList();
-
-            foreach (var paciente in pacienteSeleccionado)
-            {
-                paciente.Remove();
-            }
-
-            doc.Save(path);
-            */
         }
         private void btnConfirmarModificacionPacientes_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -169,24 +96,6 @@ namespace hospital_gui_wpf.src.presentacion
                     string nombrePacienteSeleccionado = "XD";
                     string nuevoNombre = "Miriam";
 
-                    /*
-                    string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
-
-                    XDocument doc = XDocument.Load(path);
-
-                    var pacienteSeleccionado = doc.Descendants("Persona")
-                    .Where(p => {
-                        var nombreElem = p.Element("Nombre");
-                        return nombreElem.Value.Equals(nombrePacienteSeleccionado);
-                    }).ToList();
-
-                    foreach (var paciente in pacienteSeleccionado)
-                    {
-                        paciente.Element("Nombre").Value = nuevoNombre;
-                    }
-
-                    doc.Save(path);
-                    */
                 }
 
             }
