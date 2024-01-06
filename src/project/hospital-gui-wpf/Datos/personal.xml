@@ -1,26 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Personal>
 	<Personal>
-		<Nombre>Rubén</Nombre>
-		<Apellido>Gómez</Apellido>
-		<Edad>32</Edad>
-		<Telefono>610328877</Telefono>
-		<Direccion>Avenida Alfonso X El Sabio</Direccion>
-		<Genero>Hombre</Genero>
-		<Imagen>/imagenes/pacienteH1.jpg</Imagen>
-		<Correo>rubengomez56@gmail.com</Correo>
-		<Tipo>Limpieza</Tipo>
+		<Id>2468</Id>
+		<Nombre>Noelia</Nombre>
+		<Apellido>Díaz-Alejo</Apellido>
+		<FechaNacimiento>2003/07/21</FechaNacimiento>
+		<Telefono>62626262</Telefono>
+		<Direccion>Su casa</Direccion>
+		<Genero>Mujer</Genero>
+		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
+		<Correo>noelia.diazalejo14@alu.uclm.es</Correo>
+		<TipoPersonal>Sanitario</TipoPersonal>
 	</Personal>
-
-	<Personal>
-		<Nombre>Iciar</Nombre>
-		<Apellido>Carmona</Apellido>
-		<Edad>18</Edad>
-		<Telefono>610328877</Telefono>
-		<Direccion>Calle Alfonso XI</Direccion>
-		<Genero>Otro</Genero>
-		<Imagen>/imagenes/pacienteO1.jpg</Imagen>
-		<Correo>iciarCarmona@gmail.com</Correo>
-		<Tipo>Limpieza</Tipo>
-	</Personal>
-
 </Personal>

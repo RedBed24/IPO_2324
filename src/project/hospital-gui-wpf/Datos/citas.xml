@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Citas>
+	<Cita>
+		<FechaCita>2023/12/25 10:00</FechaCita>
+		<Duracion>01:00</Duracion>
+		<Paciente>1234</Paciente>
+		<Medico>2468</Medico>
+		<InfoAdicional>Paciente muere</InfoAdicional>
+	</Cita>
+</Citas>

@@ -1,49 +1,17 @@
 <Historiales>
 	<Historial>
-		<Nombre>Natalia</Nombre>
-		<Apellido>Patinio</Apellido>
-		<Edad>25</Edad>
-		<Telefono>620203687</Telefono>
-		<Direccion>Calle Aben Canes</Direccion>
-		<Genero>Mujer</Genero>
-		<Imagen>/imagenes/pacienteM1.jpg</Imagen>
-		<Correo>natalia.patinio14@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de ansiedad</Descripcion>
+		<Paciente>1234</Paciente>
+		<Dolencias>Dolor de espalda por cargar con el peso de aprobar ISO2</Dolencias>
+		<Tratamientos>Cargar con IPO</Tratamientos>
+		<FechaAtencion>2023/12/22</FechaAtencion>
+		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
 	</Historial>
 
 	<Historial>
-		<Nombre>Laura</Nombre>
-		<Apellido>Pérez</Apellido>
-		<Edad>30</Edad>
-		<Telefono>620453678</Telefono>
-		<Direccion>Plaza de Agustín Salido</Direccion>
-		<Genero>Mujer</Genero>
-		<Imagen>/imagenes/pacienteM2.jpg</Imagen>
-		<Correo>lauraperez@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de depresión</Descripcion>
+		<Paciente>1234</Paciente>
+		<Dolencias>Insomio por cargar con ISO2</Dolencias>
+		<Tratamientos>Cargar con IPO</Tratamientos>
+		<FechaAtencion>2023/11/22</FechaAtencion>
+		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
 	</Historial>
-	<Historial>
-		<Nombre>Rubén</Nombre>
-		<Apellido>Gómez</Apellido>
-		<Edad>32</Edad>
-		<Telefono>610328877</Telefono>
-		<Direccion>Avenida Alfonso X El Sabio</Direccion>
-		<Genero>Hombre</Genero>
-		<Imagen>/imagenes/pacienteH1.jpg</Imagen>
-		<Correo>rubengomez56@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de ansiedad</Descripcion>
-	</Historial>
-
-	<Historial>
-		<Nombre>Iciar</Nombre>
-		<Apellido>Carmona</Apellido>
-		<Edad>18</Edad>
-		<Telefono>610328877</Telefono>
-		<Direccion>Calle Alfonso XI</Direccion>
-		<Genero>Otro</Genero>
-		<Imagen>/imagenes/pacienteO1.jpg</Imagen>
-		<Correo>iciarCarmona@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de depresión</Descripcion>
-	</Historial>
-
 </Historiales>

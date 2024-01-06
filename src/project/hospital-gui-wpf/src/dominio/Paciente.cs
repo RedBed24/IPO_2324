@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace hospital_gui_wpf.src.dominio
 {
-	internal class Paciente : Persona
+	public class Paciente : Persona
 	{
 		public List<Cita> Citas { set; get; }
 		public List<Historial> Historiales { set; get; }
