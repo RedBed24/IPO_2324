@@ -62,6 +62,378 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="CalendarCalendarButtonStyle1" TargetType="{x:Type CalendarButton}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarButton}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" To=".5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" To=".5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="SelectedBackground" To=".75" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ActiveStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Active"/>
+                                    <VisualState x:Name="Inactive">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FF777777" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CalendarButtonFocusStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="CalendarButtonFocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="CalendarButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CalendarButtonUnfocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="CalendarButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="SelectedBackground" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="15" RadiusY="15"/>
+                            <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="15" RadiusY="15"/>
+                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FF333333" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusX="15" RadiusY="15" Stroke="White" Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Visibility" TargetName="CalendarButtonFocusVisual" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CalendarCalendarDayButtonStyle1" TargetType="{x:Type CalendarDayButton}" >
+            <Setter Property="MinWidth" Value="5"/>
+            <Setter Property="MinHeight" Value="5"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarDayButton}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="HighlightBackground" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="HighlightBackground" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="HighlightBackground" To="0" Storyboard.TargetProperty="Opacity"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="NormalText" To=".35" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="SelectedBackground" To=".75" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CalendarButtonFocusStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="CalendarButtonFocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DayButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CalendarButtonUnfocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DayButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ActiveStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Active"/>
+                                    <VisualState x:Name="Inactive">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FF777777" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DayStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="RegularDay"/>
+                                    <VisualState x:Name="Today">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="TodayBackground" To="1" Storyboard.TargetProperty="Opacity"/>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FFFFFFFF" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="BlackoutDayStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="NormalDay"/>
+                                    <VisualState x:Name="BlackoutDay">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Blackout" To=".2" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="TodayBackground" Fill="#FFAAAAAA" Opacity="0" RadiusX="15" RadiusY="15"/>
+                            <Rectangle x:Name="SelectedBackground" Fill="White" Opacity="0" RadiusX="15" RadiusY="15"/>
+
+                            <Rectangle x:Name="HighlightBackground" Fill="White" Opacity="0" RadiusX="15" RadiusY="15"/>
+                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FF333333" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
+                            <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="15" RadiusY="15" Stroke="White" Visibility="Collapsed"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CalendarCalendarItemStyle1" TargetType="{x:Type CalendarItem}">
+            <Setter Property="Margin" Value="3,3,3,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarItem}">
+                        <ControlTemplate.Resources>
+                            <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                                <TextBlock Foreground="#FF333333" FontFamily="Alef" FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" Margin="6,6,6,6" Text="{Binding}" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </ControlTemplate.Resources>
+                        <Grid x:Name="PART_Root">
+                            <Grid.Resources>
+                                <SolidColorBrush x:Key="DisabledColor" Color="White"/>
+                            </Grid.Resources>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_DisabledVisual" To="1" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20">
+                                <Border BorderBrush="LightBlue" BorderThickness="2" CornerRadius="20">
+                                    <Grid>
+                                        <Grid.Resources>
+                                            <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
+                                                <Grid Cursor="Hand" HorizontalAlignment="Center" Margin="2,2,2,2" >
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal"/>
+                                                            <VisualState x:Name="MouseOver">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#FF73A9D8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Disabled">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="path" To=".5" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Rectangle Fill="#11E5EBF1" Opacity="1" Stretch="Fill"/>
+                                                    <Grid>
+                                                        <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="#FF333333" HorizontalAlignment="Left" Height="10" Margin="14,-6,0,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </ControlTemplate>
+                                            <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
+                                                <Grid Cursor="Hand">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal"/>
+                                                            <VisualState x:Name="MouseOver">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#FF73A9D8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Disabled">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="path" To=".5" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Rectangle Fill="#11E5EBF1" Opacity="1" Stretch="Fill"/>
+                                                    <Grid>
+                                                        <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="#FF333333" HorizontalAlignment="Right" Height="10" Margin="0,-6,14,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </ControlTemplate>
+                                            <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
+                                                <Grid Cursor="Hand">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal"/>
+                                                            <VisualState x:Name="MouseOver">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Duration="0" Storyboard.TargetName="buttonContent" To="#FF73A9D8" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Disabled">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="buttonContent" To=".5" Storyboard.TargetProperty="Opacity"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <ContentPresenter x:Name="buttonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" TextElement.Foreground="#FF333333" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,4,1,9" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Grid.Resources>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80*"/>
+                                            <ColumnDefinition Width="5"/>
+                                            <ColumnDefinition Width="5"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Button x:Name="PART_PreviousButton" Grid.Column="1" Focusable="False" HorizontalAlignment="Right" Height="20" Grid.Row="0" Template="{StaticResource PreviousButtonTemplate}" Width="28"/>
+                                        <Button x:Name="PART_HeaderButton" Grid.Column="0" Focusable="False" FontWeight="Bold" FontSize="13" HorizontalAlignment="Right" Grid.Row="0" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"/>
+                                        <Button x:Name="PART_NextButton" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="20" Grid.Row="0" Template="{StaticResource NextButtonTemplate}" Width="28"/>
+                                        <Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="1" Visibility="Visible">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                        </Grid>
+                                        <Grid x:Name="PART_YearView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-3,7,6" Grid.Row="1" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                            <Rectangle x:Name="PART_DisabledVisual" Fill="{StaticResource DisabledColor}" Opacity="0" RadiusX="2" RadiusY="2" Stroke="{StaticResource DisabledColor}" Stretch="Fill" StrokeThickness="1" Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Visibility" TargetName="PART_DisabledVisual" Value="Visible"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
+                                <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
+                                <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
+                                <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
+                                <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
@@ -76,428 +448,511 @@
             <RowDefinition Height="443*"/>
         </Grid.RowDefinitions>
         <TabControl Background="White" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1">
-                <TabItem Header="Pacientes" Background="LightBlue">
-                    <Grid Background="WhiteSmoke">
+            <TabItem Header="Pacientes" Background="LightBlue">
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="108*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="727*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GridSplitter x:Name="splitterPacientes" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+
+                    <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
+                                    <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Telefono}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Correo}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+                    <Grid Grid.Column="2" Background="WhiteSmoke" Margin="5,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="26"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="26"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="108*"/>
-                            <ColumnDefinition Width="6"/>
-                            <ColumnDefinition Width="727*"/>
+                            <ColumnDefinition Width="26"/>
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="233*"/>
+                            <ColumnDefinition Width="210*"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="26"/>
                         </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosPersonalesPaciente"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                        <GridSplitter x:Name="splitterPacientes" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                        <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
-                                        <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Telefono}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Correo}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-
-                        </ListBox>
-                        <Grid Grid.Column="2" Background="WhiteSmoke" Margin="5,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="26"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="26"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="26"/>
-                                <ColumnDefinition Width="70*"/>
-                                <ColumnDefinition Width="233*"/>
-                                <ColumnDefinition Width="210*"/>
-                                <ColumnDefinition Width="25"/>
-                                <ColumnDefinition Width="26"/>
-                            </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosPersonalesPaciente"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Label x:Name="lblNombrePacientes" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <Viewbox Grid.Column="1" Grid.Row="0">
-                                            <TextBox x:Name="txtnombrePacientes" TextWrapping="Wrap" VerticalAlignment="Center" 
+                                    <Label x:Name="lblNombrePacientes" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <Viewbox Grid.Column="1" Grid.Row="0">
+                                        <TextBox x:Name="txtnombrePacientes" TextWrapping="Wrap" VerticalAlignment="Center" 
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
-                                        </Viewbox>
-                                        <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    </Viewbox>
+                                    <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblEdadPacientes" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtEdadPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblEdadPacientes" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtEdadPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
-                                    </Grid>
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosContactoPaciente"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosContactoPaciente"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                        <Label x:Name="lblTelefonoPacientes" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <TextBox x:Name="txtTelefonoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Label x:Name="lblTelefonoPacientes" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <TextBox x:Name="txtTelefonoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                  Text="{Binding ElementName=lstListaPacientes,
                                    Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblDireccionPacientes" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtDireccionPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    <Label x:Name="lblDireccionPacientes" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtDireccionPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                  Text="{Binding ElementName=lstListaPacientes,
                                    Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblCorreoPacientes" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtCorreoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblCorreoPacientes" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtCorreoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                  Text="{Binding ElementName=lstListaPacientes,
                                    Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                    </Grid>
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosSexoPaciente" Header="Sexo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="354">
-                                    <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
-                                        <Label x:Name="lblSexoPacientes" Content="Género:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="51"/>
-                                        <RadioButton x:Name="radioFemeninoPacientes" VerticalAlignment="Center" FontSize="16"
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosSexoPaciente" Header="Sexo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="354">
+                                <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
+                                    <Label x:Name="lblSexoPacientes" Content="Género:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="51"/>
+                                    <RadioButton x:Name="radioFemeninoPacientes" VerticalAlignment="Center" FontSize="16"
                                                  IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                            <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
-                                        </RadioButton>
-                                        <RadioButton x:Name="radioMasculinoPacientes" VerticalAlignment="Center" FontSize="16"
+                                        <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
+                                    </RadioButton>
+                                    <RadioButton x:Name="radioMasculinoPacientes" VerticalAlignment="Center" FontSize="16"
                                                  IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                            <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
-                                        </RadioButton>
-                                        <RadioButton x:Name="radioOtroPacientes" VerticalAlignment="Center" FontSize="16"
+                                        <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
+                                    </RadioButton>
+                                    <RadioButton x:Name="radioOtroPacientes" VerticalAlignment="Center" FontSize="16"
                                                  IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                            <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
-                                        </RadioButton>
-                                    </StackPanel>
+                                        <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
+                                    </RadioButton>
+                                </StackPanel>
 
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Column="3" Grid.Row="7">
-                                <Image x:Name="btnConfirmarModificacionPacientes"  VerticalAlignment="Center" Height="20" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
-                            </Viewbox>
-                            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="6" Grid.Row="1">
-                                <Image Source="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
-                            </Border>
-                            <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
-                            <Rectangle Grid.ColumnSpan="7" Fill="LightSkyBlue"/>
-                            <Rectangle Grid.RowSpan="9" Grid.Column="6" Fill="LightSkyBlue"/>
-                            <Rectangle Grid.ColumnSpan="7" Grid.Row="8" Fill="LightSkyBlue"/>
-                        </Grid>
-
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3" Grid.Row="7">
+                            <Image x:Name="btnConfirmarModificacionPacientes"  VerticalAlignment="Center" Height="20" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
+                        </Viewbox>
+                        <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="6" Grid.Row="1">
+                            <Image Source="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+                        </Border>
+                        <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
+                        <Rectangle Grid.ColumnSpan="7" Fill="LightSkyBlue"/>
+                        <Rectangle Grid.RowSpan="9" Grid.Column="6" Fill="LightSkyBlue"/>
+                        <Rectangle Grid.ColumnSpan="7" Grid.Row="8" Fill="LightSkyBlue"/>
                     </Grid>
-                </TabItem>
 
-                <TabItem Header="Historial" Background="LightBlue">
-                    <Grid Background="WhiteSmoke">
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Historial" Background="LightBlue">
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="78*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="757*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GridSplitter x:Name="splitterHistoriales" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+
+                    <ListBox x:Name="lstListaHistoriales" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
+                                    <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Descripcion}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Grid Grid.Column="2" Background="WhiteSmoke" Margin="5,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="26"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="26"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="78*"/>
-                            <ColumnDefinition Width="6"/>
-                            <ColumnDefinition Width="757*"/>
+                            <ColumnDefinition Width="26"/>
+                            <ColumnDefinition Width="69*"/>
+                            <ColumnDefinition Width="120*"/>
+                            <ColumnDefinition Width="172*"/>
+                            <ColumnDefinition Width="191*"/>
+                            <ColumnDefinition Width="26"/>
                         </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosPersonalesHistorial"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                        <GridSplitter x:Name="splitterHistoriales" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
-
-                        <ListBox x:Name="lstListaHistoriales" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
-                                        <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Descripcion}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-
-                        </ListBox>
-
-                        <Grid Grid.Column="2" Background="WhiteSmoke" Margin="5,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="26"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="26"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="26"/>
-                                <ColumnDefinition Width="69*"/>
-                                <ColumnDefinition Width="120*"/>
-                                <ColumnDefinition Width="172*"/>
-                                <ColumnDefinition Width="191*"/>
-                                <ColumnDefinition Width="26"/>
-                            </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosPersonalesHistorial"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Label x:Name="lblNombreHistorial" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <TextBox x:Name="txtnombreHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label x:Name="lblNombreHistorial" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <TextBox x:Name="txtnombreHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                        <Label x:Name="lblApellidoHistorial" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtApellidoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    <Label x:Name="lblApellidoHistorial" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtApellidoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                        <Label x:Name="lblEdadHistorial" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtEdadHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblEdadHistorial" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtEdadHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Edad}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                    </Grid>
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosContactoHistorial"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosContactoHistorial"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Label x:Name="lblTelefonoHistorial" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <TextBox x:Name="txtTelefonoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label x:Name="lblTelefonoHistorial" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <TextBox x:Name="txtTelefonoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                        <Label x:Name="lblDireccionHistorial" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtCorreoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    <Label x:Name="lblDireccionHistorial" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtCorreoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                        <Label x:Name="lblCorreoHistorial" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtDireccionHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblCorreoHistorial" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtDireccionHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                    </Grid>
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosSexoHistorial"  Header="Sexo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="228">
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosSexoHistorial"  Header="Sexo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="228">
 
-                                    <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
-                                        <Label x:Name="lblSexoHistorial" Content="Género:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="51"/>
-                                        <RadioButton x:Name="radioFemeninoHistoriales" VerticalAlignment="Center"
+                                <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
+                                    <Label x:Name="lblSexoHistorial" Content="Género:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="51"/>
+                                    <RadioButton x:Name="radioFemeninoHistoriales" VerticalAlignment="Center"
                                          IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                            <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
-                                        </RadioButton>
-                                        <RadioButton x:Name="radioMasculinoHistoriales" VerticalAlignment="Center"
+                                        <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
+                                    </RadioButton>
+                                    <RadioButton x:Name="radioMasculinoHistoriales" VerticalAlignment="Center"
                                          IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                            <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
-                                        </RadioButton>
-                                        <RadioButton x:Name="radioOtroHistoriales" VerticalAlignment="Center"
+                                        <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
+                                    </RadioButton>
+                                    <RadioButton x:Name="radioOtroHistoriales" VerticalAlignment="Center"
                                          IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                            <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
-                                        </RadioButton>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Viewbox>
-                            <TextBox x:Name="txtHistorial" TextWrapping="Wrap" Grid.Column="3" Grid.Row="2" Margin="15,0,15,0" Grid.RowSpan="5"
+                                        <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
+                                    </RadioButton>
+                                </StackPanel>
+                            </GroupBox>
+                        </Viewbox>
+                        <TextBox x:Name="txtHistorial" TextWrapping="Wrap" Grid.Column="3" Grid.Row="2" Margin="15,0,15,0" Grid.RowSpan="5"
                                  Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Descripcion}" FontSize="16" FontWeight="SemiBold" BorderBrush="LightSkyBlue" BorderThickness="2"/>
 
-                            <Viewbox Grid.Column="4" Grid.Row="7">
-                                <Image x:Name="btnConfirmarModificacionHistorial"  VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionHistorial_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
-                            </Viewbox>
-                            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="4" Grid.RowSpan="6" Grid.Row="1">
-                                <Image Source="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
-                            </Border>
-                            <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
-                            <Rectangle Grid.ColumnSpan="6" Fill="LightSkyBlue"/>
-                            <Rectangle Grid.RowSpan="9" Grid.Column="5" Fill="LightSkyBlue"/>
-                            <Rectangle Grid.ColumnSpan="6" Grid.Row="8" Fill="LightSkyBlue"/>
-                        </Grid>
-
+                        <Viewbox Grid.Column="4" Grid.Row="7">
+                            <Image x:Name="btnConfirmarModificacionHistorial"  VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionHistorial_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
+                        </Viewbox>
+                        <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="4" Grid.RowSpan="6" Grid.Row="1">
+                            <Image Source="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+                        </Border>
+                        <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
+                        <Rectangle Grid.ColumnSpan="6" Fill="LightSkyBlue"/>
+                        <Rectangle Grid.RowSpan="9" Grid.Column="5" Fill="LightSkyBlue"/>
+                        <Rectangle Grid.ColumnSpan="6" Grid.Row="8" Fill="LightSkyBlue"/>
                     </Grid>
-                </TabItem>
 
-                <TabItem Header="Citas" Background="LightBlue"/>
+                </Grid>
+            </TabItem>
 
-                <TabItem Header="Personal" Background="LightBlue">
-                    <Grid Background="WhiteSmoke">
+            <TabItem Header="Citas" Background="LightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                <Grid Background="WhiteSmoke" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="182*"/>
+                        <RowDefinition Height="182*"/>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="399*"/>
+                        <ColumnDefinition Width="398*"/>
+                        <ColumnDefinition Width="26"/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                        <GroupBox x:Name="DatosCitas"  Header="Datos de la cita" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="340">
+                            <Grid Background="WhiteSmoke">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0">
+                                    <Label x:Name="lblNombrePaciente" Content=" Paciente:" />
+                                </Viewbox>
+                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                                    <ComboBox x:Name="txtNombrePaciente" Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
+                                </Viewbox>
+
+                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1">
+                                    <Label x:Name="lblNombreCitas" Content="Atendido por:" />
+                                </Viewbox>
+                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                                    <ComboBox x:Name="txtnombreDoctor" Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
+                                </Viewbox>
+                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2">
+                                    <Label x:Name="lblFechaCitas" Content="Fecha:" />
+                                </Viewbox>
+                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
+                                    <DatePicker x:Name="dpFechaUltimoAcceso" VerticalAlignment="Center" IsEnabled="False"
+                                                    FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="240"/>
+                                </Viewbox>
+
+                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3">
+                                    <Label x:Name="lblDuracionCitas" Content="Duración:"/>
+                                </Viewbox>
+                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">
+                                    <TextBox x:Name="txtDuracionCitas" TextWrapping="Wrap" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
+                                </Viewbox>
+
+                            </Grid>
+                        </GroupBox>
+
+                    </Viewbox>
+
+                    <Viewbox Grid.Column="1" Grid.Row="2">
+                        <GroupBox x:Name="InfoAdicional"  Header="Información Adicional" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="340">
+                            <TextBox x:Name="txtInformacionAdicional" TextWrapping="Wrap" Height="120"
+                                Text="{Binding ElementName=lstListaCitas, Path=SelectedItem.InfoAdicional}" FontSize="16" FontWeight="SemiBold"/>
+                        </GroupBox>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+                        <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" x:Name="calendario" FontSize="6" FontFamily="Arial Rounded MT Bold" Height="169" FirstDayOfWeek="Saturday">
+                            <Calendar.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF68C7EE" Offset="0.16"/>
+                                    <GradientStop Color="#FF68C7EE" Offset="0.16"/>
+                                    <GradientStop Color="#FFB2CBDC" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Calendar.Background>
+                        </Calendar>
+                    </Viewbox>
+                    <Border Grid.RowSpan="4" Grid.ColumnSpan="4" BorderBrush="LightSkyBlue" BorderThickness="15" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Personal" Background="LightBlue">
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="108*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="727*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GridSplitter x:Name="splitterPersonal" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+
+                    <ListBox x:Name="lstListaPersonal" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
+                                    <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Telefono}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Tipo}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+                    <Grid Grid.Column="2" Background="WhiteSmoke" Margin="7,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="26"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="52*"/>
+                            <RowDefinition Height="26"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="108*"/>
-                            <ColumnDefinition Width="6"/>
-                            <ColumnDefinition Width="727*"/>
+                            <ColumnDefinition Width="26"/>
+                            <ColumnDefinition Width="77*"/>
+                            <ColumnDefinition Width="238*"/>
+                            <ColumnDefinition Width="233*"/>
+                            <ColumnDefinition Width="26"/>
                         </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosPersonalesPersonal"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                        <GridSplitter x:Name="splitterPersonal" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                        <ListBox x:Name="lstListaPersonal" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
-                                        <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Telefono}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Tipo}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-
-                        </ListBox>
-                        <Grid Grid.Column="2" Background="WhiteSmoke" Margin="7,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="26"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="52*"/>
-                                <RowDefinition Height="26"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="26"/>
-                                <ColumnDefinition Width="77*"/>
-                                <ColumnDefinition Width="238*"/>
-                                <ColumnDefinition Width="233*"/>
-                                <ColumnDefinition Width="26"/>
-                            </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosPersonalesPersonal"  Header="Datos personales" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Label x:Name="lblNombrePersonal" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <TextBox x:Name="txtnombrePersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Label x:Name="lblNombrePersonal" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <TextBox x:Name="txtnombrePersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblApellidoPersonal" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtApellidoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    <Label x:Name="lblApellidoPersonal" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtApellidoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblEdadPersonal" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtEdadPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblEdadPersonal" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtEdadPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
-                                    </Grid>
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                                <GroupBox x:Name="DatosContactoPersonal"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2">
+                            <GroupBox x:Name="DatosContactoPersonal"  Header="Datos de contacto" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                        <Label x:Name="lblTelefonoPersonal" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <TextBox x:Name="txtTelefonoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                    <Label x:Name="lblTelefonoPersonal" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
+                                    <TextBox x:Name="txtTelefonoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblDireccionPersonal" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtDireccionPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    <Label x:Name="lblDireccionPersonal" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+                                    <TextBox x:Name="txtDireccionPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                        <Label x:Name="lblCorreoPersonal" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtCorreoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                    <Label x:Name="lblCorreoPersonal" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                    <TextBox x:Name="txtCorreoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
-                                    </Grid>
-                                </GroupBox>
-                            </Viewbox>
-                            <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
-                                <Grid HorizontalAlignment="Left" Width="354">
-                                    <GroupBox x:Name="DatosSexoTipoPersonal" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Header="Sexo y Tipo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-
-                                        <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
-                                            <Label x:Name="lblSexoPersonal" Content="Género:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="51"/>
-                                            <RadioButton x:Name="radioFemeninoPersonal" VerticalAlignment="Center"
-                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                                <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
-                                            </RadioButton>
-
-                                            <RadioButton x:Name="radioMasculinoPersonal" VerticalAlignment="Center"
-                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                                <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
-                                            </RadioButton>
-
-                                            <RadioButton x:Name="radioOtroPErsonal" VerticalAlignment="Center"
-                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
-                                                <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
-                                            </RadioButton>
-
-                                            <Label x:Name="lblTipoPersonal" Content="Tipo:" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7" />
-                                            <RadioButton x:Name="radioSanitarioPersonal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"
-                                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Sanitario, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}" GroupName="Tipo">
-                                                <Image Source="\datos\imagenes\sanitario.png" Width="20" Height="20" ToolTip="Sanitario"/>
-                                            </RadioButton>
-
-                                            <RadioButton x:Name="radioLimpiezaPersonal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"
-                                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Limpieza, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}" GroupName="Tipo">
-                                                <Image Source="\datos\imagenes\limpieza.png" Width="20" Height="20" ToolTip="Limpieza"/>
-                                            </RadioButton>
-                                        </StackPanel>
-                                    </GroupBox>
                                 </Grid>
-                            </Viewbox>
-                            <Viewbox Grid.Column="3" Grid.Row="7">
-                                <Image x:Name="btnConfirmarModificacionPersonal"  VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPersonal_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
-                            </Viewbox>
-                            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="6" Grid.Row="1">
-                                <Image Source="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
-                            </Border>
-                            <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
-                            <Rectangle Grid.ColumnSpan="5" Fill="LightSkyBlue"/>
-                            <Rectangle Grid.RowSpan="9" Grid.Column="4" Fill="LightSkyBlue" Margin="5,0,0,0"/>
-                            <Rectangle Grid.ColumnSpan="5" Grid.Row="8" Fill="LightSkyBlue" Margin="0,7,0,0"/>
-                        </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+                            <Grid HorizontalAlignment="Left" Width="354">
+                                <GroupBox x:Name="DatosSexoTipoPersonal" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Header="Sexo y Tipo " BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
 
+                                    <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
+                                        <Label x:Name="lblSexoPersonal" Content="Género:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="51"/>
+                                        <RadioButton x:Name="radioFemeninoPersonal" VerticalAlignment="Center"
+                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
+                                            <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
+                                        </RadioButton>
+
+                                        <RadioButton x:Name="radioMasculinoPersonal" VerticalAlignment="Center"
+                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
+                                            <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
+                                        </RadioButton>
+
+                                        <RadioButton x:Name="radioOtroPErsonal" VerticalAlignment="Center"
+                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
+                                            <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
+                                        </RadioButton>
+
+                                        <Label x:Name="lblTipoPersonal" Content="Tipo:" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7" />
+                                        <RadioButton x:Name="radioSanitarioPersonal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"
+                                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Sanitario, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}" GroupName="Tipo">
+                                            <Image Source="\datos\imagenes\sanitario.png" Width="20" Height="20" ToolTip="Sanitario"/>
+                                        </RadioButton>
+
+                                        <RadioButton x:Name="radioLimpiezaPersonal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"
+                                                     IsChecked="{Binding SelectedItem.Tipo, ConverterParameter=Limpieza, Converter={StaticResource TipoPersonalConverter}, ElementName=lstListaPersonal}" GroupName="Tipo">
+                                            <Image Source="\datos\imagenes\limpieza.png" Width="20" Height="20" ToolTip="Limpieza"/>
+                                        </RadioButton>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3" Grid.Row="7">
+                            <Image x:Name="btnConfirmarModificacionPersonal"  VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPersonal_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
+                        </Viewbox>
+                        <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="6" Grid.Row="1">
+                            <Image Source="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+                        </Border>
+                        <Rectangle Grid.RowSpan="9"  Fill="LightSkyBlue"/>
+                        <Rectangle Grid.ColumnSpan="5" Fill="LightSkyBlue"/>
+                        <Rectangle Grid.RowSpan="9" Grid.Column="4" Fill="LightSkyBlue" Margin="5,0,0,0"/>
+                        <Rectangle Grid.ColumnSpan="5" Grid.Row="8" Fill="LightSkyBlue" Margin="0,7,0,0"/>
                     </Grid>
-                </TabItem>
-            </TabControl>
-            <Viewbox  Grid.Row="0" Grid.Column="1">
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Viewbox  Grid.Row="0" Grid.Column="1">
             <Button x:Name="btnAlta" Content="Dar de alta" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Background="LightSkyBlue" Click="btnAltaPaciente" BorderThickness="1"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="2">
