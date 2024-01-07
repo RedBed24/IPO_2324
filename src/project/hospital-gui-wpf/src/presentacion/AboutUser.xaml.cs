@@ -13,7 +13,7 @@ namespace hospital_gui_wpf.src.presentacion
         public AboutUser()
         {
             InitializeComponent();
-            Usuario usuarioActual = new Usuario("Antoniocg73", "Antonio", "Campallo", "contrasena", new DateTime(2003, 9, 1), new Uri("/datos/imagenes/Antonio.jpg", UriKind.Relative));
+            Usuario usuarioActual = new Usuario("Antoniocg73", "Antonio", "Campallo", "contrasena", new DateTime(2003, 9, 1), new DateTime(2023, 12, 31), new Uri("/datos/imagenes/Antonio.jpg", UriKind.Relative));
             DataContext = usuarioActual;
         }
 

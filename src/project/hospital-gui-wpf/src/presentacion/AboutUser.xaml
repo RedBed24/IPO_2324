@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
-        Title="Perfil de usuario" Height="440" Width="276" 
-        MinHeight="400" MinWidth="276"
+        Title="Perfil de usuario" Height="490" Width="276" 
+        MinHeight="450" MinWidth="276"
         MaxHeight="600" MaxWidth="476">
 
 
@@ -19,6 +19,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="150*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="20*"/>
@@ -58,11 +60,22 @@
         </Viewbox>
         <Viewbox Grid.Row="7" Grid.Column="1">
             <DatePicker x:Name="dpFechaContratacion" VerticalAlignment="Center" IsEnabled="False"
-                        SelectedDate="{Binding fechaContratacion}" 
-                        Text="{Binding fechaContratacion, StringFormat='dd/MM/yyyy'}" 
+                        SelectedDate="{Binding FechaContratacion}" 
+                        Text="{Binding FechaContratacion, StringFormat='dd/MM/yyyy'}" 
                         FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="108"/>
         </Viewbox>
+        
         <Viewbox Grid.Row="8" Grid.Column="1">
+            <Label x:Name="lblFechaUltimoAcceso" Content="Último acceso:" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="DemiBold" Height="26" Width="132" Grid.RowSpan="2"/>
+        </Viewbox>
+        <Viewbox Grid.Row="9" Grid.Column="1">
+            <DatePicker x:Name="dpFechaUltimoAcceso" VerticalAlignment="Center" IsEnabled="False"
+                SelectedDate="{Binding UltimoAcceso}" 
+                Text="{Binding UltimoAcceso, StringFormat='dd/MM/yyyy'}" 
+                FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="108"/>
+        </Viewbox>
+
+        <Viewbox Grid.Row="10" Grid.Column="1">
             <Image x:Name="btnModificarContraseña" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="20" Source="\datos\imagenes\cambiarContra.png" ToolTip="Modificar contraseña" MouseDown="btnModificarContraseña_MouseDown"/>
         </Viewbox>
     </Grid>
