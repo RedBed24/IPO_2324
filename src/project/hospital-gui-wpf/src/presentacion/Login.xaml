@@ -11,14 +11,6 @@
             <Image Source="/datos/imagenes/ipo_login.jpg" />
         </Viewbox>
 
-        <Border>
-            <Border.Background>
-                <LinearGradientBrush Opacity="0.75">
-                    <GradientStop Color="#FF1E252B" Offset="0"/>
-                    <GradientStop Color="#FF403E4D" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -104,20 +96,20 @@
                 <Viewbox Grid.Row="2">
                     <TextBlock Text="Iniciar sesión"
 						HorizontalAlignment="Center" VerticalAlignment="Bottom"
-						FontWeight="Medium" Foreground="White" Width="71" />
+						FontWeight="Medium" Foreground="#FF2E2B2B" Width="71" />
                 </Viewbox>
 
                 <Viewbox Grid.Row="3">
                     <TextBlock Text="¡Bienvenido al Hospital!"
-                    Foreground="White" FontWeight="Medium" TextAlignment="Center"
-                    VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"/>
+                    Foreground="#FF1C1919" FontWeight="Medium" TextAlignment="Center"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="32"/>
                 </Viewbox>
             </Grid>
 
             <Rectangle
 				Grid.Row="1"
 				Grid.Column="1"
-				Fill="#FF424242" 
+				Fill="#FF1D1C1C" 
 				RadiusX="10" RadiusY="10" Opacity="0.8"/>
 
             <Grid Grid.Column="1" Grid.Row="1">
