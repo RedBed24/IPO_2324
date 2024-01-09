@@ -442,38 +442,88 @@
             <ColumnDefinition Width="14*"/>
             <ColumnDefinition Width="89*"/>
             <ColumnDefinition Width="89*"/>
-            <ColumnDefinition Width="593*"/>
-            <ColumnDefinition Width="62*"/>
+            <ColumnDefinition Width="572*"/>
+            <ColumnDefinition Width="84*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="443*"/>
         </Grid.RowDefinitions>
-            <TabControl Background="White" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2">
-                <TabItem Header="Pacientes" Background="LightBlue">
-                    <Grid Background="WhiteSmoke">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="108*"/>
-                            <ColumnDefinition Width="6"/>
-                            <ColumnDefinition Width="727*"/>
-                        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Width="84">
+            <Button x:Name="btnMinimize"
+					Content="-"
+					Foreground="White"
+					FontSize="16"
+					Margin="5"
+					Click="btnMinimize_Click"
+                    VerticalAlignment="Center">
 
-                        <GridSplitter x:Name="splitterPacientes" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFB207B4">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btnEnlarge"
+					Content="□"
+					Foreground="White"
+					FontSize="12"
+					Margin="5"
+					Click="btnEnlarge_Click">
 
-                        <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
-                                        <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Telefono}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Correo}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="Purple">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-                        </ListBox>
+            <Button x:Name="btnClose"
+					Content="X"
+					Foreground="White"
+					FontSize="12"
+					Margin="5"
+					Click="btnClose_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFED107E">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+        <TabControl Background="White" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="2">
+            <TabItem Header="Pacientes" Background="LightBlue">
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="108*"/>
+                        <ColumnDefinition Width="6"/>
+                        <ColumnDefinition Width="727*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GridSplitter x:Name="splitterPacientes" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+
+                    <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
+                                    <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Telefono}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Correo}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
                     <Border BorderBrush="LightSkyBlue" BorderThickness="26" Grid.Column="2">
                         <Grid Grid.Column="2" Background="WhiteSmoke">
                             <Grid.RowDefinitions>
@@ -575,31 +625,31 @@
                         </Grid>
                     </Border>
 
-                    </Grid>
-                </TabItem>
+                </Grid>
+            </TabItem>
 
-                <TabItem Header="Historial" Background="LightBlue">
-                    <Grid Background="WhiteSmoke">
-                        <Grid.ColumnDefinitions>
+            <TabItem Header="Historial" Background="LightBlue">
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="108*"/>
                         <ColumnDefinition Width="6"/>
                         <ColumnDefinition Width="727*"/>
                     </Grid.ColumnDefinitions>
 
-                        <GridSplitter x:Name="splitterHistoriales" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
+                    <GridSplitter x:Name="splitterHistoriales" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
 
-                        <ListBox x:Name="lstListaHistoriales" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
-                                        <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Descripcion}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
+                    <ListBox x:Name="lstListaHistoriales" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Imagen}" Width="50" Height="50" Margin="10"/>
+                                    <TextBlock Text="{Binding Nombre}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Descripcion}" Margin="10" FontSize="13" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
 
-                        </ListBox>
+                    </ListBox>
                     <Border BorderBrush="LightSkyBlue" BorderThickness="26" Grid.Column="2">
                         <Grid Grid.Column="2" Background="WhiteSmoke">
                             <Grid.RowDefinitions>
@@ -694,7 +744,7 @@
                         </Grid>
                     </Border>
                 </Grid>
-                </TabItem>
+            </TabItem>
 
             <TabItem Header="Citas" Background="LightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Border BorderBrush="LightSkyBlue" BorderThickness="26" Grid.Column="0" Grid.ColumnSpan="2">
@@ -912,17 +962,17 @@
                         </Grid>
                     </Border>
                 </Grid>
-                
+
             </TabItem>
-            </TabControl>
-        <Viewbox  Grid.Row="1" Grid.Column="1">
+        </TabControl>
+        <Viewbox Grid.Column="1" Margin="0,19,0,0" Grid.RowSpan="2">
             <Button x:Name="btnAlta" Content="Dar de alta" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Background="LightSkyBlue" Click="btnAltaPaciente" BorderThickness="1"/>
         </Viewbox>
-        <Viewbox Grid.Row="1" Grid.Column="2">
-            <Button x:Name="btnBaja" Content="Dar de baja"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Background="LightSkyBlue" Click="btnBajaPaciente" BorderThickness="1"/>
+        <Viewbox Grid.Column="2" Margin="0,19,0,0" Grid.RowSpan="2">
+            <Button x:Name="btnBaja" Content="Dar de baja"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Background="LightSkyBlue" Click="btnBajaPaciente" BorderThickness="1"/>
         </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="1">
-            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="2,2,2,2" CornerRadius="40">
+        <Viewbox Grid.Column="4"  Grid.Row="1">
+            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" CornerRadius="40">
                 <Border.Clip>
                     <EllipseGeometry Center="30,30" RadiusX="27" RadiusY="27"/>
                 </Border.Clip>
