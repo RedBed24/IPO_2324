@@ -8,7 +8,8 @@
         Title="Gestor de Usuarios" Height="487" Width="847"
         MinHeight="487" MinWidth="847"
         Closing="Window_Closing" 
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        WindowStyle="None">
     <Window.Resources>
         <local:GeneroConverter x:Key="GeneroConverter"/>
         <local:TipoPersonalConverter x:Key="TipoPersonalConverter"/>
@@ -445,10 +446,11 @@
             <ColumnDefinition Width="62*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="443*"/>
         </Grid.RowDefinitions>
-            <TabControl Background="White" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1">
+            <TabControl Background="White" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2">
                 <TabItem Header="Pacientes" Background="LightBlue">
                     <Grid Background="WhiteSmoke">
                         <Grid.ColumnDefinitions>
@@ -500,11 +502,11 @@
                                         <Label x:Name="lblNombrePacientes" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <Viewbox Grid.Column="1" Grid.Row="0">
                                             <TextBox x:Name="txtnombrePacientes" TextWrapping="Wrap" VerticalAlignment="Center" 
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtnombrePacientes_LostFocus"/>
                                         </Viewbox>
                                         <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtApellidoPacientes_LostFocus"/>
 
                                         <Label x:Name="lblEdadPacientes" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
                                         <TextBox x:Name="txtEdadPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
@@ -529,7 +531,7 @@
                                         <Label x:Name="lblTelefonoPacientes" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtTelefonoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
                                                  Text="{Binding ElementName=lstListaPacientes,
-                                                 Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                                 Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtTelefonoPacientes_LostFocus"/>
 
                                         <Label x:Name="lblDireccionPacientes" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtDireccionPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
@@ -539,7 +541,7 @@
                                         <Label x:Name="lblCorreoPacientes" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
                                         <TextBox x:Name="txtCorreoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                                  Text="{Binding ElementName=lstListaPacientes,
-                                                 Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                                 Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtCorreoPacientes_LostFocus"/>
 
                                     </Grid>
                                 </GroupBox>
@@ -625,10 +627,10 @@
                                         </Grid.RowDefinitions>
                                         <Label x:Name="lblNombreHistorial" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtnombreHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
-                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5" LostFocus="txtnombreHistorial_LostFocus"/>
                                         <Label x:Name="lblApellidoHistorial" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtApellidoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
-                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5" LostFocus="txtApellidoHistorial_LostFocus"/>
                                         <Label x:Name="lblEdadHistorial" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
                                         <TextBox x:Name="txtEdadHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Edad}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
@@ -650,13 +652,13 @@
                                         </Grid.RowDefinitions>
                                         <Label x:Name="lblTelefonoHistorial" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtTelefonoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
-                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5" LostFocus="txtTelefonoHistorial_LostFocus"/>
                                         <Label x:Name="lblDireccionHistorial" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
-                                        <TextBox x:Name="txtCorreoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
-                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
-                                        <Label x:Name="lblCorreoHistorial" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtDireccionHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                        <TextBox x:Name="txtDireccionHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
+                                        <Label x:Name="lblCorreoHistorial" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+                                        <TextBox x:Name="txtCorreoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                        Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5" LostFocus="txtCorreoHistorial_LostFocus"/>
                                     </Grid>
                                 </GroupBox>
                             </Viewbox>
@@ -826,11 +828,11 @@
 
                                         <Label x:Name="lblNombrePersonal" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtnombrePersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtnombrePersonal_LostFocus"/>
 
                                         <Label x:Name="lblApellidoPersonal" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtApellidoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtApellidoPersonal_LostFocus"/>
 
                                         <Label x:Name="lblEdadPersonal" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
                                         <TextBox x:Name="txtEdadPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
@@ -854,7 +856,7 @@
 
                                         <Label x:Name="lblTelefonoPersonal" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtTelefonoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtTelefonoPersonal_LostFocus"/>
 
                                         <Label x:Name="lblDireccionPersonal" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtDireccionPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
@@ -862,7 +864,7 @@
 
                                         <Label x:Name="lblCorreoPersonal" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
                                         <TextBox x:Name="txtCorreoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtCorreoPersonal_LostFocus"/>
 
                                     </Grid>
                                 </GroupBox>
@@ -913,13 +915,13 @@
                 
             </TabItem>
             </TabControl>
-        <Viewbox  Grid.Row="0" Grid.Column="1">
+        <Viewbox  Grid.Row="1" Grid.Column="1">
             <Button x:Name="btnAlta" Content="Dar de alta" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Background="LightSkyBlue" Click="btnAltaPaciente" BorderThickness="1"/>
         </Viewbox>
-        <Viewbox Grid.Row="0" Grid.Column="2">
+        <Viewbox Grid.Row="1" Grid.Column="2">
             <Button x:Name="btnBaja" Content="Dar de baja"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Background="LightSkyBlue" Click="btnBajaPaciente" BorderThickness="1"/>
         </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="0">
+        <Viewbox Grid.Column="4" Grid.Row="1">
             <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="2,2,2,2" CornerRadius="40">
                 <Border.Clip>
                     <EllipseGeometry Center="30,30" RadiusX="27" RadiusY="27"/>

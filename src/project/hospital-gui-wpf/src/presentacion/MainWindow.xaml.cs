@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using hospital_gui_wpf.src.dominio;
@@ -220,6 +221,197 @@ namespace hospital_gui_wpf.src.presentacion
 
                 }
 
+            }
+        }
+
+        private void txtTelefonoPacientes_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el número de teléfono del TextBox
+            string numeroTelefono = txtTelefonoPacientes.Text;
+
+            // Realiza la validación
+            if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            {
+                // El número de teléfono tiene 9 dígitos y es un número válido
+            }
+            else
+            {
+                MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
+                txtTelefonoPacientes.Text = string.Empty;
+            }
+        }
+
+        private void txtTelefonoHistorial_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el número de teléfono del TextBox
+            string numeroTelefono = txtTelefonoHistorial.Text;
+
+            // Realiza la validación
+            if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            {
+                // El número de teléfono tiene 9 dígitos y es un número válido
+            }
+            else
+            {
+                MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
+                txtTelefonoHistorial.Text = string.Empty;
+            }
+        }
+
+        private void txtTelefonoPersonal_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el número de teléfono del TextBox
+            string numeroTelefono = txtTelefonoPersonal.Text;
+
+            // Realiza la validación
+            if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            {
+                // El número de teléfono tiene 9 dígitos y es un número válido
+            }
+            else
+            {
+                MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
+                txtTelefonoPersonal.Text = string.Empty;
+            }
+        }
+
+        private void txtnombrePacientes_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el nombre del TextBox
+            string nombre = txtnombrePacientes.Text;
+
+            // Utiliza una expresión regular para verificar que no contiene dígitos
+            if (!Regex.IsMatch(nombre, @"\d"))
+            {
+                // El nombre no contiene dígitos
+                
+            }
+            else
+            {
+                MessageBox.Show("El nombre no puede contener dígitos.");
+                txtnombrePacientes.Text = string.Empty;
+            }
+        }
+
+        private void txtnombreHistorial_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el nombre del TextBox
+            string nombre = txtnombreHistorial.Text;
+
+            // Utiliza una expresión regular para verificar que no contiene dígitos
+            if (!Regex.IsMatch(nombre, @"\d"))
+            {
+                // El nombre no contiene dígitos
+
+            }
+            else
+            {
+                MessageBox.Show("El nombre no puede contener dígitos.");
+                txtnombreHistorial.Text = string.Empty;
+            }
+        }
+
+        private void txtnombrePersonal_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el nombre del TextBox
+            string nombre = txtnombrePersonal.Text;
+
+            // Utiliza una expresión regular para verificar que no contiene dígitos
+            if (!Regex.IsMatch(nombre, @"\d"))
+            {
+                // El nombre no contiene dígitos
+
+            }
+            else
+            {
+                MessageBox.Show("El nombre no puede contener dígitos.");
+                txtnombrePersonal.Text = string.Empty;
+            }
+        }
+
+        private void txtApellidoPacientes_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el nombre del TextBox
+            string nombre = txtApellidoPacientes.Text;
+
+            // Utiliza una expresión regular para verificar que no contiene dígitos
+            if (!Regex.IsMatch(nombre, @"\d"))
+            {
+                // El nombre no contiene dígitos
+
+            }
+            else
+            {
+                MessageBox.Show("El nombre no puede contener dígitos.");
+                txtApellidoPacientes.Text = string.Empty;
+            }
+        }
+
+        private void txtApellidoHistorial_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el nombre del TextBox
+            string nombre = txtApellidoHistorial.Text;
+
+            // Utiliza una expresión regular para verificar que no contiene dígitos
+            if (!Regex.IsMatch(nombre, @"\d"))
+            {
+                // El nombre no contiene dígitos
+
+            }
+            else
+            {
+                MessageBox.Show("El nombre no puede contener dígitos.");
+                txtApellidoHistorial.Text = string.Empty;
+            }
+        }
+
+        private void txtApellidoPersonal_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtén el nombre del TextBox
+            string nombre = txtApellidoPersonal.Text;
+
+            // Utiliza una expresión regular para verificar que no contiene dígitos
+            if (!Regex.IsMatch(nombre, @"\d"))
+            {
+                // El nombre no contiene dígitos
+
+            }
+            else
+            {
+                MessageBox.Show("El nombre no puede contener dígitos.");
+                txtApellidoPersonal.Text = string.Empty;
+            }
+        }
+
+        private void txtCorreoPacientes_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!txtCorreoPacientes.Text.Contains("@"))
+            {
+
+                MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
+                txtCorreoPacientes.Text = string.Empty;
+            }
+
+        }
+
+        private void txtCorreoPersonal_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!txtCorreoPersonal.Text.Contains("@"))
+            {
+
+                MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
+                txtCorreoPersonal.Text = string.Empty;
+            }
+
+        }
+
+        private void txtCorreoHistorial_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!txtCorreoHistorial.Text.Contains("@"))
+            {
+
+                MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
+                txtCorreoHistorial.Text = string.Empty;
             }
         }
     }
