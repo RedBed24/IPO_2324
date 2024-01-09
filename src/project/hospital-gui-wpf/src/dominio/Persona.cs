@@ -11,7 +11,7 @@ namespace hospital_gui_wpf.src.dominio
 
     public class Persona
     {
-        public int Id { set; get; }
+        public int Id;
         public string Nombre { set; get; }
         public string Apellido { set; get; }
         public DateTime FechaNacimiento { set; get; }
