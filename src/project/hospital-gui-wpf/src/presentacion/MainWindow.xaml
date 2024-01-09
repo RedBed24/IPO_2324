@@ -319,7 +319,7 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Rectangle Fill="#11E5EBF1" Opacity="1" Stretch="Fill"/>
+                                                    <Rectangle Fill="#FF68C7EE" Opacity="1" Stretch="Fill"/>
                                                     <Grid>
                                                         <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="#FF333333" HorizontalAlignment="Left" Height="10" Margin="14,-6,0,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
                                                     </Grid>
@@ -342,7 +342,7 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Rectangle Fill="#11E5EBF1" Opacity="1" Stretch="Fill"/>
+                                                    <Rectangle Fill="#FF68C7EE" Opacity="1" Stretch="Fill" Margin="0,0,10,0"/>
                                                     <Grid>
                                                         <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="#FF333333" HorizontalAlignment="Right" Height="10" Margin="0,-6,14,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
                                                     </Grid>
