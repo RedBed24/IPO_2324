@@ -152,7 +152,7 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnPerfilUsuario_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            AboutUser aboutuser = new AboutUser();
+            AboutUser aboutuser = new AboutUser(UsuarioActual);
             aboutuser.Closed += AboutUserClosed;
             aboutuser.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;
