@@ -42,89 +42,52 @@ namespace hospital_gui_wpf.src.presentacion
             // Establece el estado de la ventana a maximizado
             WindowState = WindowState.Maximized;
         }
-
+        // Solo se da altas o bajas de pacientes, al añadir a un paciente mediante baja se crean los historiales y citas vacios, estos se podrán modificar en sus tabs con el boton de modificar
         private void btnAltaPaciente(object sender, RoutedEventArgs e)
         {
-            //string idPacienteSeleccionado = txtIdPacientes.Text;
-            string nombrePacienteSeleccionado = txtnombrePacientes.Text;
-            string apellidoPacienteSeleccionado = txtApellidoPacientes.Text;
-            //string edadPacienteSeleccionado = dpFechaNacimientoPacientes;
-            string telefonoPacienteSeleccionado = txtTelefonoPacientes.Text;
-            string correoPacienteSeleccionado = txtCorreoPacientes.Text;
-            string direccionPacienteSeleccionado = txtDireccionPacientes.Text;
-            //string imagenPacienteSeleccionado = imagenPacientes.Source.ToString().Replace("pack://application:,,,", "");
-
-            string generoPacienteSeleccionado = "";
-            if (radioFemeninoPacientes.IsChecked == true)
+            Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
+            if (pacienteSeleccionado != null)
             {
-                generoPacienteSeleccionado = "Mujer";
-            }
-            else if (radioMasculinoPacientes.IsChecked == true)
-            {
-                generoPacienteSeleccionado = "Hombre";
-            }
-            else if (radioOtroPacientes.IsChecked == true)
-            {
-                generoPacienteSeleccionado = "Otro";
-            }
-
-            /*
-            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
-
-            XDocument doc = XDocument.Load(path);
-
-            XElement nuevoPaciente = new XElement("Persona",
-                //new XElement("Id", idPacienteSeleccionado),
-                new XElement("Nombre", nombrePacienteSeleccionado),
-                new XElement("Apellido", apellidoPacienteSeleccionado),
-                new XElement("Edad", edadPacienteSeleccionado),
-                new XElement("Genero", generoPacienteSeleccionado),
-                new XElement("Telefono", telefonoPacienteSeleccionado),
-                new XElement("Correo", correoPacienteSeleccionado),
-                new XElement("Direccion", direccionPacienteSeleccionado)
-            //new XElement("Imagen", imagenPacienteSeleccionado)
-            );
-
-
-            doc.Root.Add(nuevoPaciente);
-
-            doc.Save(path);
-            */
-
-        }
-        private void btnBajaPaciente(object sender, RoutedEventArgs e)
-        {
-            if (CamposRequeridosLlenos())
-            {
-                // Crear un nuevo paciente con la información proporcionada
-                Paciente nuevoPaciente = new Paciente
-                {
-                    Id = 0, // HAY QUE VER QUE ID COGER
-                    Nombre = txtnombrePacientes.Text,
-                    Apellido = txtApellidoPacientes.Text,
-                    FechaNacimiento = dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,                   
-                    Telefono = Convert.ToInt32(txtTelefonoPacientes.Text),
-                    Direccion = txtDireccionPacientes.Text,
-                    Genero = ObtenerGeneroSeleccionado(),
-                    Imagen = new Uri("/datos/imagenes/cross.png", UriKind.Relative),
-                    Correo = txtCorreoPacientes.Text,
-                    Citas = new List<Cita>(),
-                    Historiales = new List<Historial>()
-                };
-
-                // Agregar el nuevo paciente a la lista
-                lstListaPacientes.Items.Add(nuevoPaciente);
-
-                // Limpiar los campos después de agregar el paciente
-                LimpiarCampos();
-
-                // Puedes realizar otras acciones después de agregar el paciente
+                ConfirmarAltaYPosibleEliminacion(pacienteSeleccionado);
             }
             else
             {
-                MessageBox.Show("Por favor, complete todos los campos requeridos.");
+                Personal personalSeleccionado = lstListaPersonal.SelectedItem as Personal;
+                if (personalSeleccionado != null)
+                {
+                    ConfirmarAltaYPosibleEliminacion(personalSeleccionado);
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecciona un paciente o personal antes de confirmar el alta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
+        private void ConfirmarAltaYPosibleEliminacion(object elementoSeleccionado)
+        {
+            // Primera confirmación
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la alta?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                // Segunda confirmación
+                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Eliminar el elemento seleccionado de la lista correspondiente
+                    if (elementoSeleccionado is Paciente)
+                    {
+                        lstListaPacientes.Items.Remove(elementoSeleccionado);
+                    }
+                    else if (elementoSeleccionado is Personal)
+                    {
+                        lstListaPersonal.Items.Remove(elementoSeleccionado);
+                    }
+                    LimpiarCampos();
+                }
+            }
+        }
+        
+        
         private bool CamposRequeridosLlenos()
         {
             // Verificar que todos los campos requeridos estén llenos
@@ -434,6 +397,141 @@ namespace hospital_gui_wpf.src.presentacion
         private void btnEnlarge_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        }
+
+       
+
+        private void btnBaja_Click(object sender, RoutedEventArgs e)
+        {
+            /*if (CamposRequeridosLlenos())
+            {
+                // Crear un nuevo paciente con la información proporcionada
+                Paciente nuevoPaciente = new Paciente
+                {
+                    Id = 0, // HAY QUE VER QUE ID COGER
+                    Nombre = txtnombrePacientes.Text,
+                    Apellido = txtApellidoPacientes.Text,
+                    FechaNacimiento = dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,                   
+                    Telefono = Convert.ToInt32(txtTelefonoPacientes.Text),
+                    Direccion = txtDireccionPacientes.Text,
+                    Genero = ObtenerGeneroSeleccionado(),
+                    Imagen = new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                    Correo = txtCorreoPacientes.Text,
+                    Citas = new List<Cita>(),
+                    Historiales = new List<Historial>()
+                };
+
+                // Agregar el nuevo paciente a la lista
+                lstListaPacientes.Items.Add(nuevoPaciente);
+
+                // Limpiar los campos después de agregar el paciente
+                LimpiarCampos();
+
+                // Puedes realizar otras acciones después de agregar el paciente
+            }
+            else
+            {
+                MessageBox.Show("Por favor, complete todos los campos requeridos.");
+            }*/
+        }
+        private void dpFechaNacimientoHistorial_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime selectedDate = dpFechaNacimientoHistorial.SelectedDate ?? DateTime.Now;
+
+            // Calcular la fecha mínima permitida (hoy menos 100 años)
+            DateTime fechaMinima = DateTime.Now.AddYears(-100);
+
+            // Calcular la fecha máxima permitida (hoy)
+            DateTime fechaMaxima = DateTime.Now;
+
+            // Validar que la fecha esté dentro del rango permitido
+            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            {
+                MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Limpiar la fecha en caso de no cumplir la validación
+                dpFechaNacimientoHistorial.SelectedDate = null;
+            }
+        }
+        private void dpFechaNacimientoPacientes_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime selectedDate = dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now;
+
+            // Calcular la fecha mínima permitida (hoy menos 100 años)
+            DateTime fechaMinima = DateTime.Now.AddYears(-100);
+
+            // Calcular la fecha máxima permitida (hoy)
+            DateTime fechaMaxima = DateTime.Now;
+
+            // Validar que la fecha esté dentro del rango permitido
+            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            {
+                MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Limpiar la fecha en caso de no cumplir la validación
+                dpFechaNacimientoPacientes.SelectedDate = null;
+            }
+        }
+
+        private void dpFechaNacimientoPersonal_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime selectedDate = dpFechaNacimientoPersonal.SelectedDate ?? DateTime.Now;
+
+            // Calcular la fecha mínima permitida (hoy menos 100 años)
+            DateTime fechaMinima = DateTime.Now.AddYears(-100);
+
+            // Calcular la fecha máxima permitida (hoy)
+            DateTime fechaMaxima = DateTime.Now;
+
+            // Validar que la fecha esté dentro del rango permitido
+            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            {
+                MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Limpiar la fecha en caso de no cumplir la validación
+                dpFechaNacimientoPersonal.SelectedDate = null;
+            }
+        }
+
+        private void dpFechaUltimoAcceso_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime selectedDate = dpFechaUltimoAcceso.SelectedDate ?? DateTime.Now;
+
+            // Calcular la fecha mínima permitida (hoy más 1 día)
+            DateTime fechaMinima = DateTime.Now.AddDays(1);
+
+            // Validar que la fecha sea como mínimo 1 día después de hoy
+            if (selectedDate < fechaMinima)
+            {
+                MessageBox.Show("La fecha debe ser como mínimo 1 día después de hoy.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Limpiar la fecha en caso de no cumplir la validación
+                dpFechaUltimoAcceso.SelectedDate = null;
+            }
+        }
+
+        private void dpFechaUltimoAcceso_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true; // Bloquea la entrada de texto directa
+        }
+
+        private void dpFechaNacimientoPacientes_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true; // Bloquea la entrada de texto directa
+        }
+
+        private void dpFechaNacimientoHistorial_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true; // Bloquea la entrada de texto directa
+        }
+
+        private void dpFechaNacimientoPersonal_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true; // Bloquea la entrada de texto directa
         }
     }
 }
