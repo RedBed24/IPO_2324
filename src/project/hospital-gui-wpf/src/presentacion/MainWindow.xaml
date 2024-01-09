@@ -719,88 +719,84 @@
             </TabItem>
 
             <TabItem Header="Citas" Background="LightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border BorderBrush="LightSkyBlue" BorderThickness="26" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid Background="WhiteSmoke" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="208*"/>
+                            <RowDefinition Height="208*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="425*"/>
+                            <ColumnDefinition Width="424*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                            <GroupBox x:Name="DatosCitas"  Header="Datos de la cita" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="340">
+                                <Grid Background="WhiteSmoke">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                <Grid Background="WhiteSmoke" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="182*"/>
-                        <RowDefinition Height="182*"/>
-                        <RowDefinition Height="26"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="26"/>
-                        <ColumnDefinition Width="399*"/>
-                        <ColumnDefinition Width="398*"/>
-                        <ColumnDefinition Width="26"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
-                        <GroupBox x:Name="DatosCitas"  Header="Datos de la cita" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="340">
-                            <Grid Background="WhiteSmoke">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                                    <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0">
+                                        <Label x:Name="lblNombrePaciente" Content=" Paciente:" />
+                                    </Viewbox>
+                                    <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                                        <ComboBox x:Name="txtNombrePaciente" Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
+                                    </Viewbox>
 
-                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0">
-                                    <Label x:Name="lblNombrePaciente" Content=" Paciente:" />
-                                </Viewbox>
-                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
-                                    <ComboBox x:Name="txtNombrePaciente" Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
-                                </Viewbox>
-
-                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1">
-                                    <Label x:Name="lblNombreCitas" Content="Atendido por:" />
-                                </Viewbox>
-                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
-                                    <ComboBox x:Name="txtnombreDoctor" Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
-                                </Viewbox>
-                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2">
-                                    <Label x:Name="lblFechaCitas" Content="Fecha:" />
-                                </Viewbox>
-                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
-                                    <DatePicker x:Name="dpFechaUltimoAcceso" VerticalAlignment="Center" IsEnabled="False"
+                                    <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1">
+                                        <Label x:Name="lblNombreCitas" Content="Atendido por:" />
+                                    </Viewbox>
+                                    <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                                        <ComboBox x:Name="txtnombreDoctor" Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
+                                    </Viewbox>
+                                    <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2">
+                                        <Label x:Name="lblFechaCitas" Content="Fecha:" />
+                                    </Viewbox>
+                                    <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
+                                        <DatePicker x:Name="dpFechaUltimoAcceso" VerticalAlignment="Center" IsEnabled="False"
                                                     FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="240"/>
-                                </Viewbox>
+                                    </Viewbox>
 
-                                <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3">
-                                    <Label x:Name="lblDuracionCitas" Content="Duración:"/>
-                                </Viewbox>
-                                <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">
-                                    <TextBox x:Name="txtDuracionCitas" TextWrapping="Wrap" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
-                                </Viewbox>
+                                    <Viewbox HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3">
+                                        <Label x:Name="lblDuracionCitas" Content="Duración:"/>
+                                    </Viewbox>
+                                    <Viewbox VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">
+                                        <TextBox x:Name="txtDuracionCitas" TextWrapping="Wrap" FontSize="16" FontWeight="DemiBold" Width="240" Margin="5"/>
+                                    </Viewbox>
 
-                            </Grid>
-                        </GroupBox>
+                                </Grid>
+                            </GroupBox>
 
-                    </Viewbox>
+                        </Viewbox>
 
-                    <Viewbox Grid.Column="1" Grid.Row="2">
-                        <GroupBox x:Name="InfoAdicional"  Header="Información Adicional" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="340">
-                            <TextBox x:Name="txtInformacionAdicional" TextWrapping="Wrap" Height="120"
+                        <Viewbox Grid.Column="0" Grid.Row="1">
+                            <GroupBox x:Name="InfoAdicional"  Header="Información Adicional" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent" Width="310">
+                                <TextBox x:Name="txtInformacionAdicional" TextWrapping="Wrap" Height="120"
                                 Text="{Binding ElementName=lstListaCitas, Path=SelectedItem.InfoAdicional}" FontSize="16" FontWeight="SemiBold"/>
-                        </GroupBox>
-                    </Viewbox>
-                    <Viewbox Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
-                        <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" x:Name="calendario" FontSize="6" FontFamily="Arial Rounded MT Bold" Height="169" FirstDayOfWeek="Saturday">
-                            <Calendar.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FF68C7EE" Offset="0.16"/>
-                                    <GradientStop Color="#FF68C7EE" Offset="0.16"/>
-                                    <GradientStop Color="#FFB2CBDC" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Calendar.Background>
-                        </Calendar>
-                    </Viewbox>
-                    <Border Grid.RowSpan="4" Grid.ColumnSpan="4" BorderBrush="LightSkyBlue" BorderThickness="15" />
-                </Grid>
+                            </GroupBox>
+                        </Viewbox>
+                        <Viewbox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" x:Name="calendario" FontSize="6" FontFamily="Arial Rounded MT Bold" Height="169" FirstDayOfWeek="Saturday">
+                                <Calendar.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF68C7EE" Offset="0.16"/>
+                                        <GradientStop Color="#FF68C7EE" Offset="0.16"/>
+                                        <GradientStop Color="#FFB2CBDC" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Calendar.Background>
+                            </Calendar>
+                        </Viewbox>
+                    </Grid>
+                </Border>
             </TabItem>
 
             <TabItem Header="Personal" Background="LightBlue">
