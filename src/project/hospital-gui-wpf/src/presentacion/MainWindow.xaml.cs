@@ -48,7 +48,7 @@ namespace hospital_gui_wpf.src.presentacion
             //string idPacienteSeleccionado = txtIdPacientes.Text;
             string nombrePacienteSeleccionado = txtnombrePacientes.Text;
             string apellidoPacienteSeleccionado = txtApellidoPacientes.Text;
-            string edadPacienteSeleccionado = txtEdadPacientes.Text;
+            //string edadPacienteSeleccionado = dpFechaNacimientoPacientes;
             string telefonoPacienteSeleccionado = txtTelefonoPacientes.Text;
             string correoPacienteSeleccionado = txtCorreoPacientes.Text;
             string direccionPacienteSeleccionado = txtDireccionPacientes.Text;
@@ -94,65 +94,72 @@ namespace hospital_gui_wpf.src.presentacion
         }
         private void btnBajaPaciente(object sender, RoutedEventArgs e)
         {
-            //string idPacienteSeleccionado = txtIdPacientes.Text;
-            string nombrePacienteSeleccionado = txtnombrePacientes.Text;
-            string apellidoPacienteSeleccionado = txtApellidoPacientes.Text;
-            string edadPacienteSeleccionado = txtEdadPacientes.Text;
-            string telefonoPacienteSeleccionado = txtTelefonoPacientes.Text;
-            string correoPacienteSeleccionado = txtCorreoPacientes.Text;
-            string direccionPacienteSeleccionado = txtDireccionPacientes.Text;
-            //string imagenPacienteSeleccionado = imagenPacientes.Source.ToString().Replace("pack://application:,,,", "");
+            if (CamposRequeridosLlenos())
+            {
+                // Crear un nuevo paciente con la información proporcionada
+                Paciente nuevoPaciente = new Paciente
+                {
+                    Id = 0, // HAY QUE VER QUE ID COGER
+                    Nombre = txtnombrePacientes.Text,
+                    Apellido = txtApellidoPacientes.Text,
+                    FechaNacimiento = dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,                   
+                    Telefono = Convert.ToInt32(txtTelefonoPacientes.Text),
+                    Direccion = txtDireccionPacientes.Text,
+                    Genero = ObtenerGeneroSeleccionado(),
+                    Imagen = new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                    Correo = txtCorreoPacientes.Text,
+                    Citas = new List<Cita>(),
+                    Historiales = new List<Historial>()
+                };
 
-            string generoPacienteSeleccionado = "";
+                // Agregar el nuevo paciente a la lista
+                lstListaPacientes.Items.Add(nuevoPaciente);
+
+                // Limpiar los campos después de agregar el paciente
+                LimpiarCampos();
+
+                // Puedes realizar otras acciones después de agregar el paciente
+            }
+            else
+            {
+                MessageBox.Show("Por favor, complete todos los campos requeridos.");
+            }
+        }
+        private bool CamposRequeridosLlenos()
+        {
+            // Verificar que todos los campos requeridos estén llenos
+            return !string.IsNullOrEmpty(txtnombrePacientes.Text) &&
+                   !string.IsNullOrEmpty(txtApellidoPacientes.Text) &&
+                   dpFechaNacimientoPacientes.SelectedDate.HasValue &&
+                   !string.IsNullOrEmpty(txtTelefonoPacientes.Text) &&
+                   !string.IsNullOrEmpty(txtDireccionPacientes.Text) &&
+                   !string.IsNullOrEmpty(txtCorreoPacientes.Text);
+        }
+
+        private Genero ObtenerGeneroSeleccionado()
+        {
+            // Obtener el género seleccionado
             if (radioFemeninoPacientes.IsChecked == true)
-            {
-                generoPacienteSeleccionado = "Mujer";
-            }
+                return Genero.Mujer;
             else if (radioMasculinoPacientes.IsChecked == true)
-            {
-                generoPacienteSeleccionado = "Hombre";
-            }
+                return Genero.Hombre;
             else if (radioOtroPacientes.IsChecked == true)
-            {
-                generoPacienteSeleccionado = "Otro";
-            }
+                return Genero.Otro;
+            else return Genero.Otro;
+        }
 
-
-            /*
-            string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
-
-            XDocument doc = XDocument.Load(path);
-
-            var pacienteSeleccionado = doc.Descendants("Persona")
-                            .Where(p =>
-                            {
-                                var IdElem = p.Element("Id");
-                                var nombreElem = p.Element("Nombre");
-                                var apellidoElem = p.Element("Apellido");
-                                var edadElem = p.Element("Edad");
-                                var telefonoElem = p.Element("Telefono");
-                                var correoElem = p.Element("Correo");
-                                var direccionElem = p.Element("Direccion");
-                                var generoElem = p.Element("Genero");
-                                var imagenElem = p.Element("Imagen");
-
-                                return nombreElem.Value.Equals(nombrePacienteSeleccionado) &&
-                                       apellidoElem.Value.Equals(apellidoPacienteSeleccionado) &&
-                                       edadElem.Value.Equals(edadPacienteSeleccionado) &&
-                                       telefonoElem.Value.Equals(telefonoPacienteSeleccionado) &&
-                                       correoElem.Value.Equals(correoPacienteSeleccionado) &&
-                                       direccionElem.Value.Equals(direccionPacienteSeleccionado) &&
-                                       generoElem.Value.Equals(generoPacienteSeleccionado);
-                                //imagenElem.Value.Equals(imagenPacienteSeleccionado);
-                            }).ToList();
-
-            foreach (var paciente in pacienteSeleccionado)
-            {
-                paciente.Remove();
-            }
-
-            doc.Save(path);
-            */
+        private void LimpiarCampos()
+        {
+            // Limpiar los campos después de agregar el paciente
+            txtnombrePacientes.Text = string.Empty;
+            txtApellidoPacientes.Text = string.Empty;
+            dpFechaNacimientoPacientes.SelectedDate = null;
+            txtTelefonoPacientes.Text = string.Empty;
+            txtDireccionPacientes.Text = string.Empty;
+            txtCorreoPacientes.Text = string.Empty;
+            radioFemeninoPacientes.IsChecked = false;
+            radioMasculinoPacientes.IsChecked = false;
+            radioOtroPacientes.IsChecked = false;
         }
         private void btnConfirmarModificacionPacientes_MouseDown(object sender, MouseButtonEventArgs e)
         {

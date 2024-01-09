@@ -559,8 +559,8 @@
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtApellidoPacientes_LostFocus"/>
 
                                         <Label x:Name="lblEdadPacientes" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtEdadPacientes" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
-                                         Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                        <DatePicker x:Name="dpFechaNacimientoPacientes" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                        SelectedDate="{Binding SelectedItem.FechaNacimiento, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
                                     </Grid>
                                 </GroupBox>
                             </Viewbox>
@@ -682,8 +682,10 @@
                                         <TextBox x:Name="txtApellidoHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
                                          Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5" LostFocus="txtApellidoHistorial_LostFocus"/>
                                         <Label x:Name="lblEdadHistorial" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtEdadHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
-                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Edad}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
+                                        <DatePicker  x:Name="dpFechaNacimientoHistorial"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                        SelectedDate="{Binding SelectedItem.FechaNacimiento, ElementName=lstListaHistoriales}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
+                                        <!--<TextBox x:Name="txtEdadHistorial" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                         Text="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Edad}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>-->
                                     </Grid>
                                 </GroupBox>
                             </Viewbox>
@@ -885,8 +887,10 @@
                                          Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtApellidoPersonal_LostFocus"/>
 
                                         <Label x:Name="lblEdadPersonal" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <TextBox x:Name="txtEdadPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
-                                         Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                        <!--<TextBox x:Name="txtEdadPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                         Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>-->
+                                        <DatePicker  x:Name="dpFechaNacimientoPersonal"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
+                                        SelectedDate="{Binding SelectedItem.FechaNacimiento, ElementName=lstListaPersonal}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
                                     </Grid>
                                 </GroupBox>
                             </Viewbox>
