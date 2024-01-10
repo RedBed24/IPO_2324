@@ -186,7 +186,7 @@ namespace hospital_gui_wpf.src.presentacion
         {
             // Limpiar los campos después de agregar el paciente o al personal
             object tabContent= tabControl.SelectedItem;
-            if (tabContent is TabItem tabPacientes)
+            if (tabContent == tabPaciente)
             {
                 txtnombrePacientes.Text = string.Empty;
                 txtApellidoPacientes.Text = string.Empty;
@@ -200,7 +200,7 @@ namespace hospital_gui_wpf.src.presentacion
                 imagenPaciente.Source = null;
 
             }
-            else if (tabContent is TabItem tabPersonal)
+            else if (tabContent == tabPersonal)
             {
                 txtnombrePersonal.Text = string.Empty;
                 txtApellidoPersonal.Text = string.Empty;
@@ -215,9 +215,9 @@ namespace hospital_gui_wpf.src.presentacion
                 radioLimpiezaPersonal.IsChecked = false;
                 imagenPersonal.Source = null;
             }
-            else if(tabContent is TabItem tabHistorial)
+            else if(tabContent == tabHistorial)
                 txtHistorial.Text = string.Empty;   
-            else if(tabContent is TabItem tabCitas)
+            else if(tabContent == tabCita)
             {
                 dpFechaCita.SelectedDate = null;
                 txtDuracionCitas.Text = string.Empty;
@@ -528,20 +528,42 @@ namespace hospital_gui_wpf.src.presentacion
             this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
 
+        private bool ExistePacienteEnLista(string nombre, string apellido, int telefono)
+        {
+            // Verificar si el nuevo paciente coincide con alguno de la lista
+            return GestorDatos.Pacientes.Any(p => p.Nombre.ToUpper() == nombre.ToUpper() && p.Apellido.ToUpper() == apellido.ToUpper() && p.Telefono == telefono);
+        }
+        private bool ExistePersonalEnLista(string nombre, string apellido, int telefono)
+        {
+            // Verificar si el nuevo paciente coincide con alguno de la lista
+            return lstListaPersonal.Items.Cast<Personal>().Any(p => p.Nombre.ToUpper() == nombre.ToUpper() && p.Apellido.ToUpper() == apellido.ToUpper() && p.Telefono == telefono);
 
-
+        }
         private void btnBaja_Click(object sender, RoutedEventArgs e)
         {
             object tabContent = tabControl.SelectedItem;
             if (tabContent == tabPaciente)
             {
                 if (CamposRequeridosLlenos())
-                {
+                {   
                     Paciente seleccionado = lstListaPacientes.SelectedItem as Paciente;
-                    if ((seleccionado.Nombre == txtnombrePacientes.Text && seleccionado.Apellido == txtApellidoPacientes.Text && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPacientes.Text)))
+                    if (seleccionado != null)
                     {
-                        MessageBox.Show("No puedes dar de baja a un cliente que ya está dado de baja.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return; // Salir del método si el nombre ya existe
+                        if (( seleccionado.Nombre.ToUpper() == txtnombrePacientes.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPacientes.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPacientes.Text)))
+                        {
+                            MessageBox.Show("No puedes dar de baja a un cliente que ya lo estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return; // Salir del método si el nombre ya existe
+                        }
+
+                    }
+                    else
+                    {
+                        if (ExistePacienteEnLista(txtnombrePacientes.Text, txtApellidoPacientes.Text, Convert.ToInt32(txtTelefonoPacientes.Text)))
+                        {
+                            MessageBox.Show("El nuevo paciente coincide con uno que ya está en la lista.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            LimpiarCampos();
+                            return; // Salir del método si el nombre ya existe
+                        }
                     }
                     Random random = new Random();
                     // Crear un nuevo paciente con la información proporcionada
@@ -568,7 +590,7 @@ namespace hospital_gui_wpf.src.presentacion
                     // Limpiar los campos después de agregar el paciente
                     LimpiarCampos();
 
-                    // Puedes realizar otras acciones después de agregar el paciente
+                    
                 }
                 else
                 {
@@ -579,6 +601,25 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 if (CamposRequeridosLlenos())
                 {
+                    Personal seleccionado = lstListaPersonal.SelectedItem as Personal;
+                    if (seleccionado != null)
+                    {
+                        if ((seleccionado.Nombre.ToUpper() == txtnombrePersonal.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPersonal.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPersonal.Text)))
+                        {
+                            MessageBox.Show("No puedes dar de baja a un personal que ya estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return; // Salir del método si el nombre ya existe
+                        }
+
+                    }
+                    else
+                    {
+                        if (ExistePersonalEnLista(txtnombrePersonal.Text, txtApellidoPersonal.Text, Convert.ToInt32(txtTelefonoPersonal.Text)))
+                        {
+                            MessageBox.Show("El nuevo personal coincide con uno que ya está en la lista.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            LimpiarCampos();
+                            return; // Salir del método si el nombre ya existe
+                        }
+                    }
                     Random random = new Random();
                     // Crear un nuevo paciente con la información proporcionada
                     Personal nuevoPersonal = new Personal
@@ -720,29 +761,6 @@ namespace hospital_gui_wpf.src.presentacion
         {
             e.Handled = true; // Bloquea la entrada de texto directa
         }
-
-        private void imagenPaciente_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Uri baseUri = new Uri("/datos/imagenes", UriKind.Relative);
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de imagen|*.png;*.jpg;*.jpeg;*.gif;*.bmp|Todos los archivos|*.*";
-            openFileDialog.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,baseUri.OriginalString);
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                // Obtén la ruta de la imagen seleccionada
-                string rutaImagen = openFileDialog.FileName;
-
-                // Construye la ruta relativa desde la carpeta "DATOS"
-                Uri fullPath = new Uri(rutaImagen);
-                Uri relativeUri = baseUri.MakeRelativeUri(fullPath);
-                string rutaRelativa = Uri.UnescapeDataString(relativeUri.ToString());
-
-                // Muestra la imagen en algún lugar de la interfaz de usuario (opcional)
-                imagenPaciente.Source = new BitmapImage(new Uri(rutaRelativa, UriKind.Relative));
-            }
-        }
-
         private void btnPerfilUsuario_MouseDown(object sender, MouseButtonEventArgs e)
         {
             AboutUser aboutuser = new AboutUser(UsuarioActual, GestorDatos);
@@ -808,11 +826,59 @@ namespace hospital_gui_wpf.src.presentacion
         private void lstListaPersonal_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             // Obtén el elemento bajo el puntero del ratón
-            var hitTestResult = VisualTreeHelper.HitTest(lstListaPacientes, e.GetPosition(lstListaPacientes));
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaPersonal, e.GetPosition(lstListaPersonal));
             // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
             if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
             {
-                lstListaPacientes.SelectedItem = null;
+                lstListaPersonal.SelectedItem = null;
+            }
+        }
+
+        private void lstListaPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Verificar si hay algún elemento seleccionado en la ListBox
+            if (lstListaPacientes.SelectedItem != null)
+            {
+                // Obtener el paciente seleccionado
+                Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
+
+                // Mostrar la imagen del paciente seleccionado en la interfaz
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = pacienteSeleccionado.Imagen;
+                bitmapImage.EndInit();
+
+                // Mostrar la imagen del paciente seleccionado en la interfaz
+                imagenPaciente.Source = bitmapImage;
+            }
+            else
+            {
+                // No hay elemento seleccionado, establecer la imagen a null
+                imagenPaciente.Source = null;
+            }
+        }
+
+        private void lstListaPersonal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Verificar si hay algún elemento seleccionado en la ListBox
+            if (lstListaPersonal.SelectedItem != null)
+            {
+                // Obtener el paciente seleccionado
+                Personal personalSeleccionado = lstListaPersonal.SelectedItem as Personal;
+
+                // Mostrar la imagen del paciente seleccionado en la interfaz
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = personalSeleccionado.Imagen;
+                bitmapImage.EndInit();
+
+                // Mostrar la imagen del paciente seleccionado en la interfaz
+                imagenPersonal.Source = bitmapImage;
+            }
+            else
+            {
+                // No hay elemento seleccionado, establecer la imagen a null
+                imagenPersonal.Source = null;
             }
         }
     }
