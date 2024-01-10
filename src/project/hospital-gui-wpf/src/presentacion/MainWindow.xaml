@@ -880,15 +880,14 @@
 
                                         <Label x:Name="lblNombrePersonal" Content="Nombre:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtnombrePersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtnombrePersonal_LostFocus"/>
+
+                                         Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Nombre}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtnombrePersonal_LostFocus"/>
 
                                         <Label x:Name="lblApellidoPersonal" Content="Apellido:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtApellidoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtApellidoPersonal_LostFocus"/>
+                                         Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Apellido}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtApellidoPersonal_LostFocus"/>
 
                                         <Label x:Name="lblEdadPersonal" Content="Edad:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
-                                        <!--<TextBox x:Name="txtEdadPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
-                                         Text="{Binding SelectedItem.Edad, ElementName=lstListaPacientes}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>-->
                                         <DatePicker  x:Name="dpFechaNacimientoPersonal"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                         SelectedDate="{Binding SelectedItem.FechaNacimiento, ElementName=lstListaPersonal}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="dpFechaNacimientoPersonal_LostFocus" PreviewKeyDown="dpFechaNacimientoPersonal_PreviewKeyDown"/>
                                     </Grid>
@@ -910,16 +909,14 @@
 
                                         <Label x:Name="lblTelefonoPersonal" Content="Teléfono:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
                                         <TextBox x:Name="txtTelefonoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtTelefonoPersonal_LostFocus"/>
-
+                                         Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Telefono}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtTelefonoPersonal_LostFocus"/>
                                         <Label x:Name="lblDireccionPersonal" Content="Dirección:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtDireccionPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
+                                         Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Direccion}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5"/>
 
                                         <Label x:Name="lblCorreoPersonal" Content="Correo:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
                                         <TextBox x:Name="txtCorreoPersonal" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
-                                         Text="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtCorreoPersonal_LostFocus"/>
-
+                                         Text="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Correo}" FontSize="16" FontWeight="DemiBold" Width="215" Margin="5" LostFocus="txtCorreoPersonal_LostFocus"/>
                                     </Grid>
                                 </GroupBox>
                             </Viewbox>
@@ -929,17 +926,17 @@
                                         <StackPanel Grid.Column="2" Grid.Row="7" Orientation="Horizontal">
                                             <Label x:Name="lblSexoPersonal" Content="Género:" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="51"/>
                                             <RadioButton x:Name="radioFemeninoPersonal" VerticalAlignment="Center"
-                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
+                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Mujer, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" Width="41">
                                                 <Image Source="\datos\imagenes\femenino.png" Width="20" Height="20" ToolTip="Femenino"/>
                                             </RadioButton>
 
                                             <RadioButton x:Name="radioMasculinoPersonal" VerticalAlignment="Center"
-                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
+                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Hombre, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" Width="41">
                                                 <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
                                             </RadioButton>
-
+                                          
                                             <RadioButton x:Name="radioOtroPersonal" VerticalAlignment="Center"
-                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
+                                                     IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPersonal}" Width="41">
                                                 <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
                                             </RadioButton>
 

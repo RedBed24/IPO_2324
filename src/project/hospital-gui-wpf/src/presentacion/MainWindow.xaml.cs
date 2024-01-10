@@ -17,10 +17,24 @@ namespace hospital_gui_wpf.src.presentacion
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Gestor GestorDatos;
+        public Usuario UsuarioActual;
+        public List<Personal> Personal;
 
-        public MainWindow()
+        public MainWindow(Gestor gestorDatos, Usuario usuarioActual)
         {
             InitializeComponent();
+            UsuarioActual = usuarioActual;
+            GestorDatos = gestorDatos;
+
+            btnPerfilUsuario.Source = new BitmapImage(UsuarioActual.Imagen);
+
+            Personal = new List<Personal>();
+            Personal.AddRange(GestorDatos.Sanitarios);
+            Personal.AddRange(GestorDatos.Limpieza);
+
+            lstListaPacientes.ItemsSource = GestorDatos.Pacientes;
+            lstListaPersonal.ItemsSource = Personal;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -667,7 +681,7 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnPerfilUsuario_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            AboutUser aboutuser = new AboutUser();
+            AboutUser aboutuser = new AboutUser(UsuarioActual);
             aboutuser.Closed += AboutUserClosed;
             aboutuser.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;

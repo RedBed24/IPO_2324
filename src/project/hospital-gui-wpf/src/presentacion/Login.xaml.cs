@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using hospital_gui_wpf.src.dominio;
 
 namespace hospital_gui_wpf.src.presentacion
 {
@@ -13,21 +13,22 @@ namespace hospital_gui_wpf.src.presentacion
 	/// </summary>
 	public partial class Login : Window
 	{
+		Gestor gestorDatos;
         private bool cerrarDesdeCodigo = false;
         private TextBlock txtPassWatermark;
         private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
 		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
-		private readonly Dictionary<string, string> usuarios = new Dictionary<string, string>
-		{
-			{ "noelia", "1234" },
-			{ "samuel", "E5pej0" },
-			{ "antonio", "contrasena"}
-		};
 
 		public Login()
 		{
 			InitializeComponent();
 			txtUser.Focus();
+			gestorDatos = new Gestor();
+		}
+
+		public Usuario getUser(string nombreUsuario)
+		{
+			return gestorDatos.Usuarios.Find(u => u.NombreUsuario == nombreUsuario);
 		}
 
 		private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -49,7 +50,7 @@ namespace hospital_gui_wpf.src.presentacion
 		private bool ComprobarEntradaNombre(string valorIntroducido, Control componenteEntrada, Image imagenFeedBack)
 		{
 			bool valido = false;
-			if (usuarios.ContainsKey(valorIntroducido))
+			if (getUser(valorIntroducido) != null)
 			{
 				componenteEntrada.BorderBrush = Brushes.Green;
 				componenteEntrada.Background = Brushes.LightGreen;
@@ -75,7 +76,7 @@ namespace hospital_gui_wpf.src.presentacion
 		private bool ComprobarEntradaContraseña(string valorIntroducido, string valorValido, Control componenteEntrada, Image imagenFeedBack)
 		{
 			bool valido = false;
-			if (usuarios[valorIntroducido].Equals(valorValido))
+			if (getUser(valorIntroducido).Contrasena.Equals(valorValido))
 			{
 				componenteEntrada.BorderBrush = Brushes.Green;
 				componenteEntrada.Background = Brushes.LightGreen;
@@ -106,7 +107,7 @@ namespace hospital_gui_wpf.src.presentacion
 		{
 			if (ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser) && ComprobarEntradaContraseña(txtUser.Text, txtPass.Password, txtPass, imgPass))
 			{
-				MainWindow ventana_principal = new MainWindow();
+				MainWindow ventana_principal = new MainWindow(gestorDatos, getUser(txtUser.Text));
 				ventana_principal.Visibility = Visibility.Visible;
 				cerrarDesdeCodigo = true;
 				this.Close();

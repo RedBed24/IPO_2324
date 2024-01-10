@@ -10,11 +10,12 @@ namespace hospital_gui_wpf.src.presentacion
 {
     public partial class AboutUser : Window
     {
-        public AboutUser()
+        Usuario UsuarioActual;
+        public AboutUser(Usuario usuarioActual)
         {
             InitializeComponent();
-            Usuario usuarioActual = new Usuario("Antoniocg73", "Antonio", "Campallo", "contrasena", new DateTime(2003, 9, 1), new DateTime(2023, 12, 31), new Uri("/datos/imagenes/Antonio.jpg", UriKind.Relative));
             DataContext = usuarioActual;
+            UsuarioActual = usuarioActual;
         }
 
         private void btnModificarContraseña_MouseDown(object sender, MouseButtonEventArgs e)
