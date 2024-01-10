@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using hospital_gui_wpf.src.dominio;
@@ -47,25 +48,32 @@ namespace hospital_gui_wpf.src.presentacion
             WindowState = WindowState.Maximized;
         }
         // Solo se da altas o bajas de pacientes, al añadir a un paciente mediante baja se crean los historiales y citas vacios, estos se podrán modificar en sus tabs con el boton de modificar
-        private void btnAltaPaciente(object sender, RoutedEventArgs e)
+        private void btnAlta_Click(object sender, RoutedEventArgs e)
         {
-            Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
-            if (pacienteSeleccionado != null)
+            object tabContent = tabControl.SelectedItem;
+            if (tabContent is TabItem tabPaciente)
             {
-                ConfirmarAltaYPosibleEliminacion(pacienteSeleccionado);
+                Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
+                if (pacienteSeleccionado != null)
+                {
+                    ConfirmarAltaYPosibleEliminacion(pacienteSeleccionado);
+                }
+                
             }
-            else
+            else if (tabContent is TabItem tabPersonal)
             {
                 Personal personalSeleccionado = lstListaPersonal.SelectedItem as Personal;
                 if (personalSeleccionado != null)
                 {
                     ConfirmarAltaYPosibleEliminacion(personalSeleccionado);
                 }
-                else
-                {
-                    MessageBox.Show("Por favor, selecciona un paciente o personal antes de confirmar el alta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                   
             }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un paciente o personal antes de confirmar la alta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            } 
+            
         }
         private void ConfirmarAltaYPosibleEliminacion(object elementoSeleccionado)
         {
@@ -94,13 +102,28 @@ namespace hospital_gui_wpf.src.presentacion
         
         private bool CamposRequeridosLlenos()
         {
-            // Verificar que todos los campos requeridos estén llenos
-            return !string.IsNullOrEmpty(txtnombrePacientes.Text) &&
-                   !string.IsNullOrEmpty(txtApellidoPacientes.Text) &&
-                   dpFechaNacimientoPacientes.SelectedDate.HasValue &&
-                   !string.IsNullOrEmpty(txtTelefonoPacientes.Text) &&
-                   !string.IsNullOrEmpty(txtDireccionPacientes.Text) &&
-                   !string.IsNullOrEmpty(txtCorreoPacientes.Text);
+            object tabContent = tabControl.SelectedItem;
+            if (tabContent is TabItem tabPaciente)
+            {
+                return !string.IsNullOrEmpty(txtnombrePacientes.Text) &&
+               !string.IsNullOrEmpty(txtApellidoPacientes.Text) &&
+               dpFechaNacimientoPacientes.SelectedDate.HasValue &&
+               !string.IsNullOrEmpty(txtTelefonoPacientes.Text) &&
+               !string.IsNullOrEmpty(txtDireccionPacientes.Text) &&
+               !string.IsNullOrEmpty(txtCorreoPacientes.Text);
+            }
+            else if (tabContent is TabItem tabPersonal)
+            {
+                return !string.IsNullOrEmpty(txtnombrePersonal.Text) &&
+                   !string.IsNullOrEmpty(txtApellidoPersonal.Text) &&
+                   dpFechaNacimientoPersonal.SelectedDate.HasValue &&
+                   !string.IsNullOrEmpty(txtTelefonoPersonal.Text) &&
+                   !string.IsNullOrEmpty(txtDireccionPersonal.Text) &&
+                   !string.IsNullOrEmpty(txtCorreoPersonal.Text);
+            }
+            else return false;
+
+            
         }
 
         private Genero ObtenerGeneroSeleccionado()
@@ -122,28 +145,42 @@ namespace hospital_gui_wpf.src.presentacion
         private void LimpiarCampos()
         {
             // Limpiar los campos después de agregar el paciente o al personal
-            txtnombrePacientes.Text = string.Empty;
-            txtApellidoPacientes.Text = string.Empty;
-            dpFechaNacimientoPacientes.SelectedDate = null;
-            txtTelefonoPacientes.Text = string.Empty;
-            txtDireccionPacientes.Text = string.Empty;
-            txtCorreoPacientes.Text = string.Empty;
-            radioFemeninoPacientes.IsChecked = false;
-            radioMasculinoPacientes.IsChecked = false;
-            radioOtroPacientes.IsChecked = false;
-            imagenPaciente.Source = null;
-            txtnombrePersonal.Text = string.Empty;
-            txtApellidoPersonal.Text = string.Empty;
-            dpFechaNacimientoPersonal.SelectedDate = null;
-            txtTelefonoPersonal.Text = string.Empty;
-            txtDireccionPersonal.Text = string.Empty;
-            txtCorreoPersonal.Text = string.Empty;
-            radioMasculinoPersonal.IsChecked = false;
-            radioFemeninoPersonal.IsChecked = false;
-            radioOtroPersonal.IsChecked = false;
-            radioSanitarioPersonal.IsChecked = false;
-            radioLimpiezaPersonal.IsChecked = false;
-            imagenPersonal.Source = null;
+            object tabContent= tabControl.SelectedItem;
+            if (tabContent is TabItem tabPacientes)
+            {
+                txtnombrePacientes.Text = string.Empty;
+                txtApellidoPacientes.Text = string.Empty;
+                dpFechaNacimientoPacientes.SelectedDate = null;
+                txtTelefonoPacientes.Text = string.Empty;
+                txtDireccionPacientes.Text = string.Empty;
+                txtCorreoPacientes.Text = string.Empty;
+                radioFemeninoPacientes.IsChecked = false;
+                radioMasculinoPacientes.IsChecked = false;
+                radioOtroPacientes.IsChecked = false;
+                imagenPaciente.Source = null;
+            }
+            else if (tabContent is TabItem tabPersonal)
+            {
+                txtnombrePersonal.Text = string.Empty;
+                txtApellidoPersonal.Text = string.Empty;
+                dpFechaNacimientoPersonal.SelectedDate = null;
+                txtTelefonoPersonal.Text = string.Empty;
+                txtDireccionPersonal.Text = string.Empty;
+                txtCorreoPersonal.Text = string.Empty;
+                radioMasculinoPersonal.IsChecked = false;
+                radioFemeninoPersonal.IsChecked = false;
+                radioOtroPersonal.IsChecked = false;
+                radioSanitarioPersonal.IsChecked = false;
+                radioLimpiezaPersonal.IsChecked = false;
+                imagenPersonal.Source = null;
+            }
+            else if(tabContent is TabItem tabHistorial)
+                txtHistorial.Text = string.Empty;   
+            else if(tabContent is TabItem tabCitas)
+            {
+                dpFechaCita.SelectedDate = null;
+                txtDuracionCitas.Text = string.Empty;
+            }
         }
         private void btnConfirmarModificacionPacientes_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -435,41 +472,80 @@ namespace hospital_gui_wpf.src.presentacion
             this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
 
-       
+
 
         private void btnBaja_Click(object sender, RoutedEventArgs e)
         {
-            if (CamposRequeridosLlenos())
-            {   
-                Random random = new Random();
-                // Crear un nuevo paciente con la información proporcionada
-                Paciente nuevoPaciente = new Paciente
-                
-                (
-                    random.Next(100,1000001), // aleatorio
-                    txtnombrePacientes.Text,
-                    txtApellidoPacientes.Text,
-                    dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,                   
-                    Convert.ToInt32(txtTelefonoPacientes.Text),
-                    txtDireccionPacientes.Text,
-                    ObtenerGeneroSeleccionado(),
-                    new Uri("/datos/imagenes/cross.png", UriKind.Relative),
-                    txtCorreoPacientes.Text,
-                    new List<Cita>(),
-                    new List<Historial>()
-                );
-
-                // Agregar el nuevo paciente a la lista
-                lstListaPacientes.Items.Add(nuevoPaciente);
-
-                // Limpiar los campos después de agregar el paciente
-                LimpiarCampos();
-
-                // Puedes realizar otras acciones después de agregar el paciente
-            }
-            else
+            object tabContent = tabControl.SelectedItem;
+            if (tabContent is TabItem tabPacientes)
             {
-                MessageBox.Show("Por favor, complete todos los campos requeridos.");
+                if (CamposRequeridosLlenos())
+                {
+                    Random random = new Random();
+                    // Crear un nuevo paciente con la información proporcionada
+                    Paciente nuevoPaciente = new Paciente
+
+                    (
+                        random.Next(100, 1000001), // aleatorio
+                        txtnombrePacientes.Text,
+                        txtApellidoPacientes.Text,
+                        dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,
+                        Convert.ToInt32(txtTelefonoPacientes.Text),
+                        txtDireccionPacientes.Text,
+                        ObtenerGeneroSeleccionado(),
+                        new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                        txtCorreoPacientes.Text,
+                        new List<Cita>(),
+                        new List<Historial>()
+                    );
+
+                    // Agregar el nuevo paciente a la lista
+                    lstListaPacientes.Items.Add(nuevoPaciente);
+
+                    // Limpiar los campos después de agregar el paciente
+                    LimpiarCampos();
+
+                    // Puedes realizar otras acciones después de agregar el paciente
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del cliente.");
+                }
+            }
+            else if (tabContent is TabItem tabPersonal)
+            {
+                if (CamposRequeridosLlenos())
+                {
+                    Random random = new Random();
+                    // Crear un nuevo paciente con la información proporcionada
+                    Personal nuevoPersonal = new Personal
+
+                    (
+                        random.Next(100, 1000001), // aleatorio
+                        txtnombrePersonal.Text,
+                        txtApellidoPersonal.Text,
+                        dpFechaNacimientoPersonal.SelectedDate ?? DateTime.Now,
+                        Convert.ToInt32(txtTelefonoPersonal.Text),
+                        txtDireccionPersonal.Text,
+                        ObtenerGeneroSeleccionado(),
+                        new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                        txtCorreoPacientes.Text,
+                        ObtenerTipoSeleccionado(),
+                        new List<Cita>()
+                    );
+
+                    // Agregar el nuevo paciente a la lista
+                    lstListaPersonal.Items.Add(nuevoPersonal);
+
+                    // Limpiar los campos después de agregar el paciente
+                    LimpiarCampos();
+
+                    // Puedes realizar otras acciones después de agregar el paciente
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del personal.");
+                }
             }
         }
         private void dpFechaNacimientoHistorial_LostFocus(object sender, RoutedEventArgs e)
