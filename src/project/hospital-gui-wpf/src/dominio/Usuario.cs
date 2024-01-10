@@ -13,15 +13,18 @@ namespace hospital_gui_wpf
         public string Nombre { set; get; }
         public string Apellido { set; get; }
         public string Contrasena { set; get; }
-        public DateTime fechaContratacion { set; get; }
+        public DateTime FechaContratacion { set; get; }
+
+        public DateTime UltimoAcceso { set; get; }
         public Uri Imagen { set; get; }
-        public Usuario(string nombreusuario, string nombre, string apellido, string contraseña, DateTime fecha, Uri imagen)
+        public Usuario(string nombreusuario, string nombre, string apellido, string contraseña, DateTime fecha, DateTime acceso, Uri imagen)
         {
             NombreUsuario = nombreusuario;
             Nombre = nombre;
             Apellido = apellido;
             Contrasena = contraseña;
-            fechaContratacion = fecha;
+            FechaContratacion = fecha;
+            UltimoAcceso = acceso;
             Imagen = imagen;
         }
         public bool ValidarContrasena(string contrasenaActual)

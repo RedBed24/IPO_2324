@@ -128,6 +128,7 @@ namespace hospital_gui_wpf.src.persistencia
 			string apellido;
 			string contrasena;
 			DateTime fechaContratacion;
+			DateTime ultimoAcceso;
 			Uri imagen;
 
 			XmlDocument doc = new XmlDocument();
@@ -139,9 +140,10 @@ namespace hospital_gui_wpf.src.persistencia
 				apellido = node["Apellido"].InnerText;
 				contrasena = node["Contrasena"].InnerText;
 				fechaContratacion = DateTime.ParseExact(node["FechaContratacion"].InnerText, "yyyy/MM/dd", null);
+				ultimoAcceso = DateTime.ParseExact(node["UltimoAcceso"].InnerText, "yyyy/MM/dd HH:mm", null);
 				imagen = new Uri(node["Imagen"].InnerText, UriKind.Relative);
 
-				listado.Add(new Usuario(nombreUsuario, nombre, apellido, contrasena, fechaContratacion, imagen));
+				listado.Add(new Usuario(nombreUsuario, nombre, apellido, contrasena, fechaContratacion, ultimoAcceso, imagen));
 			}
 			return listado;
 		}

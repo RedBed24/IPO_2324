@@ -6,6 +6,7 @@
 		<Apellido>Espejo</Apellido>
 		<Contrasena>E5pej0</Contrasena>
 		<FechaContratacion>2023/09/20</FechaContratacion>
+		<UltimoAcceso>2024/01/04 10:00</UltimoAcceso>
 		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
 	</Usuario>
 </Usuarios>
