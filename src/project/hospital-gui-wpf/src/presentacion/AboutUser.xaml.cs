@@ -20,7 +20,7 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnModificarContraseña_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CambiarContrasena cambiarContrasenaWindow = new CambiarContrasena();
+            CambiarContrasena cambiarContrasenaWindow = new CambiarContrasena(UsuarioActual);
             bool? result = cambiarContrasenaWindow.ShowDialog();
 
             if (result == true)

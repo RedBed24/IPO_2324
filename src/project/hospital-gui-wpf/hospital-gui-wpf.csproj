@@ -156,8 +156,8 @@
     <Resource Include="datos\imagenes\sanitario.png" />
     <Resource Include="datos\imagenes\Antonio.jpg" />
     <Resource Include="datos\imagenes\cambiarContra.png" />
-    <Resource Include="datos\imagenes\Noelia.jpeg" />
     <Resource Include="datos\imagenes\Samuel.jpg" />
+    <Resource Include="datos\imagenes\Noelia.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

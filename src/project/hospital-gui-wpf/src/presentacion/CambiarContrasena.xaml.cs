@@ -16,27 +16,41 @@ namespace hospital_gui_wpf.src.presentacion
 {
     public partial class CambiarContrasena : Window
     {
+        Usuario UsuarioActual;
         public string NuevaContrasena { get; private set; }
 
-        public CambiarContrasena()
+        public CambiarContrasena(Usuario usuarioActual)
         {
             InitializeComponent();
+            DataContext = usuarioActual;
+            UsuarioActual = usuarioActual;
         }
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            string nuevaContrasena = txtNuevaContrasena.Password;
-            if  (nuevaContrasena.Length >=4)
+        {   
+            if (txtContrasenaActual.Password != UsuarioActual.Contrasena)
             {
-                NuevaContrasena = nuevaContrasena;
-                DialogResult = true;
-                Close();
+                MessageBox.Show("La contraseña actual no es correcta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtContrasenaActual.Clear();
+                txtContrasenaActual.Focus();
+                return;
             }
             else
             {
-                MessageBox.Show("La nueva contraseña debe tener al menos 4 caracteres.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                txtNuevaContrasena.Clear();
-                txtNuevaContrasena.Focus();
+                string nuevaContrasena = txtNuevaContrasena.Password;
+                if  (nuevaContrasena.Length >=4)
+                {
+                    NuevaContrasena = nuevaContrasena;
+                    DialogResult = true;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("La nueva contraseña debe tener al menos 4 caracteres.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtNuevaContrasena.Clear();
+                    txtNuevaContrasena.Focus();
+                }
             }
+            
 
         }
     }
