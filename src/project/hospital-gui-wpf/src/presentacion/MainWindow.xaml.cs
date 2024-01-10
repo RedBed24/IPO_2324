@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using hospital_gui_wpf.src.dominio;
+using Microsoft.Win32;
+
 
 namespace hospital_gui_wpf.src.presentacion
 {
@@ -102,18 +106,22 @@ namespace hospital_gui_wpf.src.presentacion
         private Genero ObtenerGeneroSeleccionado()
         {
             // Obtener el género seleccionado
-            if (radioFemeninoPacientes.IsChecked == true)
+            if (radioFemeninoPacientes.IsChecked == true || radioFemeninoPersonal.IsChecked == true)
                 return Genero.Mujer;
-            else if (radioMasculinoPacientes.IsChecked == true)
+            else if (radioMasculinoPacientes.IsChecked == true || radioMasculinoPersonal.IsChecked == true)
                 return Genero.Hombre;
-            else if (radioOtroPacientes.IsChecked == true)
-                return Genero.Otro;
             else return Genero.Otro;
         }
-
+        private TipoPersonal ObtenerTipoSeleccionado()
+        {
+            // Obtener el género seleccionado
+            if (radioSanitarioPersonal.IsChecked == true)
+                return TipoPersonal.Sanitario;
+            else return TipoPersonal.Limpieza;
+        }
         private void LimpiarCampos()
         {
-            // Limpiar los campos después de agregar el paciente
+            // Limpiar los campos después de agregar el paciente o al personal
             txtnombrePacientes.Text = string.Empty;
             txtApellidoPacientes.Text = string.Empty;
             dpFechaNacimientoPacientes.SelectedDate = null;
@@ -123,43 +131,52 @@ namespace hospital_gui_wpf.src.presentacion
             radioFemeninoPacientes.IsChecked = false;
             radioMasculinoPacientes.IsChecked = false;
             radioOtroPacientes.IsChecked = false;
+            imagenPaciente.Source = null;
+            txtnombrePersonal.Text = string.Empty;
+            txtApellidoPersonal.Text = string.Empty;
+            dpFechaNacimientoPersonal.SelectedDate = null;
+            txtTelefonoPersonal.Text = string.Empty;
+            txtDireccionPersonal.Text = string.Empty;
+            txtCorreoPersonal.Text = string.Empty;
+            radioMasculinoPersonal.IsChecked = false;
+            radioFemeninoPersonal.IsChecked = false;
+            radioOtroPersonal.IsChecked = false;
+            radioSanitarioPersonal.IsChecked = false;
+            radioLimpiezaPersonal.IsChecked = false;
+            imagenPersonal.Source = null;
         }
         private void btnConfirmarModificacionPacientes_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Primera confirmación
-            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {   // Segunda confirmación
-                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            // Obtener el paciente seleccionado
+            Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
 
+            if (pacienteSeleccionado != null)
+            {
+                // Primera confirmación
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    string nombrePacienteSeleccionado = "XD";
-                    string nuevoNombre = "Miriam";
-
-                    /*
-                    string path = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName + "\\Datos\\persona.xml";
-
-                    XDocument doc = XDocument.Load(path);
-
-                    var pacienteSeleccionado = doc.Descendants("Persona")
-                    .Where(p => {
-                        var nombreElem = p.Element("Nombre");
-                        return nombreElem.Value.Equals(nombrePacienteSeleccionado);
-                    }).ToList();
-
-                    foreach (var paciente in pacienteSeleccionado)
+                    // Segunda confirmación
+                    result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
                     {
-                        paciente.Element("Nombre").Value = nuevoNombre;
+                        // Actualizar las propiedades del paciente seleccionado
+                        pacienteSeleccionado.Nombre = txtnombrePacientes.Text;
+                        pacienteSeleccionado.Apellido = txtApellidoPacientes.Text;
+                        pacienteSeleccionado.FechaNacimiento = dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now;
+                        pacienteSeleccionado.Telefono = Convert.ToInt32(txtTelefonoPacientes.Text);
+                        pacienteSeleccionado.Direccion = txtDireccionPacientes.Text;
+                        pacienteSeleccionado.Genero = ObtenerGeneroSeleccionado();
+                        pacienteSeleccionado.Correo = txtCorreoPacientes.Text;  
+                        // Limpiar los campos después de la modificación
+                        LimpiarCampos();
                     }
-
-                    doc.Save(path);
-                    */
                 }
-
             }
-
-
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un paciente antes de confirmar la modificación.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnConfirmarModificacionHistorial_MouseDown(object sender, MouseButtonEventArgs e)
@@ -180,17 +197,36 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnConfirmarModificacionPersonal_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Primera confirmación
-            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {   // Segunda confirmación
-                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            // Obtener el paciente seleccionado
+            Personal personalSeleccionado = lstListaPersonal.SelectedItem as Personal;
 
+            if (personalSeleccionado != null)
+            {
+                // Primera confirmación
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-
+                    // Segunda confirmación
+                    result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Actualizar las propiedades del paciente seleccionado
+                        personalSeleccionado.Nombre = txtnombrePersonal.Text;
+                        personalSeleccionado.Apellido = txtApellidoPersonal.Text;
+                        personalSeleccionado.FechaNacimiento = dpFechaNacimientoPersonal.SelectedDate ?? DateTime.Now;
+                        personalSeleccionado.Telefono = Convert.ToInt32(txtTelefonoPersonal.Text);
+                        personalSeleccionado.Direccion = txtDireccionPersonal.Text;
+                        personalSeleccionado.Genero = ObtenerGeneroSeleccionado();
+                        personalSeleccionado.Correo = txtCorreoPersonal.Text;
+                        personalSeleccionado.Tipo = ObtenerTipoSeleccionado();
+                        // Limpiar los campos después de la modificación
+                        LimpiarCampos();
+                    }
                 }
-
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un personal antes de confirmar la modificación.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -532,6 +568,28 @@ namespace hospital_gui_wpf.src.presentacion
         private void dpFechaNacimientoPersonal_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true; // Bloquea la entrada de texto directa
+        }
+
+        private void imagenPaciente_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Uri baseUri = new Uri("/datos/imagenes", UriKind.Relative);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos de imagen|*.png;*.jpg;*.jpeg;*.gif;*.bmp|Todos los archivos|*.*";
+            openFileDialog.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,baseUri.OriginalString);
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Obtén la ruta de la imagen seleccionada
+                string rutaImagen = openFileDialog.FileName;
+
+                // Construye la ruta relativa desde la carpeta "DATOS"
+                Uri fullPath = new Uri(rutaImagen);
+                Uri relativeUri = baseUri.MakeRelativeUri(fullPath);
+                string rutaRelativa = Uri.UnescapeDataString(relativeUri.ToString());
+
+                // Muestra la imagen en algún lugar de la interfaz de usuario (opcional)
+                imagenPaciente.Source = new BitmapImage(new Uri(rutaRelativa, UriKind.Relative));
+            }
         }
     }
 }

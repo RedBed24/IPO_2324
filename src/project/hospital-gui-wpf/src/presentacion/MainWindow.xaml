@@ -619,8 +619,8 @@
                             <Viewbox Grid.Column="1" Grid.Row="2">
                                 <Image x:Name="btnConfirmarModificacionPacientes"  VerticalAlignment="Center" Height="20" MouseDown="btnConfirmarModificacionPacientes_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
                             </Viewbox>
-                            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="1" Grid.RowSpan="2" Grid.Row="0">
-                                <Image Source="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+                            <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="1" Grid.RowSpan="2" Grid.Row="0" MouseDown="imagenPaciente_MouseDown">
+                                <Image x:Name="imagenPaciente" Source="{Binding ElementName=lstListaPacientes, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill" MouseDown="imagenPaciente_MouseDown"/>
                             </Border>
                         </Grid>
                     </Border>
@@ -741,7 +741,7 @@
                                 <Image x:Name="btnConfirmarModificacionHistorial"  VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionHistorial_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
                             </Viewbox>
                             <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="3" Grid.RowSpan="2" Grid.Row="0">
-                                <Image Source="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+                                <Image x:Name="imagenHistorial" Source="{Binding ElementName=lstListaHistoriales, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
                             </Border>
                         </Grid>
                     </Border>
@@ -938,7 +938,7 @@
                                                 <Image Source="\datos\imagenes\masculino.png" Width="20" Height="20" ToolTip="Masculino"/>
                                             </RadioButton>
 
-                                            <RadioButton x:Name="radioOtroPErsonal" VerticalAlignment="Center"
+                                            <RadioButton x:Name="radioOtroPersonal" VerticalAlignment="Center"
                                                      IsChecked="{Binding SelectedItem.Genero, ConverterParameter=Otro, Converter={StaticResource GeneroConverter}, ElementName=lstListaPacientes}" Width="41">
                                                 <Image Source="\datos\imagenes\otro.png" Width="20" Height="20" ToolTip="Otro Género"/>
                                             </RadioButton>
@@ -961,7 +961,7 @@
                                 <Image x:Name="btnConfirmarModificacionPersonal"  VerticalAlignment="Center" Height="30" MouseDown="btnConfirmarModificacionPersonal_MouseDown" Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
                             </Viewbox>
                             <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5" Grid.Column="1" Grid.RowSpan="2" Grid.Row="0">
-                                <Image Source="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
+                                <Image x:Name="imagenPersonal" Source="{Binding ElementName=lstListaPersonal, Path=SelectedItem.Imagen}" Width="150" Height="130" Stretch="UniformToFill"/>
                             </Border>
                         </Grid>
                     </Border>
