@@ -13,7 +13,8 @@ namespace hospital_gui_wpf.src.presentacion
 	/// </summary>
 	public partial class Login : Window
 	{
-		Gestor gestorDatos;
+        public static Login InstanciaActual { get; set; }
+		public Gestor gestorDatos;
         private bool cerrarDesdeCodigo = false;
         private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
 		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
@@ -21,8 +22,9 @@ namespace hospital_gui_wpf.src.presentacion
 		public Login()
 		{
 			InitializeComponent();
-			txtUser.Focus();
+			//txtUser.Focus();
 			gestorDatos = new Gestor();
+			InstanciaActual = this;
 		}
 
 		public Usuario getUser(string nombreUsuario)
@@ -109,10 +111,29 @@ namespace hospital_gui_wpf.src.presentacion
 				MainWindow ventana_principal = new MainWindow(gestorDatos, getUser(txtUser.Text));
 				ventana_principal.Visibility = Visibility.Visible;
 				cerrarDesdeCodigo = true;
-				this.Close();
+				limpiarCampos();
+				this.Visibility = Visibility.Hidden;
+				
 			}
 		}
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void limpiarCampos()
+		{
+			txtUser.Text = string.Empty;
+			txtPass.Password = string.Empty;
+			cerrarDesdeCodigo = false;
+            txtUser.BorderBrush = Brushes.Gray;
+            txtUser.Background = Brushes.Transparent;
+			txtUser.ToolTip = "Usuario a loguearse";
+            imgUser.Source = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
+            txtPass.BorderBrush = Brushes.Gray;
+            txtPass.Background = Brushes.Transparent;
+			txtPass.ToolTip = "Contraseña del usuario, primero debes introducir un usuario válido";
+            imgPass.Source = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
+			txtUser.IsEnabled = true;
+
+			
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 				if (!cerrarDesdeCodigo)
 				{
@@ -167,6 +188,11 @@ namespace hospital_gui_wpf.src.presentacion
 				btnLogin_Click(sender, e);
 			}
 		}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+			txtUser.Focus();
+        }
     }
 }
 

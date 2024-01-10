@@ -20,6 +20,8 @@ namespace hospital_gui_wpf.src.presentacion
         public Gestor GestorDatos;
         public Usuario UsuarioActual;
         public List<Personal> Personal;
+        private bool cerrarDesdeCodigo = false;
+
 
         public MainWindow(Gestor gestorDatos, Usuario usuarioActual)
         {
@@ -39,7 +41,10 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
+            if (!cerrarDesdeCodigo)
+            {
+                MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -233,7 +238,8 @@ namespace hospital_gui_wpf.src.presentacion
                         pacienteSeleccionado.Telefono = Convert.ToInt32(txtTelefonoPacientes.Text);
                         pacienteSeleccionado.Direccion = txtDireccionPacientes.Text;
                         pacienteSeleccionado.Genero = ObtenerGeneroSeleccionado();
-                        pacienteSeleccionado.Correo = txtCorreoPacientes.Text;  
+                        pacienteSeleccionado.Correo = txtCorreoPacientes.Text; 
+                        actualizarPacientes();
                         // Limpiar los campos después de la modificación
                         LimpiarCampos();
                     }
@@ -285,6 +291,7 @@ namespace hospital_gui_wpf.src.presentacion
                         personalSeleccionado.Genero = ObtenerGeneroSeleccionado();
                         personalSeleccionado.Correo = txtCorreoPersonal.Text;
                         personalSeleccionado.Tipo = ObtenerTipoSeleccionado();
+                        actualizarPersonal();
                         // Limpiar los campos después de la modificación
                         LimpiarCampos();
                     }
@@ -717,7 +724,7 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnPerfilUsuario_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            AboutUser aboutuser = new AboutUser(UsuarioActual);
+            AboutUser aboutuser = new AboutUser(UsuarioActual, GestorDatos);
             aboutuser.Closed += AboutUserClosed;
             aboutuser.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;
@@ -728,6 +735,42 @@ namespace hospital_gui_wpf.src.presentacion
             // Este método se ejecutará cuando la ventana AboutUser.xaml se cierre
             this.Visibility = Visibility.Visible; 
             
+        }
+
+        private void txtDuracionCitas_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string textoDuracion = txtDuracionCitas.Text;
+            // Definir la expresión regular para el formato "xx:yy"
+            Regex regex = new Regex(@"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
+            // Validar el formato utilizando la expresión regular
+            if (regex.IsMatch(textoDuracion))
+            {
+                // El formato es correcto, puedes convertirlo a TimeSpan
+                TimeSpan duracion = TimeSpan.Parse(textoDuracion);
+                if (duracion.TotalHours > 2 || duracion.TotalHours < 0 || duracion.Minutes < 10 || duracion.Minutes > 59)
+                {
+                    MessageBox.Show("La duración debe estar entre 0h:10m y 2h:59m.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtDuracionCitas.Clear();
+                }
+            }
+            else
+            {
+                // El formato no es válido, mostrar un mensaje de error
+                MessageBox.Show("Formato de duración incorrecto. Utiliza el formato 'xx:yy'.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Puedes limpiar el TextBox o tomar otra acción según tus necesidades
+                txtDuracionCitas.Text= string.Empty;
+                // También puedes establecer el foco en el TextBox nuevamente
+            }
+        }
+
+        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            cerrarDesdeCodigo = true;
+            if (Login.InstanciaActual != null)
+            {
+                Login.InstanciaActual.Visibility = Visibility.Visible;
+                this.Close();
+            }
         }
     }
 }

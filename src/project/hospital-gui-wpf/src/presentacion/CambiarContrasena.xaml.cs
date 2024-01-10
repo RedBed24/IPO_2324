@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hospital_gui_wpf.src.dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +17,21 @@ namespace hospital_gui_wpf.src.presentacion
 {
     public partial class CambiarContrasena : Window
     {
-        Usuario UsuarioActual;
+        public Usuario UsuarioActual;
+        public Gestor GestorDatos;
+
         public string NuevaContrasena { get; private set; }
 
-        public CambiarContrasena(Usuario usuarioActual)
+        public CambiarContrasena(Usuario usuarioActual, Gestor gestorDatos)
         {
             InitializeComponent();
             DataContext = usuarioActual;
             UsuarioActual = usuarioActual;
+            GestorDatos = gestorDatos;
         }
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
-        {   
-            if (txtContrasenaActual.Password != UsuarioActual.Contrasena)
+        {
+            if (!UsuarioActual.ValidarContrasena(txtContrasenaActual.Password))
             {
                 MessageBox.Show("La contraseña actual no es correcta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 txtContrasenaActual.Clear();
@@ -37,9 +41,10 @@ namespace hospital_gui_wpf.src.presentacion
             else
             {
                 string nuevaContrasena = txtNuevaContrasena.Password;
-                if  (nuevaContrasena.Length >=4)
+                if (nuevaContrasena.Length >= 4)
                 {
                     NuevaContrasena = nuevaContrasena;
+                    UsuarioActual.Contrasena = nuevaContrasena;
                     DialogResult = true;
                     Close();
                 }
@@ -50,9 +55,12 @@ namespace hospital_gui_wpf.src.presentacion
                     txtNuevaContrasena.Focus();
                 }
             }
-            
+        }
+        private void actualizarUsuarios()
+        {
+            Usuario UsuarioEnLista = GestorDatos.Usuarios.Find(u => u.NombreUsuario == UsuarioActual.NombreUsuario);
+            UsuarioEnLista.Contrasena = UsuarioActual.Contrasena;
 
         }
     }
-
 }

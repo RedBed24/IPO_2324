@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hospital_gui_wpf.src.dominio;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,17 +11,19 @@ namespace hospital_gui_wpf.src.presentacion
 {
     public partial class AboutUser : Window
     {
-        Usuario UsuarioActual;
-        public AboutUser(Usuario usuarioActual)
+        public Usuario UsuarioActual;
+        public Gestor GestorDatos;
+        public AboutUser(Usuario usuarioActual, Gestor gestorDatos)
         {
             InitializeComponent();
             DataContext = usuarioActual;
             UsuarioActual = usuarioActual;
+            GestorDatos = gestorDatos;
         }
 
         private void btnModificarContraseña_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CambiarContrasena cambiarContrasenaWindow = new CambiarContrasena(UsuarioActual);
+            CambiarContrasena cambiarContrasenaWindow = new CambiarContrasena(UsuarioActual, GestorDatos);
             bool? result = cambiarContrasenaWindow.ShowDialog();
 
             if (result == true)

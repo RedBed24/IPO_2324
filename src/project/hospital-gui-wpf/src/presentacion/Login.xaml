@@ -4,7 +4,7 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="Login" Height="660" Width="847" WindowStyle="None" Closing="Window_Closing" MinWidth="600" MinHeight="600">
+		Title="Login" Height="660" Width="847" WindowStyle="None" Closing="Window_Closing" MinWidth="600" MinHeight="600" Loaded="Window_Loaded">
 
     <Grid>
         <Viewbox Stretch="UniformToFill">
@@ -151,7 +151,7 @@
                             <TextBox x:Name="txtUser" 
                             FontSize="13" 
                             Foreground="White" 
-                            Background="#FF504E59" 
+                            Background="Transparent"
                             HorizontalContentAlignment="Left" 
                             VerticalContentAlignment="Center" 
                             KeyDown="txtUsuario_KeyDown"
@@ -193,7 +193,7 @@
                             <PasswordBox x:Name="txtPass" 
                             FontSize="13" 
                             Foreground="White" 
-                            Background="#FF504E59" 
+                            Background="Transparent" 
                             HorizontalContentAlignment="Left" 
                             VerticalContentAlignment="Center" 
                             KeyDown="txtPass_KeyDown"
