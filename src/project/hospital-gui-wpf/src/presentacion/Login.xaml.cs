@@ -15,7 +15,6 @@ namespace hospital_gui_wpf.src.presentacion
 	{
 		Gestor gestorDatos;
         private bool cerrarDesdeCodigo = false;
-        private TextBlock txtPassWatermark;
         private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
 		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
 
@@ -123,9 +122,10 @@ namespace hospital_gui_wpf.src.presentacion
 
 		private void txtPass_GotFocus(object sender, RoutedEventArgs e)
 		{
-			ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser);
-            txtPassWatermark = (TextBlock)txtPass.Template.FindName("txtPassWatermark", txtPass);
-            txtPassWatermark.Visibility = Visibility.Collapsed;
+			if (ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser))
+			{
+				txtPassWatermark.Visibility = Visibility.Collapsed;
+			}
         }
 
 
@@ -154,12 +154,19 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void txtPass_LostFocus(object sender, RoutedEventArgs e)
         {
-            txtPassWatermark = (TextBlock)txtPass.Template.FindName("txtPassWatermark", txtPass);
             if (string.IsNullOrEmpty(txtPass.Password))
             {
                 txtPassWatermark.Visibility = Visibility.Visible;
             }
         }
+
+		private void txtPass_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Return || e.Key == Key.Tab)
+			{
+				btnLogin_Click(sender, e);
+			}
+		}
     }
 }
 
