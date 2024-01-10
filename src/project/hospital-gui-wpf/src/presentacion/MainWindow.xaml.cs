@@ -17,24 +17,10 @@ namespace hospital_gui_wpf.src.presentacion
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Persona> listadoPacientes;
-        private List<Historial> listadoHistorial;
-        private List<Personal> listadoPersonal;
 
         public MainWindow()
         {
             InitializeComponent();
-            listadoPacientes = new List<Persona>();
-            //listadoPacientes = CargarPacientesXML();
-            lstListaPacientes.ItemsSource = listadoPacientes;
-
-            listadoHistorial = new List<Historial>();
-            //listadoHistorial = CargarHistorialXML();
-            lstListaHistoriales.ItemsSource = listadoHistorial;
-
-            listadoPersonal = new List<Personal>();
-            //listadoPersonal = CargarPersonalXML();
-            lstListaPersonal.ItemsSource = listadoPersonal;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -267,6 +253,7 @@ namespace hospital_gui_wpf.src.presentacion
             }
         }
 
+
         private void txtTelefonoPacientes_LostFocus(object sender, RoutedEventArgs e)
         {
             // Obtén el número de teléfono del TextBox
@@ -334,6 +321,8 @@ namespace hospital_gui_wpf.src.presentacion
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtnombrePacientes.Text = string.Empty;
             }
+
+
         }
 
         private void txtnombreHistorial_LostFocus(object sender, RoutedEventArgs e)
@@ -371,6 +360,7 @@ namespace hospital_gui_wpf.src.presentacion
                 txtnombrePersonal.Text = string.Empty;
             }
         }
+
 
         private void txtApellidoPacientes_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -424,6 +414,7 @@ namespace hospital_gui_wpf.src.presentacion
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtApellidoPersonal.Text = string.Empty;
             }
+
         }
 
         private void txtCorreoPacientes_LostFocus(object sender, RoutedEventArgs e)
@@ -541,6 +532,7 @@ namespace hospital_gui_wpf.src.presentacion
                     LimpiarCampos();
 
                     // Puedes realizar otras acciones después de agregar el paciente
+
                 }
                 else
                 {
@@ -671,6 +663,21 @@ namespace hospital_gui_wpf.src.presentacion
                 // Muestra la imagen en algún lugar de la interfaz de usuario (opcional)
                 imagenPaciente.Source = new BitmapImage(new Uri(rutaRelativa, UriKind.Relative));
             }
+        }
+
+        private void btnPerfilUsuario_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AboutUser aboutuser = new AboutUser();
+            aboutuser.Closed += AboutUserClosed;
+            aboutuser.Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void AboutUserClosed(object sender, EventArgs e)
+        {
+            // Este método se ejecutará cuando la ventana AboutUser.xaml se cierre
+            this.Visibility = Visibility.Visible; 
+            
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pacientes>
+	<Paciente>
+		<Id>1234</Id>
+		<Nombre>Samuel</Nombre>
+		<Apellido>Espejo</Apellido>
+		<FechaNacimiento>2003/06/02</FechaNacimiento>
+		<Telefono>62626262</Telefono>
+		<Direccion>Inside your walls</Direccion>
+		<Genero>Hombre</Genero>
+		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
+		<Correo>samuel.espejo@alu.uclm.es</Correo>
+	</Paciente>
+</Pacientes>

@@ -24,9 +24,20 @@ namespace hospital_gui_wpf.src.presentacion
         }
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            NuevaContrasena = txtNuevaContrasena.Password;
-            DialogResult = true;
-            Close();
+            string nuevaContrasena = txtNuevaContrasena.Password;
+            if  (nuevaContrasena.Length >=4)
+            {
+                NuevaContrasena = nuevaContrasena;
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("La nueva contraseña debe tener al menos 4 caracteres.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtNuevaContrasena.Clear();
+                txtNuevaContrasena.Focus();
+            }
+
         }
     }
 

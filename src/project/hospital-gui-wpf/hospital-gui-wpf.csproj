@@ -57,8 +57,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="src\dominio\Cita.cs" />
+    <Compile Include="src\dominio\Gestor.cs" />
     <Compile Include="src\dominio\Paciente.cs" />
     <Compile Include="src\dominio\Usuario.cs" />
+    <Compile Include="src\persistencia\DataReader.cs" />
     <Compile Include="src\presentacion\CambiarContrasena.xaml.cs">
       <DependentUpon>CambiarContrasena.xaml</DependentUpon>
     </Compile>
@@ -125,9 +127,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="datos\persona.xml" />
     <Resource Include="datos\historial.xml" />
     <Resource Include="datos\personal.xml" />
+    <Resource Include="datos\citas.xml" />
+    <Resource Include="datos\usuarios.xml" />
+    <Resource Include="datos\pacientes.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="datos\imagenes\baseline_help_white_24dp.png" />
