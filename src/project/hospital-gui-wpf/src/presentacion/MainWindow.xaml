@@ -512,7 +512,7 @@
 
                     <GridSplitter x:Name="splitterPacientes" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
 
-                    <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                    <ListBox x:Name="lstListaPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10" PreviewMouseDown="lstListaPacientes_PreviewMouseDown">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -837,7 +837,7 @@
 
                     <GridSplitter x:Name="splitterPersonal" Grid.Column="1" HorizontalAlignment="Stretch" IsEnabled="False" Background="Transparent"/>
 
-                    <ListBox x:Name="lstListaPersonal" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10">
+                    <ListBox x:Name="lstListaPersonal" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="10,10,10,10" PreviewMouseDown="lstListaPersonal_PreviewMouseDown">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

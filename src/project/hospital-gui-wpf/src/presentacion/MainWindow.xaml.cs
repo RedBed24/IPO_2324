@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using hospital_gui_wpf.src.dominio;
 using Microsoft.Win32;
@@ -195,6 +198,7 @@ namespace hospital_gui_wpf.src.presentacion
                 radioMasculinoPacientes.IsChecked = false;
                 radioOtroPacientes.IsChecked = false;
                 imagenPaciente.Source = null;
+
             }
             else if (tabContent is TabItem tabPersonal)
             {
@@ -319,6 +323,8 @@ namespace hospital_gui_wpf.src.presentacion
             }
             else
             {
+                BindingExpression bindingExpression = txtTelefonoPacientes.GetBindingExpression(TextBox.TextProperty);
+                bindingExpression.UpdateSource();  // Esto debería eliminar el error de validación visual
                 MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
                 txtTelefonoPacientes.Text = string.Empty;
             }
@@ -531,6 +537,12 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 if (CamposRequeridosLlenos())
                 {
+                    Paciente seleccionado = lstListaPacientes.SelectedItem as Paciente;
+                    if ((seleccionado.Nombre == txtnombrePacientes.Text && seleccionado.Apellido == txtApellidoPacientes.Text && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPacientes.Text)))
+                    {
+                        MessageBox.Show("No puedes dar de baja a un cliente que ya está dado de baja.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return; // Salir del método si el nombre ya existe
+                    }
                     Random random = new Random();
                     // Crear un nuevo paciente con la información proporcionada
                     Paciente nuevoPaciente = new Paciente
@@ -579,8 +591,8 @@ namespace hospital_gui_wpf.src.presentacion
                         Convert.ToInt32(txtTelefonoPersonal.Text),
                         txtDireccionPersonal.Text,
                         ObtenerGeneroSeleccionado(),
-                        new Uri("/datos/imagenes/usuario_cualquiera.png", UriKind.Relative),
-                        txtCorreoPacientes.Text,
+                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative),
+                        txtCorreoPersonal.Text,
                         ObtenerTipoSeleccionado(),
                         new List<Cita>()
                     );
@@ -779,6 +791,28 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 Login.InstanciaActual.Visibility = Visibility.Visible;
                 this.Close();
+            }
+        }
+
+        private void lstListaPacientes_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtén el elemento bajo el puntero del ratón
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaPacientes, e.GetPosition(lstListaPacientes));
+            // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
+            if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
+            {
+                lstListaPacientes.SelectedItem = null;
+            }
+        }
+
+        private void lstListaPersonal_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtén el elemento bajo el puntero del ratón
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaPacientes, e.GetPosition(lstListaPacientes));
+            // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
+            if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
+            {
+                lstListaPacientes.SelectedItem = null;
             }
         }
     }
