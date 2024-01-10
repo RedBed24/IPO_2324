@@ -37,6 +37,9 @@ namespace hospital_gui_wpf.src.presentacion
 
             lstListaPacientes.ItemsSource = GestorDatos.Pacientes;
             lstListaPersonal.ItemsSource = Personal;
+            lstListaHistoriales.ItemsSource = GestorDatos.Pacientes;
+            //lstHistorialPaciente.ItemsSource = GestorDatos.Pacientes;
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -501,11 +504,17 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;            
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Login ventanaLogin = Login.InstanciaActual;
+            if (ventanaLogin != null)
+            {
+                ventanaLogin.cerrarDesdeCodigo = true;
+                ventanaLogin.Close();
+            }
         }
 
         private void btnEnlarge_Click(object sender, RoutedEventArgs e)

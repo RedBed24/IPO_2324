@@ -15,7 +15,7 @@ namespace hospital_gui_wpf.src.presentacion
 	{
         public static Login InstanciaActual { get; set; }
 		public Gestor gestorDatos;
-        private bool cerrarDesdeCodigo = false;
+        public bool cerrarDesdeCodigo = false;
         private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
 		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
 

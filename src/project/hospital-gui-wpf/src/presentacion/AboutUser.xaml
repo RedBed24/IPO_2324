@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
         Title="Perfil de usuario" Height="490" Width="276" 
-        MinHeight="450" MinWidth="276"
-        MaxHeight="600" MaxWidth="476">
+        MinHeight="450" MinWidth="300"
+        MaxHeight="600" MaxWidth="476"
+        WindowStyle="None">
 
 
     <Grid Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="160*"/>
-            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
@@ -31,7 +32,56 @@
         </Grid.RowDefinitions>
 
 
+        <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Width="80">
+            <Button x:Name="btnMinimize"
+	                Content="-"
+	                Foreground="White"
+	                FontSize="16"
+	                Margin="5"
+	                Click="btnMinimize_Click"
+                    VerticalAlignment="Center"> 
 
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFB207B4">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btnEnlarge"
+	                Content="□"
+	                Foreground="White"
+	                FontSize="12"
+	                Margin="5"
+	                Click="btnEnlarge_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="Purple">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name="btnClose"
+	                Content="X"
+	                Foreground="White"
+	                FontSize="12"
+	                Margin="5"
+	                Click="btnClose_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFED107E">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
         <Viewbox Grid.Row="0" Grid.Column="1">
             <TextBox x:Name="txtNombreUsuario" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True"
                  Text="{Binding NombreUsuario}" TextAlignment="Center" FontSize="16" FontWeight="DemiBold" Background="WhiteSmoke" BorderBrush="Transparent" Width="104"/>
