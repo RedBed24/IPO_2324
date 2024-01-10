@@ -51,7 +51,7 @@ namespace hospital_gui_wpf.src.presentacion
         private void btnAlta_Click(object sender, RoutedEventArgs e)
         {
             object tabContent = tabControl.SelectedItem;
-            if (tabContent is TabItem tabPaciente)
+            if (tabContent == tabPaciente)
             {
                 Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
                 if (pacienteSeleccionado != null)
@@ -60,7 +60,7 @@ namespace hospital_gui_wpf.src.presentacion
                 }
                 
             }
-            else if (tabContent is TabItem tabPersonal)
+            else if (tabContent == tabPersonal)
             {
                 Personal personalSeleccionado = lstListaPersonal.SelectedItem as Personal;
                 if (personalSeleccionado != null)
@@ -88,22 +88,51 @@ namespace hospital_gui_wpf.src.presentacion
                     // Eliminar el elemento seleccionado de la lista correspondiente
                     if (elementoSeleccionado is Paciente)
                     {
-                        lstListaPacientes.Items.Remove(elementoSeleccionado);
+                        GestorDatos.Pacientes.Remove(elementoSeleccionado as Paciente);
+                        actualizarPacientes();
+
+
                     }
                     else if (elementoSeleccionado is Personal)
                     {
-                        lstListaPersonal.Items.Remove(elementoSeleccionado);
+                        Personal personalSeleccionado = elementoSeleccionado as Personal;
+                        if (personalSeleccionado.Tipo == TipoPersonal.Sanitario)
+                            GestorDatos.Sanitarios.Remove(personalSeleccionado);
+                        else
+                            GestorDatos.Limpieza.Remove(personalSeleccionado);
+                        Personal.Remove(personalSeleccionado); 
+                        
+                        actualizarPersonal();
                     }
                     LimpiarCampos();
                 }
             }
         }
-        
-        
-        private bool CamposRequeridosLlenos()
+        private void actualizarPacientes()
+        {
+            // Para evitar errores se debe dejar las listas sin seleccionar:
+            lstListaPacientes.SelectedItem = null;
+            List<Paciente> NuevoPaciente = new List<Paciente>();
+            foreach (Paciente p in GestorDatos.Pacientes)
+            {
+                NuevoPaciente.Add(p);
+            }
+            lstListaPacientes.ItemsSource = NuevoPaciente;
+    }
+    private void actualizarPersonal()
+        {
+            lstListaPersonal.SelectedItem = null;
+            List<Personal> NuevoPersonal = new List<Personal>();
+            foreach (Personal p in Personal)
+            {
+                NuevoPersonal.Add(p);
+            }
+            lstListaPersonal.ItemsSource = NuevoPersonal;
+        }
+    private bool CamposRequeridosLlenos()
         {
             object tabContent = tabControl.SelectedItem;
-            if (tabContent is TabItem tabPaciente)
+            if (tabContent == tabPaciente)
             {
                 return !string.IsNullOrEmpty(txtnombrePacientes.Text) &&
                !string.IsNullOrEmpty(txtApellidoPacientes.Text) &&
@@ -112,7 +141,7 @@ namespace hospital_gui_wpf.src.presentacion
                !string.IsNullOrEmpty(txtDireccionPacientes.Text) &&
                !string.IsNullOrEmpty(txtCorreoPacientes.Text);
             }
-            else if (tabContent is TabItem tabPersonal)
+            else if (tabContent == tabPersonal)
             {
                 return !string.IsNullOrEmpty(txtnombrePersonal.Text) &&
                    !string.IsNullOrEmpty(txtApellidoPersonal.Text) &&
@@ -482,7 +511,7 @@ namespace hospital_gui_wpf.src.presentacion
         private void btnBaja_Click(object sender, RoutedEventArgs e)
         {
             object tabContent = tabControl.SelectedItem;
-            if (tabContent is TabItem tabPacientes)
+            if (tabContent == tabPaciente)
             {
                 if (CamposRequeridosLlenos())
                 {
@@ -498,14 +527,15 @@ namespace hospital_gui_wpf.src.presentacion
                         Convert.ToInt32(txtTelefonoPacientes.Text),
                         txtDireccionPacientes.Text,
                         ObtenerGeneroSeleccionado(),
-                        new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative),
                         txtCorreoPacientes.Text,
                         new List<Cita>(),
                         new List<Historial>()
                     );
 
                     // Agregar el nuevo paciente a la lista
-                    lstListaPacientes.Items.Add(nuevoPaciente);
+                    GestorDatos.Pacientes.Add(nuevoPaciente);
+                    actualizarPacientes();
 
                     // Limpiar los campos después de agregar el paciente
                     LimpiarCampos();
@@ -517,7 +547,7 @@ namespace hospital_gui_wpf.src.presentacion
                     MessageBox.Show("Por favor, complete todos los campos requeridos del cliente.");
                 }
             }
-            else if (tabContent is TabItem tabPersonal)
+            else if (tabContent == tabPersonal)
             {
                 if (CamposRequeridosLlenos())
                 {
@@ -533,14 +563,20 @@ namespace hospital_gui_wpf.src.presentacion
                         Convert.ToInt32(txtTelefonoPersonal.Text),
                         txtDireccionPersonal.Text,
                         ObtenerGeneroSeleccionado(),
-                        new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                        new Uri("/datos/imagenes/usuario_cualquiera.png", UriKind.Relative),
                         txtCorreoPacientes.Text,
                         ObtenerTipoSeleccionado(),
                         new List<Cita>()
                     );
 
                     // Agregar el nuevo paciente a la lista
-                    lstListaPersonal.Items.Add(nuevoPersonal);
+                    if (nuevoPersonal.Tipo == TipoPersonal.Sanitario)
+                        GestorDatos.Sanitarios.Add(nuevoPersonal);
+                    else
+                        GestorDatos.Limpieza.Add(nuevoPersonal);
+                    Personal.Add(nuevoPersonal);
+
+                    actualizarPersonal();
 
                     // Limpiar los campos después de agregar el paciente
                     LimpiarCampos();

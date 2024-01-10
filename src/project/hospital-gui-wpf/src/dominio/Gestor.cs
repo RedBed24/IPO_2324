@@ -19,7 +19,7 @@ namespace hospital_gui_wpf.src.dominio
 			List<Personal> Personal = DataReader.CargarPersonalXML("datos/personal.xml");
 
 			Limpieza = Personal.FindAll(p => p.Tipo == TipoPersonal.Limpieza);
-			Sanitarios =  Personal.FindAll(p => p.Tipo == TipoPersonal.Sanitario);
+			Sanitarios = Personal.FindAll(p => p.Tipo == TipoPersonal.Sanitario);
 
 			DataReader.CargarCitasXML("datos/citas.xml", Pacientes, Sanitarios);
 			DataReader.CargarHistorialXML("datos/historial.xml", Pacientes);

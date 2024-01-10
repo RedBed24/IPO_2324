@@ -7,6 +7,24 @@
 		<Contrasena>E5pej0</Contrasena>
 		<FechaContratacion>2023/09/20</FechaContratacion>
 		<UltimoAcceso>2024/01/04 10:00</UltimoAcceso>
-		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
+		<Imagen>/datos/imagenes/Samuel.jpg</Imagen>
+	</Usuario>
+	<Usuario>
+		<NombreUsuario>antoniocg73</NombreUsuario>
+		<Nombre>Antonio</Nombre>
+		<Apellido>Campallo</Apellido>
+		<Contrasena>contrasena4</Contrasena>
+		<FechaContratacion>2023/09/01</FechaContratacion>
+		<UltimoAcceso>2023/12/12 10:00</UltimoAcceso>
+		<Imagen>/datos/imagenes/Antonio.jpg</Imagen>
+	</Usuario>
+	<Usuario>
+		<NombreUsuario>noee766</NombreUsuario>
+		<Nombre>Noelia</Nombre>
+		<Apellido>Diaz-Alejo</Apellido>
+		<Contrasena>1234</Contrasena>
+		<FechaContratacion>2022/10/14</FechaContratacion>
+		<UltimoAcceso>2023/11/12 10:00</UltimoAcceso>
+		<Imagen>/datos/imagenes/Noelia.jpg</Imagen>
 	</Usuario>
 </Usuarios>

@@ -3,8 +3,8 @@
 	<Cita>
 		<FechaCita>2023/12/25 10:00</FechaCita>
 		<Duracion>01:00</Duracion>
-		<Paciente>1234</Paciente>
-		<Medico>2468</Medico>
+		<Paciente>1</Paciente>
+		<Medico>80</Medico>
 		<InfoAdicional>Paciente muere</InfoAdicional>
 	</Cita>
 </Citas>

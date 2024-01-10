@@ -829,7 +829,7 @@
                 </Border>
             </TabItem>
 
-            <TabItem x:Name="Personal" Header="Personal" Background="LightBlue">
+            <TabItem x:Name="tabPersonal" Header="Personal" Background="LightBlue">
                 <Grid Background="WhiteSmoke">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="108*"/>

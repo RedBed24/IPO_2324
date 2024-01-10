@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Personal>
 	<Personal>
-		<Id>2468</Id>
+		<Id>80</Id>
 		<Nombre>Noelia</Nombre>
 		<Apellido>Díaz-Alejo</Apellido>
 		<FechaNacimiento>2003/07/21</FechaNacimiento>
-		<Telefono>62626262</Telefono>
+		<Telefono>626262622</Telefono>
 		<Direccion>Su casa</Direccion>
 		<Genero>Mujer</Genero>
 		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
 		<Correo>noelia.diazalejo14@alu.uclm.es</Correo>
 		<TipoPersonal>Sanitario</TipoPersonal>
+	</Personal>
+	<Personal>
+		<Id>81</Id>
+		<Nombre>Laura</Nombre>
+		<Apellido>Espinosa del Mar</Apellido>
+		<FechaNacimiento>1968/07/23</FechaNacimiento>
+		<Telefono>678101202</Telefono>
+		<Direccion>Calle Mediterráneo</Direccion>
+		<Genero>Mujer</Genero>
+		<Imagen>/datos/imagenes/limpiezaM1.jpg</Imagen>
+		<Correo>laura.espinosadelmar@uclm.es</Correo>
+		<TipoPersonal>Limpieza</TipoPersonal>
 	</Personal>
 </Personal>

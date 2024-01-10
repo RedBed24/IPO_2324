@@ -143,7 +143,7 @@
     <Resource Include="datos\imagenes\interrogacion.jpg" />
     <Resource Include="datos\imagenes\ipo_login.jpg" />
     <Resource Include="datos\imagenes\pacienteM1.jpg" />
-    <Resource Include="datos\imagenes\pacienteM2.jpg" />
+    <Resource Include="datos\imagenes\limpiezaM1.jpg" />
     <Resource Include="datos\imagenes\pacienteO1.jpg" />
     <Resource Include="datos\imagenes\pacienteH1.jpg" />
     <Resource Include="datos\imagenes\pregunta.png" />
@@ -156,7 +156,8 @@
     <Resource Include="datos\imagenes\sanitario.png" />
     <Resource Include="datos\imagenes\Antonio.jpg" />
     <Resource Include="datos\imagenes\cambiarContra.png" />
+    <Resource Include="datos\imagenes\Noelia.jpeg" />
+    <Resource Include="datos\imagenes\Samuel.jpg" />
   </ItemGroup>
-  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
