@@ -20,6 +20,7 @@ namespace hospital_gui_wpf.src.presentacion
     /// </summary>
     public partial class MainWindow : Window
     {
+        public SolidColorBrush originalBorderColor;
         public Gestor GestorDatos;
         public Usuario UsuarioActual;
         public List<Personal> Personal;
@@ -57,6 +58,7 @@ namespace hospital_gui_wpf.src.presentacion
         {
             // Establece el estado de la ventana a maximizado
             WindowState = WindowState.Maximized;
+            originalBorderColor = (SolidColorBrush)txtTelefonoPacientes.BorderBrush;
         }
         // Solo se da altas o bajas de pacientes, al añadir a un paciente mediante baja se crean los historiales y citas vacios, estos se podrán modificar en sus tabs con el boton de modificar
         private void btnAlta_Click(object sender, RoutedEventArgs e)
@@ -315,11 +317,18 @@ namespace hospital_gui_wpf.src.presentacion
         {
             // Obtén el número de teléfono del TextBox
             string numeroTelefono = txtTelefonoPacientes.Text;
+            if (string.IsNullOrEmpty(txtTelefonoPacientes.Text))
+            {
 
+
+                txtTelefonoPacientes.BorderBrush = originalBorderColor;
+
+            }
             // Realiza la validación
-            if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            else if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
             {
                 // El número de teléfono tiene 9 dígitos y es un número válido
+                txtTelefonoPacientes.BorderBrush = originalBorderColor;
             }
             else
             {
@@ -327,6 +336,7 @@ namespace hospital_gui_wpf.src.presentacion
                 bindingExpression.UpdateSource();  // Esto debería eliminar el error de validación visual
                 MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
                 txtTelefonoPacientes.Text = string.Empty;
+                txtTelefonoPacientes.BorderBrush = Brushes.Red;
             }
         }
 
@@ -334,16 +344,24 @@ namespace hospital_gui_wpf.src.presentacion
         {
             // Obtén el número de teléfono del TextBox
             string numeroTelefono = txtTelefonoHistorial.Text;
-
-            // Realiza la validación
-            if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            if (string.IsNullOrEmpty(txtTelefonoHistorial.Text))
             {
+
+
+                txtTelefonoHistorial.BorderBrush = originalBorderColor;
+
+            }
+            else if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            {
+
                 // El número de teléfono tiene 9 dígitos y es un número válido
+                txtTelefonoHistorial.BorderBrush = originalBorderColor;
             }
             else
             {
                 MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
                 txtTelefonoHistorial.Text = string.Empty;
+                txtTelefonoHistorial.BorderBrush = Brushes.Red;
             }
         }
 
@@ -353,14 +371,23 @@ namespace hospital_gui_wpf.src.presentacion
             string numeroTelefono = txtTelefonoPersonal.Text;
 
             // Realiza la validación
-            if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
+            if (string.IsNullOrEmpty(txtTelefonoPersonal.Text))
+            {
+
+
+                txtTelefonoPersonal.BorderBrush = originalBorderColor;
+
+            }
+            else if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
             {
                 // El número de teléfono tiene 9 dígitos y es un número válido
+                txtTelefonoPersonal.BorderBrush = originalBorderColor;
             }
             else
             {
                 MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
                 txtTelefonoPersonal.Text = string.Empty;
+                txtTelefonoPersonal.BorderBrush = Brushes.Red;
             }
         }
 
@@ -372,13 +399,15 @@ namespace hospital_gui_wpf.src.presentacion
             // Utiliza una expresión regular para verificar que no contiene dígitos
             if (!Regex.IsMatch(nombre, @"\d"))
             {
+                txtnombrePacientes.BorderBrush = originalBorderColor;
                 // El nombre no contiene dígitos
-                
+
             }
             else
             {
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtnombrePacientes.Text = string.Empty;
+                txtnombrePacientes.BorderBrush = Brushes.Red;
             }
 
 
@@ -393,12 +422,14 @@ namespace hospital_gui_wpf.src.presentacion
             if (!Regex.IsMatch(nombre, @"\d"))
             {
                 // El nombre no contiene dígitos
+                txtnombreHistorial.BorderBrush = originalBorderColor;
 
             }
             else
             {
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtnombreHistorial.Text = string.Empty;
+                txtnombreHistorial.BorderBrush = Brushes.Red;
             }
         }
 
@@ -411,12 +442,13 @@ namespace hospital_gui_wpf.src.presentacion
             if (!Regex.IsMatch(nombre, @"\d"))
             {
                 // El nombre no contiene dígitos
-
+                txtnombrePersonal.BorderBrush = originalBorderColor;
             }
             else
             {
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtnombrePersonal.Text = string.Empty;
+                txtnombrePersonal.BorderBrush = Brushes.Red;
             }
         }
 
@@ -429,6 +461,7 @@ namespace hospital_gui_wpf.src.presentacion
             // Utiliza una expresión regular para verificar que no contiene dígitos
             if (!Regex.IsMatch(nombre, @"\d"))
             {
+                txtApellidoPacientes.BorderBrush = originalBorderColor;
                 // El nombre no contiene dígitos
 
             }
@@ -436,6 +469,7 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtApellidoPacientes.Text = string.Empty;
+                txtApellidoPacientes.BorderBrush = Brushes.Red;
             }
         }
 
@@ -448,12 +482,14 @@ namespace hospital_gui_wpf.src.presentacion
             if (!Regex.IsMatch(nombre, @"\d"))
             {
                 // El nombre no contiene dígitos
+                txtApellidoHistorial.BorderBrush = originalBorderColor;
 
             }
             else
             {
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtApellidoHistorial.Text = string.Empty;
+                txtApellidoHistorial.BorderBrush = Brushes.Red;
             }
         }
 
@@ -466,45 +502,79 @@ namespace hospital_gui_wpf.src.presentacion
             if (!Regex.IsMatch(nombre, @"\d"))
             {
                 // El nombre no contiene dígitos
+                txtApellidoPersonal.BorderBrush = originalBorderColor;
 
             }
             else
             {
                 MessageBox.Show("El nombre no puede contener dígitos.");
                 txtApellidoPersonal.Text = string.Empty;
+                txtApellidoPersonal.BorderBrush = Brushes.Red;
             }
 
         }
 
         private void txtCorreoPacientes_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtCorreoPacientes.Text.Contains("@"))
+            if (string.IsNullOrEmpty(txtCorreoPacientes.Text))
             {
 
+                txtCorreoPacientes.BorderBrush = originalBorderColor;
+
+
+            }
+            else if (!txtCorreoPacientes.Text.Contains("@"))
+            {
                 MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
                 txtCorreoPacientes.Text = string.Empty;
+                txtCorreoPacientes.BorderBrush = Brushes.Red;
+
+            }
+            else
+            {
+                txtCorreoPacientes.BorderBrush = originalBorderColor;
             }
 
         }
 
         private void txtCorreoPersonal_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtCorreoPersonal.Text.Contains("@"))
+            if (string.IsNullOrEmpty(txtCorreoPersonal.Text))
             {
 
+                txtCorreoPersonal.BorderBrush = originalBorderColor;
+
+            }
+            else if (!txtCorreoPersonal.Text.Contains("@"))
+            {
                 MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
                 txtCorreoPersonal.Text = string.Empty;
+                txtCorreoPersonal.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                txtCorreoPersonal.BorderBrush = originalBorderColor;
             }
 
         }
 
         private void txtCorreoHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtCorreoHistorial.Text.Contains("@"))
+            if (string.IsNullOrEmpty(txtCorreoHistorial.Text))
             {
 
+                txtCorreoHistorial.BorderBrush = originalBorderColor;
+            }
+            else if (!txtCorreoHistorial.Text.Contains("@"))
+            {
                 MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
                 txtCorreoHistorial.Text = string.Empty;
+                txtCorreoHistorial.BorderBrush = Brushes.Red;
+
+            }
+            else
+            {
+                txtCorreoHistorial.BorderBrush = originalBorderColor;
             }
         }
 
