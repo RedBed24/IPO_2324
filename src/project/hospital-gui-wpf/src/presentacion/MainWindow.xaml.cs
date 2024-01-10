@@ -439,23 +439,25 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnBaja_Click(object sender, RoutedEventArgs e)
         {
-            /*if (CamposRequeridosLlenos())
-            {
+            if (CamposRequeridosLlenos())
+            {   
+                Random random = new Random();
                 // Crear un nuevo paciente con la información proporcionada
                 Paciente nuevoPaciente = new Paciente
-                {
-                    Id = 0, // HAY QUE VER QUE ID COGER
-                    Nombre = txtnombrePacientes.Text,
-                    Apellido = txtApellidoPacientes.Text,
-                    FechaNacimiento = dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,                   
-                    Telefono = Convert.ToInt32(txtTelefonoPacientes.Text),
-                    Direccion = txtDireccionPacientes.Text,
-                    Genero = ObtenerGeneroSeleccionado(),
-                    Imagen = new Uri("/datos/imagenes/cross.png", UriKind.Relative),
-                    Correo = txtCorreoPacientes.Text,
-                    Citas = new List<Cita>(),
-                    Historiales = new List<Historial>()
-                };
+                
+                (
+                    random.Next(100,1000001), // aleatorio
+                    txtnombrePacientes.Text,
+                    txtApellidoPacientes.Text,
+                    dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,                   
+                    Convert.ToInt32(txtTelefonoPacientes.Text),
+                    txtDireccionPacientes.Text,
+                    ObtenerGeneroSeleccionado(),
+                    new Uri("/datos/imagenes/cross.png", UriKind.Relative),
+                    txtCorreoPacientes.Text,
+                    new List<Cita>(),
+                    new List<Historial>()
+                );
 
                 // Agregar el nuevo paciente a la lista
                 lstListaPacientes.Items.Add(nuevoPaciente);
@@ -468,7 +470,7 @@ namespace hospital_gui_wpf.src.presentacion
             else
             {
                 MessageBox.Show("Por favor, complete todos los campos requeridos.");
-            }*/
+            }
         }
         private void dpFechaNacimientoHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -532,13 +534,16 @@ namespace hospital_gui_wpf.src.presentacion
             }
         }
 
-        private void dpFechaUltimoAcceso_LostFocus(object sender, RoutedEventArgs e)
+        private void dpFechaCita_LostFocus(object sender, RoutedEventArgs e)
         {
             // Obtener la fecha seleccionada
-            DateTime selectedDate = dpFechaUltimoAcceso.SelectedDate ?? DateTime.Now;
+            DateTime? selectedDate = dpFechaCita.SelectedDate;
 
-            // Calcular la fecha mínima permitida (hoy más 1 día)
-            DateTime fechaMinima = DateTime.Now.AddDays(1);
+            if (selectedDate == null)
+                return; // No hacer nada si no hay fecha seleccionada (por ejemplo, si se borra la fecha
+
+            // Calcular la fecha mínima permitida
+            DateTime fechaMinima = DateTime.Now;
 
             // Validar que la fecha sea como mínimo 1 día después de hoy
             if (selectedDate < fechaMinima)
@@ -546,11 +551,11 @@ namespace hospital_gui_wpf.src.presentacion
                 MessageBox.Show("La fecha debe ser como mínimo 1 día después de hoy.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Limpiar la fecha en caso de no cumplir la validación
-                dpFechaUltimoAcceso.SelectedDate = null;
+                dpFechaCita.SelectedDate = null;
             }
         }
 
-        private void dpFechaUltimoAcceso_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void dpFechaCita_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true; // Bloquea la entrada de texto directa
         }
