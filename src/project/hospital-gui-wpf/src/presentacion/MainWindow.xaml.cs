@@ -26,7 +26,6 @@ namespace hospital_gui_wpf.src.presentacion
         public List<Personal> Personal;
         private bool cerrarDesdeCodigo = false;
 
-
         public MainWindow(Gestor gestorDatos, Usuario usuarioActual)
         {
             InitializeComponent();
@@ -42,7 +41,7 @@ namespace hospital_gui_wpf.src.presentacion
             lstListaPacientes.ItemsSource = GestorDatos.Pacientes;
             lstListaPersonal.ItemsSource = Personal;
             lstListaHistoriales.ItemsSource = GestorDatos.Pacientes;
-            //lstHistorialPaciente.ItemsSource = GestorDatos.Pacientes;
+            lstListaCitas.ItemsSource = GestorDatos.Pacientes;
             
         }
 
@@ -854,33 +853,7 @@ namespace hospital_gui_wpf.src.presentacion
             }
         }
 
-        private void dpFechaCita_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // Obtener la fecha seleccionada
-            DateTime? selectedDate = dpFechaCita.SelectedDate;
-
-            if (selectedDate == null)
-                return; // No hacer nada si no hay fecha seleccionada (por ejemplo, si se borra la fecha
-
-            // Calcular la fecha mínima permitida
-            DateTime fechaMinima = DateTime.Now;
-
-            // Validar que la fecha sea como mínimo 1 día después de hoy
-            if (selectedDate < fechaMinima)
-            {
-                MessageBox.Show("La fecha debe ser como mínimo 1 día después de hoy.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                // Limpiar la fecha en caso de no cumplir la validación
-                dpFechaCita.SelectedDate = null;
-            }
-        }
-
-        private void dpFechaCita_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled = true; // Bloquea la entrada de texto directa
-        }
-
-        private void dpFechaNacimientoPacientes_PreviewKeyDown(object sender, KeyEventArgs e)
+         private void dpFechaNacimientoPacientes_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true; // Bloquea la entrada de texto directa
         }
@@ -895,6 +868,10 @@ namespace hospital_gui_wpf.src.presentacion
             e.Handled = true; // Bloquea la entrada de texto directa
         }
         private void dpFechaAtencionHistorial_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true; // Bloquea la entrada de texto directa
+        }
+        private void dpFechaAtencionCita_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true; // Bloquea la entrada de texto directa
         }
@@ -917,24 +894,14 @@ namespace hospital_gui_wpf.src.presentacion
         {
             string textoDuracion = txtDuracionCitas.Text;
             // Definir la expresión regular para el formato "xx:yy"
-            Regex regex = new Regex(@"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
+            Regex regex = new Regex(@"^00:(1[0-9]|2[0-9]|30)$");
             // Validar el formato utilizando la expresión regular
-            if (regex.IsMatch(textoDuracion))
-            {
-                // El formato es correcto, puedes convertirlo a TimeSpan
-                TimeSpan duracion = TimeSpan.Parse(textoDuracion);
-                if (duracion.TotalHours > 2 || duracion.TotalHours < 0 || duracion.Minutes < 10 || duracion.Minutes > 59)
-                {
-                    MessageBox.Show("La duración debe estar entre 0h:10m y 2h:59m.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtDuracionCitas.Clear();
-                }
-            }
-            else
+            if (!regex.IsMatch(textoDuracion))
             {
                 // El formato no es válido, mostrar un mensaje de error
-                MessageBox.Show("Formato de duración incorrecto. Utiliza el formato 'xx:yy'.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Formato de duración incorrecto. Utiliza el formato 'hh:mm'. Además debe ser una cita entre 10 y 30 minutos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 // Puedes limpiar el TextBox o tomar otra acción según tus necesidades
-                txtDuracionCitas.Text= string.Empty;
+                txtDuracionCitas.Text = string.Empty;
                 // También puedes establecer el foco en el TextBox nuevamente
             }
         }
@@ -1057,6 +1024,15 @@ namespace hospital_gui_wpf.src.presentacion
                 imagenHistorial.Source = null;
             }
         }
+        private void lstListaCitas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstListaCitas.SelectedItem != null)
+            {
+                // Obtener el paciente seleccionado
+                Paciente pacienteSeleccionado = lstListaCitas.SelectedItem as Paciente;
+                lstListaCitasPacientes.ItemsSource = pacienteSeleccionado.Citas;
+            }
+        }
         private void lstListaHistorialesPacientes_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             // Obtén el elemento bajo el puntero del ratón
@@ -1067,13 +1043,32 @@ namespace hospital_gui_wpf.src.presentacion
                 lstListaHistorialesPacientes.SelectedItem = null;
             }
         }
+        private void lstListaCitasPacientes_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtén el elemento bajo el puntero del ratón
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaCitasPacientes, e.GetPosition(lstListaCitasPacientes));
+            // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
+            if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
+            {
+                lstListaCitasPacientes.SelectedItem = null;
+            }
+        }
+        private void lstListaCitas_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaCitas, e.GetPosition(lstListaCitas));
+            // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
+            if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
+            {
+                lstListaCitas.SelectedItem = null;
+            }
+        }
 
         private void dpFechaAtencionHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
             // Obtener la fecha seleccionada
             DateTime selectedDate = dpFechaAtencionHistorial.SelectedDate ?? DateTime.Now;
 
-            // Calcular la fecha mínima permitida (hoy menos 100 años)
+            // Calcular la fecha mínima permitida (hoy menos 24 años)
             DateTime fechaMinima = DateTime.Now.AddYears(-24);
 
             // Calcular la fecha máxima permitida (hoy)
@@ -1088,8 +1083,27 @@ namespace hospital_gui_wpf.src.presentacion
                 dpFechaAtencionHistorial.SelectedDate = null;
             }
         }
+        private void dpFechaAtencionCita_LostFocus(object sender, RoutedEventArgs e)
+        {
 
-        
+            // Obtener la fecha seleccionada
+            DateTime? selectedDate = dpFechaAtencionCita.SelectedDate;
+
+            // Calcular la fecha mínima permitida (a partir de mañana)
+            DateTime fechaMinima = DateTime.Now;
+
+            // Calcular la fecha máxima permitida (hoy)
+            DateTime fechaMaxima = DateTime.Now.AddYears(5);
+
+            // Validar que la fecha esté dentro del rango permitido
+            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            {
+                MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Limpiar la fecha en caso de no cumplir la validación
+                dpFechaAtencionCita.SelectedDate = null;
+
+            }
+        }
     }
 }
 
