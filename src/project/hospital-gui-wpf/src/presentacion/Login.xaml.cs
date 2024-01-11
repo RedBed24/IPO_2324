@@ -16,15 +16,25 @@ namespace hospital_gui_wpf.src.presentacion
         public static Login InstanciaActual { get; set; }
 		public Gestor gestorDatos;
         public bool cerrarDesdeCodigo = false;
-        private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
-		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
+        private readonly BitmapImage imagCheck, imagCross;
 
 		public Login()
 		{
 			InitializeComponent();
-			//txtUser.Focus();
-			gestorDatos = new Gestor();
-			InstanciaActual = this;
+			try
+			{
+				gestorDatos = new Gestor();
+				InstanciaActual = this;
+				imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
+				imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
+			}
+			catch (Exception e)
+			{
+                MessageBox.Show("Error al cargar los datos de la aplicación: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                cerrarDesdeCodigo = true;
+                this.Close();
+            }
+			
 		}
 
 		public Usuario getUser(string nombreUsuario)

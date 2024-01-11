@@ -238,12 +238,7 @@ namespace hospital_gui_wpf.src.presentacion
                 {
                     ConfirmarAltaYPosibleEliminacion(historialSeleccionado);
                 }  
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecciona un paciente o personal antes de confirmar la alta.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            } 
-            
+            }       
         }
         private void ConfirmarAltaYPosibleEliminacion(object elementoSeleccionado)
         {
