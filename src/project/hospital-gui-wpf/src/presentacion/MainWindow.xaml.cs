@@ -163,6 +163,12 @@ namespace hospital_gui_wpf.src.presentacion
                    !string.IsNullOrEmpty(txtDireccionPersonal.Text) &&
                    !string.IsNullOrEmpty(txtCorreoPersonal.Text);
             }
+            else if (tabContent == tabHistorial)
+            {
+                return !string.IsNullOrEmpty(txtDolenciaHistorial.Text) &&
+                    !string.IsNullOrEmpty(txtTratamientoHistorial.Text) &&
+                   dpFechaAtencionHistorial.SelectedDate.HasValue;
+            }
             else return false;
 
             
@@ -218,11 +224,12 @@ namespace hospital_gui_wpf.src.presentacion
                 imagenPersonal.Source = null;
             }
             else if(tabContent == tabHistorial)
-                txtHistorial.Text = string.Empty;   
+            {
+
+            }
             else if(tabContent == tabCita)
             {
-                dpFechaCita.SelectedDate = null;
-                txtDuracionCitas.Text = string.Empty;
+
             }
         }
         private void btnConfirmarModificacionPacientes_MouseDown(object sender, MouseButtonEventArgs e)
@@ -340,7 +347,7 @@ namespace hospital_gui_wpf.src.presentacion
             }
         }
 
-        private void txtTelefonoHistorial_LostFocus(object sender, RoutedEventArgs e)
+        /*private void txtTelefonoHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
             // Obtén el número de teléfono del TextBox
             string numeroTelefono = txtTelefonoHistorial.Text;
@@ -363,7 +370,7 @@ namespace hospital_gui_wpf.src.presentacion
                 txtTelefonoHistorial.Text = string.Empty;
                 txtTelefonoHistorial.BorderBrush = Brushes.Red;
             }
-        }
+        }*/
 
         private void txtTelefonoPersonal_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -558,7 +565,7 @@ namespace hospital_gui_wpf.src.presentacion
 
         }
 
-        private void txtCorreoHistorial_LostFocus(object sender, RoutedEventArgs e)
+        /*private void txtCorreoHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtCorreoHistorial.Text))
             {
@@ -576,7 +583,7 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 txtCorreoHistorial.BorderBrush = originalBorderColor;
             }
-        }
+        }*/
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -728,6 +735,13 @@ namespace hospital_gui_wpf.src.presentacion
                     MessageBox.Show("Por favor, complete todos los campos requeridos del personal.");
                 }
             }
+            else if (tabContent == tabHistorial)
+            {
+                if (CamposRequeridosLlenos())
+                {
+
+                }
+            }
         }
         private void dpFechaNacimientoHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -828,6 +842,10 @@ namespace hospital_gui_wpf.src.presentacion
         }
 
         private void dpFechaNacimientoPersonal_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true; // Bloquea la entrada de texto directa
+        }
+        private void dpFechaAtencionHistorial_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true; // Bloquea la entrada de texto directa
         }
@@ -949,6 +967,66 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 // No hay elemento seleccionado, establecer la imagen a null
                 imagenPersonal.Source = null;
+            }
+        }
+
+        private void lstListaHistoriales_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtén el elemento bajo el puntero del ratón
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaHistoriales, e.GetPosition(lstListaHistoriales));
+            // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
+            if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
+            {
+                lstListaHistoriales.SelectedItem = null;
+            }
+        }
+
+        private void lstListaHistoriales_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstListaHistoriales.SelectedItem != null)
+            {
+                // Obtener el paciente seleccionado
+                Paciente pacienteSeleccionado = lstListaHistoriales.SelectedItem as Paciente;
+                lstListaHistorialesPacientes.ItemsSource = pacienteSeleccionado.Historiales;
+                imagenHistorial.Source = null;
+
+            }
+        }
+
+        private void lstListaHistorialesPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Historial historialSeleccionado = lstListaHistorialesPacientes.SelectedItem as Historial;
+
+            if (historialSeleccionado != null)
+            {
+                // Actualiza la imagen usando el historial seleccionado
+                imagenHistorial.Source = new BitmapImage(new Uri(historialSeleccionado.Foto.ToString(), UriKind.Relative));
+            }
+            else
+            {
+                // Puedes establecer una imagen predeterminada o limpiar la imagen si no hay historial seleccionado
+                imagenHistorial.Source = null;
+            }
+        }
+
+        private void dpFechaAtencionHistorial_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Obtener la fecha seleccionada
+            DateTime selectedDate = dpFechaAtencionHistorial.SelectedDate ?? DateTime.Now;
+
+            // Calcular la fecha mínima permitida (hoy menos 100 años)
+            DateTime fechaMinima = DateTime.Now.AddYears(-24);
+
+            // Calcular la fecha máxima permitida (hoy)
+            DateTime fechaMaxima = DateTime.Now;
+
+            // Validar que la fecha esté dentro del rango permitido
+            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            {
+                MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Limpiar la fecha en caso de no cumplir la validación
+                dpFechaAtencionHistorial.SelectedDate = null;
             }
         }
     }

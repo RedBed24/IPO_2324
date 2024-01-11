@@ -14,4 +14,11 @@
 		<FechaAtencion>2023/11/22</FechaAtencion>
 		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
 	</Historial>
+	<Historial>
+		<Paciente>1</Paciente>
+		<Dolencias>Insomio por cargar con IPO1</Dolencias>
+		<Tratamientos>Cargar con ISO</Tratamientos>
+		<FechaAtencion>2023/11/24</FechaAtencion>
+		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
+	</Historial>
 </Historiales>
