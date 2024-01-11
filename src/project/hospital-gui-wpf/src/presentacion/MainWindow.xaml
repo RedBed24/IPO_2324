@@ -711,7 +711,7 @@
                                 </GroupBox>
                             </Viewbox>
                             <Viewbox Grid.Row="1" Grid.Column="0">
-                                <ListBox x:Name="lstListaHistorialesPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="25,10,25,10" Grid.Row="1" Grid.Column="0" Height="180" Width="200" SelectionChanged="lstListaHistorialesPacientes_SelectionChanged">
+                                <ListBox x:Name="lstListaHistorialesPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="25,10,25,10" Grid.Row="1" Grid.Column="0" Height="180" Width="200" SelectionChanged="lstListaHistorialesPacientes_SelectionChanged" PreviewMouseDown="lstListaHistorialesPacientes_PreviewMouseDown">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">

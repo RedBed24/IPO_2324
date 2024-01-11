@@ -60,6 +60,156 @@ namespace hospital_gui_wpf.src.presentacion
             WindowState = WindowState.Maximized;
             originalBorderColor = (SolidColorBrush)txtTelefonoPacientes.BorderBrush;
         }
+        private void btnBaja_Click(object sender, RoutedEventArgs e)
+        {
+            object tabContent = tabControl.SelectedItem;
+            if (tabContent == tabPaciente)
+            {
+                if (CamposRequeridosLlenos())
+                {
+                    Paciente seleccionado = lstListaPacientes.SelectedItem as Paciente;
+                    if (seleccionado != null)
+                    {
+                        if ((seleccionado.Nombre.ToUpper() == txtnombrePacientes.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPacientes.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPacientes.Text)))
+                        {
+                            MessageBox.Show("No puedes dar de baja a un cliente que ya lo estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return; // Salir del método si el nombre ya existe
+                        }
+
+                    }
+                    else
+                    {
+                        if (ExistePacienteEnLista(txtnombrePacientes.Text, txtApellidoPacientes.Text, Convert.ToInt32(txtTelefonoPacientes.Text)))
+                        {
+                            MessageBox.Show("El nuevo paciente coincide con uno que ya está en la lista.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            LimpiarCampos();
+                            return; // Salir del método si el nombre ya existe
+                        }
+                    }
+                    Random random = new Random();
+                    // Crear un nuevo paciente con la información proporcionada
+                    Paciente nuevoPaciente = new Paciente
+
+                    (
+                        random.Next(100, 1000001), // aleatorio
+                        txtnombrePacientes.Text,
+                        txtApellidoPacientes.Text,
+                        dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,
+                        Convert.ToInt32(txtTelefonoPacientes.Text),
+                        txtDireccionPacientes.Text,
+                        ObtenerGeneroSeleccionado(),
+                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative),
+                        txtCorreoPacientes.Text,
+                        new List<Cita>(),
+                        new List<Historial>()
+                    );
+
+                    // Agregar el nuevo paciente a la lista
+                    GestorDatos.Pacientes.Add(nuevoPaciente);
+                    actualizarPacientes();
+
+                    // Limpiar los campos después de agregar el paciente
+                    LimpiarCampos();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del cliente.");
+                }
+            }
+            else if (tabContent == tabPersonal)
+            {
+                if (CamposRequeridosLlenos())
+                {
+                    Personal seleccionado = lstListaPersonal.SelectedItem as Personal;
+                    if (seleccionado != null)
+                    {
+                        if ((seleccionado.Nombre.ToUpper() == txtnombrePersonal.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPersonal.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPersonal.Text)))
+                        {
+                            MessageBox.Show("No puedes dar de baja a un personal que ya estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return; // Salir del método si el nombre ya existe
+                        }
+
+                    }
+                    else
+                    {
+                        if (ExistePersonalEnLista(txtnombrePersonal.Text, txtApellidoPersonal.Text, Convert.ToInt32(txtTelefonoPersonal.Text)))
+                        {
+                            MessageBox.Show("El nuevo personal coincide con uno que ya está en la lista.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            LimpiarCampos();
+                            return; // Salir del método si el nombre ya existe
+                        }
+                    }
+                    Random random = new Random();
+                    // Crear un nuevo paciente con la información proporcionada
+                    Personal nuevoPersonal = new Personal
+
+                    (
+                        random.Next(100, 1000001), // aleatorio
+                        txtnombrePersonal.Text,
+                        txtApellidoPersonal.Text,
+                        dpFechaNacimientoPersonal.SelectedDate ?? DateTime.Now,
+                        Convert.ToInt32(txtTelefonoPersonal.Text),
+                        txtDireccionPersonal.Text,
+                        ObtenerGeneroSeleccionado(),
+                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative),
+                        txtCorreoPersonal.Text,
+                        ObtenerTipoSeleccionado(),
+                        new List<Cita>()
+                    );
+
+                    // Agregar el nuevo paciente a la lista
+                    if (nuevoPersonal.Tipo == TipoPersonal.Sanitario)
+                        GestorDatos.Sanitarios.Add(nuevoPersonal);
+                    else
+                        GestorDatos.Limpieza.Add(nuevoPersonal);
+                    Personal.Add(nuevoPersonal);
+
+                    actualizarPersonal();
+
+                    // Limpiar los campos después de agregar el paciente
+                    LimpiarCampos();
+
+                    // Puedes realizar otras acciones después de agregar el paciente
+
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del personal.");
+                }
+            }
+            else if (tabContent == tabHistorial)
+            {
+                if (CamposRequeridosLlenos())
+                {
+                    // Crear un nuevo paciente con la información proporcionada
+                    Historial nuevoHistorial = new Historial
+
+                    (
+                        txtDolenciaHistorial.Text,
+                        txtTratamientoHistorial.Text,
+                        dpFechaAtencionHistorial.SelectedDate ?? DateTime.Now,
+                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative)
+                    );
+                    Paciente pacienteSeleccionado = lstListaHistoriales.SelectedItem as Paciente;
+                    if (pacienteSeleccionado != null)
+                    {
+                        pacienteSeleccionado.Historiales.Add(nuevoHistorial);
+                        actualizarHistoriales(pacienteSeleccionado);
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, selecciona un paciente antes de confirmar la baja de un historial.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    // Limpiar los campos después de agregar el paciente
+                    LimpiarCampos();
+
+
+                }
+            }
+        }
         // Solo se da altas o bajas de pacientes, al añadir a un paciente mediante baja se crean los historiales y citas vacios, estos se podrán modificar en sus tabs con el boton de modificar
         private void btnAlta_Click(object sender, RoutedEventArgs e)
         {
@@ -81,6 +231,14 @@ namespace hospital_gui_wpf.src.presentacion
                     ConfirmarAltaYPosibleEliminacion(personalSeleccionado);
                 }
                    
+            }
+            else if (tabContent == tabHistorial)
+            {
+                Historial historialSeleccionado = lstListaHistorialesPacientes.SelectedItem as Historial;
+                if (historialSeleccionado != null)
+                {
+                    ConfirmarAltaYPosibleEliminacion(historialSeleccionado);
+                }  
             }
             else
             {
@@ -117,6 +275,13 @@ namespace hospital_gui_wpf.src.presentacion
                         
                         actualizarPersonal();
                     }
+                    else if (elementoSeleccionado is Historial)
+                    {
+                        Historial historialSeleccionado = elementoSeleccionado as Historial;
+                        Paciente pacienteSeleccionado = lstListaHistoriales.SelectedItem as Paciente;
+                        pacienteSeleccionado.Historiales.Remove(historialSeleccionado);
+                        actualizarHistoriales(pacienteSeleccionado);
+                    }   
                     LimpiarCampos();
                 }
             }
@@ -131,8 +296,8 @@ namespace hospital_gui_wpf.src.presentacion
                 NuevoPaciente.Add(p);
             }
             lstListaPacientes.ItemsSource = NuevoPaciente;
-    }
-    private void actualizarPersonal()
+        }
+        private void actualizarPersonal()
         {
             lstListaPersonal.SelectedItem = null;
             List<Personal> NuevoPersonal = new List<Personal>();
@@ -142,7 +307,17 @@ namespace hospital_gui_wpf.src.presentacion
             }
             lstListaPersonal.ItemsSource = NuevoPersonal;
         }
-    private bool CamposRequeridosLlenos()
+        private void actualizarHistoriales(Paciente pacienteSeleccionado)
+        {
+            lstListaHistorialesPacientes.SelectedItem = null;
+            List<Historial> NuevoHistorial = new List<Historial>();
+            foreach (Historial h in pacienteSeleccionado.Historiales)
+            {
+                NuevoHistorial.Add(h);
+            }
+            lstListaHistorialesPacientes.ItemsSource = NuevoHistorial;
+        }   
+        private bool CamposRequeridosLlenos()
         {
             object tabContent = tabControl.SelectedItem;
             if (tabContent == tabPaciente)
@@ -616,133 +791,7 @@ namespace hospital_gui_wpf.src.presentacion
             return lstListaPersonal.Items.Cast<Personal>().Any(p => p.Nombre.ToUpper() == nombre.ToUpper() && p.Apellido.ToUpper() == apellido.ToUpper() && p.Telefono == telefono);
 
         }
-        private void btnBaja_Click(object sender, RoutedEventArgs e)
-        {
-            object tabContent = tabControl.SelectedItem;
-            if (tabContent == tabPaciente)
-            {
-                if (CamposRequeridosLlenos())
-                {   
-                    Paciente seleccionado = lstListaPacientes.SelectedItem as Paciente;
-                    if (seleccionado != null)
-                    {
-                        if (( seleccionado.Nombre.ToUpper() == txtnombrePacientes.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPacientes.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPacientes.Text)))
-                        {
-                            MessageBox.Show("No puedes dar de baja a un cliente que ya lo estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return; // Salir del método si el nombre ya existe
-                        }
-
-                    }
-                    else
-                    {
-                        if (ExistePacienteEnLista(txtnombrePacientes.Text, txtApellidoPacientes.Text, Convert.ToInt32(txtTelefonoPacientes.Text)))
-                        {
-                            MessageBox.Show("El nuevo paciente coincide con uno que ya está en la lista.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LimpiarCampos();
-                            return; // Salir del método si el nombre ya existe
-                        }
-                    }
-                    Random random = new Random();
-                    // Crear un nuevo paciente con la información proporcionada
-                    Paciente nuevoPaciente = new Paciente
-
-                    (
-                        random.Next(100, 1000001), // aleatorio
-                        txtnombrePacientes.Text,
-                        txtApellidoPacientes.Text,
-                        dpFechaNacimientoPacientes.SelectedDate ?? DateTime.Now,
-                        Convert.ToInt32(txtTelefonoPacientes.Text),
-                        txtDireccionPacientes.Text,
-                        ObtenerGeneroSeleccionado(),
-                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative),
-                        txtCorreoPacientes.Text,
-                        new List<Cita>(),
-                        new List<Historial>()
-                    );
-
-                    // Agregar el nuevo paciente a la lista
-                    GestorDatos.Pacientes.Add(nuevoPaciente);
-                    actualizarPacientes();
-
-                    // Limpiar los campos después de agregar el paciente
-                    LimpiarCampos();
-
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, complete todos los campos requeridos del cliente.");
-                }
-            }
-            else if (tabContent == tabPersonal)
-            {
-                if (CamposRequeridosLlenos())
-                {
-                    Personal seleccionado = lstListaPersonal.SelectedItem as Personal;
-                    if (seleccionado != null)
-                    {
-                        if ((seleccionado.Nombre.ToUpper() == txtnombrePersonal.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPersonal.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPersonal.Text)))
-                        {
-                            MessageBox.Show("No puedes dar de baja a un personal que ya estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return; // Salir del método si el nombre ya existe
-                        }
-
-                    }
-                    else
-                    {
-                        if (ExistePersonalEnLista(txtnombrePersonal.Text, txtApellidoPersonal.Text, Convert.ToInt32(txtTelefonoPersonal.Text)))
-                        {
-                            MessageBox.Show("El nuevo personal coincide con uno que ya está en la lista.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            LimpiarCampos();
-                            return; // Salir del método si el nombre ya existe
-                        }
-                    }
-                    Random random = new Random();
-                    // Crear un nuevo paciente con la información proporcionada
-                    Personal nuevoPersonal = new Personal
-
-                    (
-                        random.Next(100, 1000001), // aleatorio
-                        txtnombrePersonal.Text,
-                        txtApellidoPersonal.Text,
-                        dpFechaNacimientoPersonal.SelectedDate ?? DateTime.Now,
-                        Convert.ToInt32(txtTelefonoPersonal.Text),
-                        txtDireccionPersonal.Text,
-                        ObtenerGeneroSeleccionado(),
-                        new Uri("/datos/imagenes/usuario_cualquiera.jpg", UriKind.Relative),
-                        txtCorreoPersonal.Text,
-                        ObtenerTipoSeleccionado(),
-                        new List<Cita>()
-                    );
-
-                    // Agregar el nuevo paciente a la lista
-                    if (nuevoPersonal.Tipo == TipoPersonal.Sanitario)
-                        GestorDatos.Sanitarios.Add(nuevoPersonal);
-                    else
-                        GestorDatos.Limpieza.Add(nuevoPersonal);
-                    Personal.Add(nuevoPersonal);
-
-                    actualizarPersonal();
-
-                    // Limpiar los campos después de agregar el paciente
-                    LimpiarCampos();
-
-                    // Puedes realizar otras acciones después de agregar el paciente
-
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, complete todos los campos requeridos del personal.");
-                }
-            }
-            else if (tabContent == tabHistorial)
-            {
-                if (CamposRequeridosLlenos())
-                {
-
-                }
-            }
-        }
+       
         private void dpFechaNacimientoHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
             // Obtener la fecha seleccionada
@@ -1008,6 +1057,16 @@ namespace hospital_gui_wpf.src.presentacion
                 imagenHistorial.Source = null;
             }
         }
+        private void lstListaHistorialesPacientes_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtén el elemento bajo el puntero del ratón
+            var hitTestResult = VisualTreeHelper.HitTest(lstListaHistorialesPacientes, e.GetPosition(lstListaHistorialesPacientes));
+            // Si el elemento bajo el puntero del ratón no es un elemento de la ListBox, deselecciona el elemento actual
+            if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
+            {
+                lstListaHistorialesPacientes.SelectedItem = null;
+            }
+        }
 
         private void dpFechaAtencionHistorial_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -1029,6 +1088,8 @@ namespace hospital_gui_wpf.src.presentacion
                 dpFechaAtencionHistorial.SelectedDate = null;
             }
         }
+
+        
     }
 }
 

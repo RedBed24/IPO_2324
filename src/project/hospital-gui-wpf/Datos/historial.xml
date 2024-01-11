@@ -1,24 +1,51 @@
 <Historiales>
 	<Historial>
 		<Paciente>1</Paciente>
-		<Dolencias>Dolor de espalda por cargar con el peso de aprobar ISO2</Dolencias>
+		<Dolencias>Dolor de riñones por cargar con el peso de aprobar ISO2</Dolencias>
 		<Tratamientos>Cargar con IPO</Tratamientos>
 		<FechaAtencion>2023/12/22</FechaAtencion>
-		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
+		<Foto>/datos/imagenes/dolorRinon.jpg</Foto>
 	</Historial>
-
 	<Historial>
 		<Paciente>2</Paciente>
 		<Dolencias>Insomio por cargar con ISO2</Dolencias>
 		<Tratamientos>Cargar con IPO</Tratamientos>
 		<FechaAtencion>2023/11/22</FechaAtencion>
-		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
+		<Foto>/datos/imagenes/dolorInsomnio.jpg</Foto>
 	</Historial>
 	<Historial>
 		<Paciente>1</Paciente>
 		<Dolencias>Insomio por cargar con IPO1</Dolencias>
 		<Tratamientos>Cargar con ISO</Tratamientos>
 		<FechaAtencion>2023/11/24</FechaAtencion>
-		<Foto>/datos/imagenes/ipo_login.jpg</Foto>
+		<Foto>/datos/imagenes/dolorInsomnio.jpg</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>3</Paciente>
+		<Dolencias>Dolor de tobillo por tropezarse en la calle</Dolencias>
+		<Tratamientos>Reposo en casa</Tratamientos>
+		<FechaAtencion>2023/07/31</FechaAtencion>
+		<Foto>/datos/imagenes/dolorTobillo.png</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>3</Paciente>
+		<Dolencias>Muela picada por comer chuches</Dolencias>
+		<Tratamientos>Empaste y lavarse bien los dientes</Tratamientos>
+		<FechaAtencion>2024/01/04</FechaAtencion>
+		<Foto>/datos/imagenes/dolorMuela.jpg</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>1</Paciente>
+		<Dolencias>Placas debido a una infección</Dolencias>
+		<Tratamientos>Tomar antibióticos</Tratamientos>
+		<FechaAtencion>2023/11/13</FechaAtencion>
+		<Foto>/datos/imagenes/dolorGarganta.jpg</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>4</Paciente>
+		<Dolencias>Muela del juicio necesaria de extraer</Dolencias>
+		<Tratamientos>Comer comida blanda e ibuprofeno</Tratamientos>
+		<FechaAtencion>2023/08/03</FechaAtencion>
+		<Foto>/datos/imagenes/dolorMuela.jpg</Foto>
 	</Historial>
 </Historiales>
