@@ -159,18 +159,6 @@ namespace hospital_gui_wpf.src.presentacion
 				txtPassWatermark.Visibility = Visibility.Collapsed;
 			}
         }
-
-
-		private void Image_MouseEnter(object sender, MouseEventArgs e)
-		{
-			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
-		}
-
-		private void Image_MouseLeave(object sender, MouseEventArgs e)
-		{
-			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
-		}
-
         private void txtUser_GotFocus(object sender, RoutedEventArgs e)
         {
             txtUserWatermark.Visibility = Visibility.Collapsed;

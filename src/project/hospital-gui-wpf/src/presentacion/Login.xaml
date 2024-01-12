@@ -89,8 +89,7 @@
 
                 <Viewbox Grid.Row="1">
                     <Image Source="/datos/imagenes/icono.png" Width="190" Height="130"
-					VerticalAlignment="Center" HorizontalAlignment="Center" 
-                    MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" />
+					VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Viewbox>
 
                 <Viewbox Grid.Row="2">
