@@ -26,6 +26,13 @@ namespace hospital_gui_wpf.src.presentacion
         public List<Personal> Personal;
         private bool cerrarDesdeCodigo = false;
 
+        //Copias para que las fechas no se cambien aun teniendo mal el formato
+        private DateTime fechaNacimientoPacienteCopia;
+        private DateTime fechaNacimientoPersonalCopia;
+        private DateTime fechaAtencionHistorialCopia;
+        private DateTime fechaAtencionCitaCopia;
+        private string duracionCitaCopia;
+
         public MainWindow(Gestor gestorDatos, Usuario usuarioActual)
         {
             InitializeComponent();
@@ -513,20 +520,71 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void btnConfirmarModificacionHistorial_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Primera confirmación
-            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {   // Segunda confirmación
-                result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            Historial historialSeleccionado = lstListaHistorialesPacientes.SelectedItem as Historial;
 
+            if (historialSeleccionado != null)
+            {
+                Paciente pacienteSeleccionado = lstListaHistoriales.SelectedItem as Paciente;
+                // Primera confirmación
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
-                {
+                {   // Segunda confirmación
+                    result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Actualizar las propiedades del historial seleccionado
+                        historialSeleccionado.Tratamientos = txtDolenciaHistorial.Text;
+                        historialSeleccionado.Dolencias = txtTratamientoHistorial.Text;
+                        historialSeleccionado.FechaAtencion = dpFechaAtencionHistorial.SelectedDate ?? DateTime.Now;
+                        actualizarHistoriales(pacienteSeleccionado);
+
+                        // Limpiar los campos después de la modificación
+                        LimpiarCampos();
+                    }
                 }
+            } 
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un historial de un paciente antes de confirmar la modificación.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+
+        }
+        private void btnConfirmarModificacionCitas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Cita citaSeleccionada = lstListaCitasPacientes.SelectedItem as Cita;
+
+            if (citaSeleccionada != null)
+            {
+                Paciente pacienteSeleccionado = lstListaHistoriales.SelectedItem as Paciente;
+                // Primera confirmación
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {   // Segunda confirmación
+                    result = MessageBox.Show("¿Estás realmente seguro?", "Confirmar de nuevo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Actualizar las propiedades del historial seleccionado
+                        citaSeleccionada.Paciente = pacienteSeleccionado;
+                        citaSeleccionada.Fecha = dpFechaAtencionCita.SelectedDate ?? DateTime.Now;
+                        citaSeleccionada.Duracion = TimeSpan.Parse(txtDuracionCitas.Text);
+                        citaSeleccionada.Personal = txtMedicoCitas.SelectedItem as Personal;
+                        citaSeleccionada.InfoAdicional = txtInfoCitas.Text;
+                        actualizarCitas(pacienteSeleccionado);
+
+                        // Limpiar los campos después de la modificación
+                        LimpiarCampos();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona una cita de un paciente antes de confirmar la modificación.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
         }
-
         private void btnConfirmarModificacionPersonal_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Obtener el paciente seleccionado
@@ -591,31 +649,7 @@ namespace hospital_gui_wpf.src.presentacion
             }
         }
 
-        /*private void txtTelefonoHistorial_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // Obtén el número de teléfono del TextBox
-            string numeroTelefono = txtTelefonoHistorial.Text;
-            if (string.IsNullOrEmpty(txtTelefonoHistorial.Text))
-            {
-
-
-                txtTelefonoHistorial.BorderBrush = originalBorderColor;
-
-            }
-            else if (numeroTelefono.Length == 9 && int.TryParse(numeroTelefono, out _))
-            {
-
-                // El número de teléfono tiene 9 dígitos y es un número válido
-                txtTelefonoHistorial.BorderBrush = originalBorderColor;
-            }
-            else
-            {
-                MessageBox.Show("El número de teléfono debe tener exactamente 9 dígitos enteros.");
-                txtTelefonoHistorial.Text = string.Empty;
-                txtTelefonoHistorial.BorderBrush = Brushes.Red;
-            }
-        }*/
-
+       
         private void txtTelefonoPersonal_LostFocus(object sender, RoutedEventArgs e)
         {
             // Obtén el número de teléfono del TextBox
@@ -901,8 +935,17 @@ namespace hospital_gui_wpf.src.presentacion
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Limpiar la fecha en caso de no cumplir la validación
-                dpFechaNacimientoPacientes.SelectedDate = null;
-                dpFechaNacimientoPacientes.BorderBrush = Brushes.Red;
+                if (lstListaPacientes.SelectedItem == null)
+                {
+                    dpFechaNacimientoPacientes.SelectedDate = null;
+                    dpFechaNacimientoPacientes.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    dpFechaNacimientoPacientes.BorderBrush = originalBorderColor;
+                    dpFechaNacimientoPacientes.SelectedDate = fechaNacimientoPacienteCopia;
+                }
+
             }
         }
 
@@ -927,8 +970,16 @@ namespace hospital_gui_wpf.src.presentacion
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Limpiar la fecha en caso de no cumplir la validación
-                dpFechaNacimientoPersonal.SelectedDate = null;
-                dpFechaNacimientoPersonal.BorderBrush = Brushes.Red;
+                if (lstListaPersonal.SelectedItem == null)
+                {
+                    dpFechaNacimientoPersonal.SelectedDate = null;
+                    dpFechaNacimientoPersonal.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    dpFechaNacimientoPersonal.BorderBrush = originalBorderColor;
+                    dpFechaNacimientoPersonal.SelectedDate = fechaNacimientoPersonalCopia;
+                }
             }
         }
 
@@ -986,11 +1037,14 @@ namespace hospital_gui_wpf.src.presentacion
                 // Puedes limpiar el TextBox o tomar otra acción según tus necesidades
                 txtDuracionCitas.Text = string.Empty;
                 txtDuracionCitas.BorderBrush = Brushes.Red;
+                lstListaCitasPacientes.SelectedItem = null;
                 // También puedes establecer el foco en el TextBox nuevamente
             }
             else
             {
+
                 txtDuracionCitas.BorderBrush = originalBorderColor;
+                txtDuracionCitas.Text = Convert.ToString(duracionCitaCopia);
             }
         }
 
@@ -1033,7 +1087,7 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 // Obtener el paciente seleccionado
                 Paciente pacienteSeleccionado = lstListaPacientes.SelectedItem as Paciente;
-
+                fechaNacimientoPacienteCopia = pacienteSeleccionado.FechaNacimiento;
                 // Mostrar la imagen del paciente seleccionado en la interfaz
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
@@ -1055,8 +1109,9 @@ namespace hospital_gui_wpf.src.presentacion
             // Verificar si hay algún elemento seleccionado en la ListBox
             if (lstListaPersonal.SelectedItem != null)
             {
-                // Obtener el paciente seleccionado
+                // Obtener el personal seleccionado
                 Personal personalSeleccionado = lstListaPersonal.SelectedItem as Personal;
+                fechaNacimientoPersonalCopia = personalSeleccionado.FechaNacimiento;
 
                 // Mostrar la imagen del paciente seleccionado en la interfaz
                 BitmapImage bitmapImage = new BitmapImage();
@@ -1104,6 +1159,7 @@ namespace hospital_gui_wpf.src.presentacion
 
             if (historialSeleccionado != null)
             {
+                fechaAtencionHistorialCopia = historialSeleccionado.FechaAtencion;
                 // Actualiza la imagen usando el historial seleccionado
                 imagenHistorial.Source = new BitmapImage(new Uri(historialSeleccionado.Foto.ToString(), UriKind.Relative));
             }
@@ -1171,10 +1227,16 @@ namespace hospital_gui_wpf.src.presentacion
             else if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
             {
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                // Limpiar la fecha en caso de no cumplir la validación
-                dpFechaAtencionHistorial.SelectedDate = null;
-                dpFechaAtencionHistorial.BorderBrush = Brushes.Red;
+                if (lstListaHistorialesPacientes.SelectedItem == null)
+                {
+                    dpFechaAtencionHistorial.SelectedDate = null;
+                    dpFechaAtencionHistorial.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    dpFechaAtencionHistorial.BorderBrush = originalBorderColor;
+                    dpFechaAtencionHistorial.SelectedDate = fechaAtencionHistorialCopia;
+                }
             }
         }
         private void dpFechaAtencionCita_LostFocus(object sender, RoutedEventArgs e)
@@ -1197,8 +1259,33 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 // Limpiar la fecha en caso de no cumplir la validación
-                dpFechaAtencionCita.SelectedDate = null;
-                dpFechaAtencionCita.BorderBrush = Brushes.Red;
+                if (lstListaCitasPacientes.SelectedItem == null)
+                {
+                    dpFechaAtencionCita.SelectedDate = null;
+                    dpFechaAtencionCita.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    dpFechaAtencionCita.BorderBrush = originalBorderColor;
+                    dpFechaAtencionCita.SelectedDate = fechaAtencionCitaCopia;
+                }
+            }
+        }
+
+        private void lstListaCitasPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Cita citaSeleccionada = lstListaCitasPacientes.SelectedItem as Cita;
+            if (citaSeleccionada != null)
+            {
+                // Obtener el personal seleccionado
+                fechaAtencionCitaCopia = citaSeleccionada.Fecha;
+                duracionCitaCopia = Convert.ToString(citaSeleccionada.Duracion);
+                txtMedicoCitas.IsEnabled = false;
+                
+            }
+            else
+            {
+                txtMedicoCitas.IsEnabled = true;
             }
         }
     }

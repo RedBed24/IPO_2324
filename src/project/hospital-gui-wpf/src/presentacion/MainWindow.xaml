@@ -816,7 +816,7 @@
                             </Viewbox>
                             <Viewbox Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">
                                 <GroupBox x:Name="listaCitasPacientes" Header="Citas del paciente" BorderThickness="2" BorderBrush="LightSkyBlue" Background="Transparent">
-                                    <ListBox x:Name="lstListaCitasPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Grid.Row="1" Grid.Column="0" Height="180" Width="200" PreviewMouseDown="lstListaCitasPacientes_PreviewMouseDown">
+                                    <ListBox x:Name="lstListaCitasPacientes" Style="{StaticResource ListBoxStyle}" BorderBrush="LightSkyBlue" BorderThickness="2" Grid.Row="1" Grid.Column="0" Height="180" Width="200" PreviewMouseDown="lstListaCitasPacientes_PreviewMouseDown" SelectionChanged="lstListaCitasPacientes_SelectionChanged">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -834,7 +834,7 @@
                                 </GroupBox>
                             </Viewbox>
                             <Viewbox Grid.Column="2" Grid.Row="3">
-                                <Image x:Name="btnConfirmarModificacionCitas"  VerticalAlignment="Center" Height="30"  Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación"/>
+                                <Image x:Name="btnConfirmarModificacionCitas"  VerticalAlignment="Center" Height="30"  Source="\datos\imagenes\confirmar_modificacion.png" ToolTip="Confirmar modificación" MouseDown="btnConfirmarModificacionCitas_MouseDown"/>
                             </Viewbox>
                         </Grid>
                     </Border>
