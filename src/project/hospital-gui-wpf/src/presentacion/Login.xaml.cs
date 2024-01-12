@@ -147,8 +147,9 @@ namespace hospital_gui_wpf.src.presentacion
 		{
 				if (!cerrarDesdeCodigo)
 				{
-					MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
-				}
+                MessageBox.Show("Gracias por usar nuestra aplicación...\n\n¡Hasta luego!",
+                    "Despedida", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 		}
 
 		private void txtPass_GotFocus(object sender, RoutedEventArgs e)

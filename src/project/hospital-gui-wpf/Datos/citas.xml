@@ -5,6 +5,27 @@
 		<Duracion>00:10</Duracion>
 		<Paciente>1</Paciente>
 		<Medico>80</Medico>
-		<InfoAdicional>Paciente muere</InfoAdicional>
+		<InfoAdicional>Paciente es informado de su futura muerte</InfoAdicional>
+	</Cita>
+	<Cita>
+		<FechaCita>2025/01/09 10:00</FechaCita>
+		<Duracion>00:15</Duracion>
+		<Paciente>2</Paciente>
+		<Medico>82</Medico>
+		<InfoAdicional>Paciente a operar</InfoAdicional>
+	</Cita>
+	<Cita>
+		<FechaCita>2024/07/11 10:00</FechaCita>
+		<Duracion>00:30</Duracion>
+		<Paciente>3</Paciente>
+		<Medico>83</Medico>
+		<InfoAdicional>Extracción muelas del juicio</InfoAdicional>
+	</Cita>
+	<Cita>
+		<FechaCita>2024/05/13 10:00</FechaCita>
+		<Duracion>00:05</Duracion>
+		<Paciente>4</Paciente>
+		<Medico>80</Medico>
+		<InfoAdicional>Paciente requiere de antidepresivos</InfoAdicional>
 	</Cita>
 </Citas>
