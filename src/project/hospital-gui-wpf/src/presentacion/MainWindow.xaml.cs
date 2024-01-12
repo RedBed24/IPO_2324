@@ -557,7 +557,7 @@ namespace hospital_gui_wpf.src.presentacion
 
             if (citaSeleccionada != null)
             {
-                Paciente pacienteSeleccionado = lstListaHistoriales.SelectedItem as Paciente;
+                Paciente pacienteSeleccionado = lstListaCitas.SelectedItem as Paciente;
                 // Primera confirmación
                 MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la modificación?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
@@ -566,10 +566,20 @@ namespace hospital_gui_wpf.src.presentacion
 
                     if (result == MessageBoxResult.Yes)
                     {
+                        TimeSpan duracion;
+                        if (TimeSpan.TryParse(txtDuracionCitas.Text, out duracion))
+                        {
+                            citaSeleccionada.Duracion = duracion;
+                        }
+                        else
+                        {
+                            MessageBox.Show("La duración de la cita debe ser un número entero.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtDuracionCitas.Text = string.Empty;
+                            return;
+                        }
                         // Actualizar las propiedades del historial seleccionado
                         citaSeleccionada.Paciente = pacienteSeleccionado;
                         citaSeleccionada.Fecha = dpFechaAtencionCita.SelectedDate ?? DateTime.Now;
-                        citaSeleccionada.Duracion = TimeSpan.Parse(txtDuracionCitas.Text);
                         citaSeleccionada.Personal = txtMedicoCitas.SelectedItem as Personal;
                         citaSeleccionada.InfoAdicional = txtInfoCitas.Text;
                         actualizarCitas(pacienteSeleccionado);
@@ -1014,16 +1024,28 @@ namespace hospital_gui_wpf.src.presentacion
                 // El formato no es válido, mostrar un mensaje de error
                 MessageBox.Show("Formato de duración incorrecto. Utiliza el formato 'hh:mm'. Además debe ser una cita entre 10 y 30 minutos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 // Puedes limpiar el TextBox o tomar otra acción según tus necesidades
-                txtDuracionCitas.Text = string.Empty;
-                txtDuracionCitas.BorderBrush = Brushes.Red;
-                lstListaCitasPacientes.SelectedItem = null;
-                // También puedes establecer el foco en el TextBox nuevamente
+                if (lstListaCitasPacientes.SelectedItem == null)
+                {
+                    txtDuracionCitas.Text = string.Empty;
+                    txtDuracionCitas.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    txtDuracionCitas.BorderBrush = originalBorderColor;
+                    txtDuracionCitas.Text = duracionCitaCopia;
+                }
+               // txtDuracionCitas.Text = string.Empty;
+                //txtDuracionCitas.BorderBrush = Brushes.Red;
+                //lstListaCitasPacientes.SelectedItem = null;
             }
             else
             {
-
                 txtDuracionCitas.BorderBrush = originalBorderColor;
-                txtDuracionCitas.Text = Convert.ToString(duracionCitaCopia);
+                if (lstListaCitasPacientes.SelectedItem == null)
+                {
+                    txtDuracionCitas.Text = duracionCitaCopia;
+                }
+               
             }
         }
 
@@ -1258,7 +1280,7 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 // Obtener el personal seleccionado
                 fechaAtencionCitaCopia = citaSeleccionada.Fecha;
-                duracionCitaCopia = Convert.ToString(citaSeleccionada.Duracion);
+                duracionCitaCopia = citaSeleccionada.Duracion.ToString(@"hh\:mm");
                 txtMedicoCitas.IsEnabled = false;
                 
             }
@@ -1266,6 +1288,7 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 txtMedicoCitas.IsEnabled = true;
             }
+
         }
     }
 }
