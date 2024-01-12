@@ -133,11 +133,11 @@ namespace hospital_gui_wpf.src.presentacion
 			cerrarDesdeCodigo = false;
             txtUser.BorderBrush = Brushes.Gray;
             txtUser.Background = Brushes.Transparent;
-			txtUser.ToolTip = "Usuario a loguearse";
+			imgUser.ToolTip = "Usuario a loguearse";
             imgUser.Source = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
-            txtPass.BorderBrush = Brushes.Gray;
+			txtPass.BorderBrush = Brushes.Gray;
             txtPass.Background = Brushes.Transparent;
-			txtPass.ToolTip = "Contraseña del usuario, primero debes introducir un usuario válido";
+			imgPass.ToolTip = "Contraseña del usuario, primero debes introducir un usuario válido";
             imgPass.Source = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
 			txtUser.IsEnabled = true;
 
