@@ -114,7 +114,7 @@ namespace hospital_gui_wpf.src.presentacion
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, complete todos los campos requeridos del cliente.");
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del cliente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else if (tabContent == tabPersonal)
@@ -175,7 +175,7 @@ namespace hospital_gui_wpf.src.presentacion
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, complete todos los campos requeridos del personal.");
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del personal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else if (tabContent == tabHistorial)
@@ -207,7 +207,7 @@ namespace hospital_gui_wpf.src.presentacion
                 } 
                 else
                 {
-                    MessageBox.Show("Por favor, complete todos los campos requeridos del historial.");
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del historial.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }
@@ -237,7 +237,7 @@ namespace hospital_gui_wpf.src.presentacion
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, complete todos los campos requeridos de la cita.");
+                    MessageBox.Show("Por favor, complete todos los campos requeridos de la cita.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }
@@ -890,14 +890,18 @@ namespace hospital_gui_wpf.src.presentacion
 
             // Calcular la fecha máxima permitida (hoy)
             DateTime fechaMaxima = DateTime.Now;
-
+            if (string.IsNullOrEmpty(dpFechaNacimientoPacientes.Text))
+            {
+                dpFechaNacimientoPacientes.BorderBrush = originalBorderColor;
+            }
             // Validar que la fecha esté dentro del rango permitido
-            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            else if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
             {
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Limpiar la fecha en caso de no cumplir la validación
                 dpFechaNacimientoPacientes.SelectedDate = null;
+                dpFechaNacimientoPacientes.BorderBrush = Brushes.Red;
             }
         }
 
@@ -912,13 +916,18 @@ namespace hospital_gui_wpf.src.presentacion
             // Calcular la fecha máxima permitida (hoy)
             DateTime fechaMaxima = DateTime.Now;
 
+            if (string.IsNullOrEmpty(dpFechaNacimientoPersonal.Text))
+            {
+                dpFechaNacimientoPersonal.BorderBrush = originalBorderColor;
+            }
             // Validar que la fecha esté dentro del rango permitido
-            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            else if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
             {
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Limpiar la fecha en caso de no cumplir la validación
                 dpFechaNacimientoPersonal.SelectedDate = null;
+                dpFechaNacimientoPersonal.BorderBrush = Brushes.Red;
             }
         }
 
@@ -964,14 +973,23 @@ namespace hospital_gui_wpf.src.presentacion
             string textoDuracion = txtDuracionCitas.Text;
             // Definir la expresión regular para el formato "xx:yy"
             Regex regex = new Regex(@"^00:(1[0-9]|2[0-9]|30)$");
+            if (string.IsNullOrEmpty(txtDuracionCitas.Text))
+            {
+                txtDuracionCitas.BorderBrush = originalBorderColor;
+            }
             // Validar el formato utilizando la expresión regular
-            if (!regex.IsMatch(textoDuracion))
+            else if (!regex.IsMatch(textoDuracion))
             {
                 // El formato no es válido, mostrar un mensaje de error
                 MessageBox.Show("Formato de duración incorrecto. Utiliza el formato 'hh:mm'. Además debe ser una cita entre 10 y 30 minutos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 // Puedes limpiar el TextBox o tomar otra acción según tus necesidades
                 txtDuracionCitas.Text = string.Empty;
+                txtDuracionCitas.BorderBrush = Brushes.Red;
                 // También puedes establecer el foco en el TextBox nuevamente
+            }
+            else
+            {
+                txtDuracionCitas.BorderBrush = originalBorderColor;
             }
         }
 
@@ -1144,14 +1162,18 @@ namespace hospital_gui_wpf.src.presentacion
 
             // Calcular la fecha máxima permitida (hoy)
             DateTime fechaMaxima = DateTime.Now;
-
+            if (string.IsNullOrEmpty(dpFechaAtencionHistorial.Text))
+            {
+                dpFechaAtencionHistorial.BorderBrush = originalBorderColor;
+            }
             // Validar que la fecha esté dentro del rango permitido
-            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            else if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
             {
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Limpiar la fecha en caso de no cumplir la validación
                 dpFechaAtencionHistorial.SelectedDate = null;
+                dpFechaAtencionHistorial.BorderBrush = Brushes.Red;
             }
         }
         private void dpFechaAtencionCita_LostFocus(object sender, RoutedEventArgs e)
@@ -1165,14 +1187,17 @@ namespace hospital_gui_wpf.src.presentacion
 
             // Calcular la fecha máxima permitida (hoy)
             DateTime fechaMaxima = DateTime.Now.AddYears(5);
-
+            if (string.IsNullOrEmpty(dpFechaAtencionCita.Text))
+            {
+                dpFechaAtencionCita.BorderBrush = originalBorderColor;
+            }
             // Validar que la fecha esté dentro del rango permitido
-            if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
+            else if (selectedDate < fechaMinima || selectedDate > fechaMaxima)
             {
                 MessageBox.Show("La fecha de nacimiento debe estar entre " + fechaMinima.ToShortDateString() + " y " + fechaMaxima.ToShortDateString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 // Limpiar la fecha en caso de no cumplir la validación
                 dpFechaAtencionCita.SelectedDate = null;
-
+                dpFechaAtencionCita.BorderBrush = Brushes.Red;
             }
         }
     }
