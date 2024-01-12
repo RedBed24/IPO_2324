@@ -42,7 +42,7 @@ namespace hospital_gui_wpf.src.presentacion
             lstListaPersonal.ItemsSource = Personal;
             lstListaHistoriales.ItemsSource = GestorDatos.Pacientes;
             lstListaCitas.ItemsSource = GestorDatos.Pacientes;
-            
+            txtMedicoCitas.ItemsSource = GestorDatos.Sanitarios;            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -204,7 +204,40 @@ namespace hospital_gui_wpf.src.presentacion
                     }
                     // Limpiar los campos después de agregar el paciente
                     LimpiarCampos();
+                } 
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos del historial.");
 
+                }
+            }
+            else if (tabContent == tabCita)
+            {
+                if (CamposRequeridosLlenos())
+                {
+                    Paciente pacienteSeleccionado = lstListaCitas.SelectedItem as Paciente;
+                    
+                        Cita nuevaCita = new Cita
+                        (
+                            dpFechaAtencionCita.SelectedDate ?? DateTime.Now,
+                            TimeSpan.Parse(txtDuracionCitas.Text),
+                            pacienteSeleccionado,
+                            txtMedicoCitas.SelectedItem as Personal,
+                            txtInfoCitas.Text
+                        );
+                    if (pacienteSeleccionado != null)
+                    {
+                        pacienteSeleccionado.Citas.Add(nuevaCita);
+                        actualizarCitas(pacienteSeleccionado);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, selecciona un paciente antes de confirmar la adición de una cita.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos de la cita.");
 
                 }
             }
@@ -237,7 +270,15 @@ namespace hospital_gui_wpf.src.presentacion
                 {
                     ConfirmarAltaYPosibleEliminacion(historialSeleccionado);
                 }  
-            }       
+            }
+            else if (tabContent == tabCita)
+            {
+                Cita citaSeleccionada = lstListaCitasPacientes.SelectedItem as Cita;
+                if (citaSeleccionada != null)
+                {
+                    ConfirmarAltaYPosibleEliminacion(citaSeleccionada);
+                }
+            }
         }
         private void ConfirmarAltaYPosibleEliminacion(object elementoSeleccionado)
         {
@@ -275,6 +316,16 @@ namespace hospital_gui_wpf.src.presentacion
                         pacienteSeleccionado.Historiales.Remove(historialSeleccionado);
                         actualizarHistoriales(pacienteSeleccionado);
                     }   
+                    else if (elementoSeleccionado is Cita)
+                    {
+                        Cita citaSeleccionada = elementoSeleccionado as Cita;
+                        Paciente pacienteSeleccionado = lstListaCitas.SelectedItem as Paciente;
+                        pacienteSeleccionado.Citas.Remove(citaSeleccionada);
+                        actualizarCitas(pacienteSeleccionado);
+                    }
+                    {
+                        
+                    }
                     LimpiarCampos();
                 }
             }
@@ -293,12 +344,20 @@ namespace hospital_gui_wpf.src.presentacion
         private void actualizarPersonal()
         {
             lstListaPersonal.SelectedItem = null;
+            GestorDatos.Sanitarios.Clear();
+            GestorDatos.Limpieza.Clear();
+            txtMedicoCitas.ItemsSource = null;
             List<Personal> NuevoPersonal = new List<Personal>();
             foreach (Personal p in Personal)
             {
                 NuevoPersonal.Add(p);
+                if(p.Tipo == TipoPersonal.Sanitario)
+                    GestorDatos.Sanitarios.Add(p);
+                else
+                    GestorDatos.Limpieza.Add(p);
             }
             lstListaPersonal.ItemsSource = NuevoPersonal;
+            txtMedicoCitas.ItemsSource = GestorDatos.Sanitarios;
         }
         private void actualizarHistoriales(Paciente pacienteSeleccionado)
         {
@@ -310,6 +369,16 @@ namespace hospital_gui_wpf.src.presentacion
             }
             lstListaHistorialesPacientes.ItemsSource = NuevoHistorial;
         }   
+        private void actualizarCitas(Paciente pacienteSeleccionado)
+        {
+            lstListaCitasPacientes.SelectedItem = null;
+            List<Cita> NuevaCita = new List<Cita>();
+            foreach (Cita c in pacienteSeleccionado.Citas)
+            {
+                NuevaCita.Add(c);
+            }
+            lstListaCitasPacientes.ItemsSource = NuevaCita;
+        }
         private bool CamposRequeridosLlenos()
         {
             object tabContent = tabControl.SelectedItem;
@@ -336,6 +405,12 @@ namespace hospital_gui_wpf.src.presentacion
                 return !string.IsNullOrEmpty(txtDolenciaHistorial.Text) &&
                     !string.IsNullOrEmpty(txtTratamientoHistorial.Text) &&
                    dpFechaAtencionHistorial.SelectedDate.HasValue;
+            }
+            else if (tabContent == tabCita)
+            {
+                return txtMedicoCitas.SelectedItem != null &&
+               !string.IsNullOrEmpty(txtDuracionCitas.Text) &&
+               dpFechaAtencionCita.SelectedDate.HasValue;
             }
             else return false;
 
@@ -988,6 +1063,7 @@ namespace hospital_gui_wpf.src.presentacion
             if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
             {
                 lstListaHistoriales.SelectedItem = null;
+                lstListaHistorialesPacientes.ItemsSource = null;
             }
         }
 
@@ -1054,6 +1130,7 @@ namespace hospital_gui_wpf.src.presentacion
             if (hitTestResult.VisualHit.GetType() != typeof(ListBoxItem))
             {
                 lstListaCitas.SelectedItem = null;
+                lstListaCitasPacientes.ItemsSource = null;
             }
         }
 

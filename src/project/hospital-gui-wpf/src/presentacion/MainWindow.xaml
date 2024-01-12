@@ -803,7 +803,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <Label x:Name="lblMedicoCitas" Content="Atendido por:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
-                                        <TextBox x:Name="txtMedicoCitas" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"
+                                        <ComboBox x:Name="txtMedicoCitas"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ElementName=GestorDatos.Sanitarios}" DisplayMemberPath="Nombre" SelectedValuePath="Id"
                                         Text="{Binding ElementName=lstListaCitasPacientes, Path=SelectedItem.Personal.Nombre}" FontSize="16" FontWeight="DemiBold" Width="115" Margin="5"/>
                                         <Label x:Name="lblDuracionCitas" Content="Duración:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
                                         <TextBox x:Name="txtDuracionCitas" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"

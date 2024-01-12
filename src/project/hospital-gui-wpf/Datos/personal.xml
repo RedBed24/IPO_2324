@@ -6,9 +6,9 @@
 		<Apellido>Díaz-Alejo</Apellido>
 		<FechaNacimiento>2003/07/21</FechaNacimiento>
 		<Telefono>626262622</Telefono>
-		<Direccion>Su casa</Direccion>
+		<Direccion>Calle de Los Inocentes, Villafranca de los Caballeros</Direccion>
 		<Genero>Mujer</Genero>
-		<Imagen>/datos/imagenes/usuario_cualquiera.jpg</Imagen>
+		<Imagen>/datos/imagenes/Noelia.jpg</Imagen>
 		<Correo>noelia.diazalejo14@alu.uclm.es</Correo>
 		<TipoPersonal>Sanitario</TipoPersonal>
 	</Personal>
@@ -18,10 +18,46 @@
 		<Apellido>Espinosa del Mar</Apellido>
 		<FechaNacimiento>1968/07/23</FechaNacimiento>
 		<Telefono>678101202</Telefono>
-		<Direccion>Calle Mediterráneo</Direccion>
+		<Direccion>Calle Mediterráneo, Ciudad Real</Direccion>
 		<Genero>Mujer</Genero>
 		<Imagen>/datos/imagenes/limpiezaM1.jpg</Imagen>
 		<Correo>laura.espinosadelmar@uclm.es</Correo>
+		<TipoPersonal>Limpieza</TipoPersonal>
+	</Personal>
+	<Personal>
+		<Id>82</Id>
+		<Nombre>Roberto</Nombre>
+		<Apellido>Campillo</Apellido>
+		<FechaNacimiento>1968/04/22</FechaNacimiento>
+		<Telefono>670102202</Telefono>
+		<Direccion>Av de Los Descubrimientos, Ciudad Real</Direccion>
+		<Genero>Hombre</Genero>
+		<Imagen>/datos/imagenes/sanitarioH1.png</Imagen>
+		<Correo>roberto.campillo3@uclm.es</Correo>
+		<TipoPersonal>Sanitario</TipoPersonal>
+	</Personal>
+	<Personal>
+		<Id>83</Id>
+		<Nombre>Rosa</Nombre>
+		<Apellido>Virgas</Apellido>
+		<FechaNacimiento>1990/07/31</FechaNacimiento>
+		<Telefono>689101376</Telefono>
+		<Direccion>Calle Pedrera Baja, Ciudad Real</Direccion>
+		<Genero>Mujer</Genero>
+		<Imagen>/datos/imagenes/sanitarioM1.png</Imagen>
+		<Correo>rosa.virgas@uclm.es</Correo>
+		<TipoPersonal>Sanitario</TipoPersonal>
+	</Personal>
+	<Personal>
+		<Id>84</Id>
+		<Nombre>Jose Luis</Nombre>
+		<Apellido>Del Rocío</Apellido>
+		<FechaNacimiento>1960/04/04</FechaNacimiento>
+		<Telefono>600173102</Telefono>
+		<Direccion>Calle Camino de la Guija, Ciudad Real</Direccion>
+		<Genero>Hombre</Genero>
+		<Imagen>/datos/imagenes/limpiezaH1.png</Imagen>
+		<Correo>joseluis.delrocio@uclm.es</Correo>
 		<TipoPersonal>Limpieza</TipoPersonal>
 	</Personal>
 </Personal>
