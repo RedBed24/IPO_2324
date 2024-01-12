@@ -88,7 +88,7 @@
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="1">
             <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5,5,5,5" >
-                <Image Source="{Binding Imagen}" Width="150" Height="130" Stretch="Uniform"/>
+                <Image Source="{Binding Imagen}" Stretch="Uniform"/>
             </Border>
         </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="1">
