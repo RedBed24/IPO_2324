@@ -842,27 +842,6 @@ namespace hospital_gui_wpf.src.presentacion
             }
 
         }
-
-        /*private void txtCorreoHistorial_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtCorreoHistorial.Text))
-            {
-
-                txtCorreoHistorial.BorderBrush = originalBorderColor;
-            }
-            else if (!txtCorreoHistorial.Text.Contains("@"))
-            {
-                MessageBox.Show("La dirección de correo electrónico debe contener '@'.");
-                txtCorreoHistorial.Text = string.Empty;
-                txtCorreoHistorial.BorderBrush = Brushes.Red;
-
-            }
-            else
-            {
-                txtCorreoHistorial.BorderBrush = originalBorderColor;
-            }
-        }*/
-
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;            
