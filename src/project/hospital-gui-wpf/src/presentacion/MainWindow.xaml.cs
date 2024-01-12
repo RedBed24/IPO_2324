@@ -71,7 +71,7 @@ namespace hospital_gui_wpf.src.presentacion
                     {
                         if ((seleccionado.Nombre.ToUpper() == txtnombrePacientes.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPacientes.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPacientes.Text)))
                         {
-                            MessageBox.Show("No puedes dar de baja a un cliente que ya lo estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("No puedes añadir a un cliente que ya lo estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return; // Salir del método si el nombre ya existe
                         }
 
@@ -126,7 +126,7 @@ namespace hospital_gui_wpf.src.presentacion
                     {
                         if ((seleccionado.Nombre.ToUpper() == txtnombrePersonal.Text.ToUpper() && seleccionado.Apellido.ToUpper() == txtApellidoPersonal.Text.ToUpper() && seleccionado.Telefono == Convert.ToInt32(txtTelefonoPersonal.Text)))
                         {
-                            MessageBox.Show("No puedes dar de baja a un personal que ya estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("No puedes añadir a un personal que ya estaba.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return; // Salir del método si el nombre ya existe
                         }
 
@@ -200,7 +200,7 @@ namespace hospital_gui_wpf.src.presentacion
                     }
                     else
                     {
-                        MessageBox.Show("Por favor, selecciona un paciente antes de confirmar la baja de un historial.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Por favor, selecciona un paciente antes de confirmar la adición de un historial.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     // Limpiar los campos después de agregar el paciente
                     LimpiarCampos();
@@ -209,7 +209,6 @@ namespace hospital_gui_wpf.src.presentacion
                 }
             }
         }
-        // Solo se da altas o bajas de pacientes, al añadir a un paciente mediante baja se crean los historiales y citas vacios, estos se podrán modificar en sus tabs con el boton de modificar
         private void btnAlta_Click(object sender, RoutedEventArgs e)
         {
             object tabContent = tabControl.SelectedItem;
@@ -243,7 +242,7 @@ namespace hospital_gui_wpf.src.presentacion
         private void ConfirmarAltaYPosibleEliminacion(object elementoSeleccionado)
         {
             // Primera confirmación
-            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar la alta?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de confirmar?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 // Segunda confirmación
