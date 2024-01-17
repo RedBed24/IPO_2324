@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pacientes>
+	<Paciente>
+		<Id>1</Id>
+		<Nombre>Samuel</Nombre>
+		<Apellido>Espejo</Apellido>
+		<FechaNacimiento>2003/06/02</FechaNacimiento>
+		<Telefono>626262627</Telefono>
+		<Direccion>Inside your walls</Direccion>
+		<Genero>Hombre</Genero>
+		<Imagen>/datos/imagenes/Samuel.jpg</Imagen>
+		<Correo>samuel.espejo@alu.uclm.es</Correo>
+	</Paciente>
+	<Paciente>
+		<Id>2</Id>
+		<Nombre>Eduardo</Nombre>
+		<Apellido>Contrera</Apellido>
+		<FechaNacimiento>1976/07/30</FechaNacimiento>
+		<Telefono>675432233</Telefono>
+		<Direccion>Calle Mata, Ciudad Real</Direccion>
+		<Genero>Hombre</Genero>
+		<Imagen>/datos/imagenes/pacienteH1.jpg</Imagen>
+		<Correo>eduardo.contrera1@alu.uclm.es</Correo>
+	</Paciente>
+	<Paciente>
+		<Id>3</Id>
+		<Nombre>Estefania</Nombre>
+		<Apellido>Garcia</Apellido>
+		<FechaNacimiento>2004/01/31</FechaNacimiento>
+		<Telefono>626987700</Telefono>
+		<Direccion>Calle Paloma, Ciudad Real</Direccion>
+		<Genero>Mujer</Genero>
+		<Imagen>/datos/imagenes/pacienteM1.jpg</Imagen>
+		<Correo>estefania.garcia4@alu.uclm.es</Correo>
+	</Paciente>
+	<Paciente>
+		<Id>4</Id>
+		<Nombre>Ona</Nombre>
+		<Apellido>Carrascosa</Apellido>
+		<FechaNacimiento>1990/12/24</FechaNacimiento>
+		<Telefono>626122207</Telefono>
+		<Direccion>Calle Esperanza, Ciudad Real</Direccion>
+		<Genero>Otro</Genero>
+		<Imagen>/datos/imagenes/pacienteO1.jpg</Imagen>
+		<Correo>ona.carrascosa@alu.uclm.es</Correo>
+	</Paciente>
+</Pacientes>

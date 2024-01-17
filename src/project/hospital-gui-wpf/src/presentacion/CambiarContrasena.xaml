@@ -5,22 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hospital_gui_wpf.src.presentacion"
         mc:Ignorable="d"
-        Title="Cambiar Contraseña" Height="180" Width="300">
+        Title="Cambiar Contraseña" Height="180" Width="300"
+        MinHeight="180" MinWidth="300"
+        MaxHeight="360" MaxWidth="600"
+        WindowStyle="None">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Width="84">
+            <Button x:Name="btnMinimize"
+			Content="-"
+			Foreground="White"
+			FontSize="16"
+			Margin="5"
+			Click="btnMinimize_Click"
+            VerticalAlignment="Center">
 
-        <Label Content="Contraseña Actual:" VerticalAlignment="Center"/>
-        <PasswordBox x:Name="txtContrasenaActual" Grid.Row="1" VerticalAlignment="Center" Margin="5" BorderBrush="LightSkyBlue" BorderThickness="2"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFB207B4">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btnEnlarge"
+			Content="□"
+			Foreground="White"
+			FontSize="12"
+			Margin="5"
+			Click="btnEnlarge_Click">
 
-        <Label Content="Nueva Contraseña:" Grid.Row="2" VerticalAlignment="Center"/>
-        <PasswordBox x:Name="txtNuevaContrasena" Grid.Row="3" VerticalAlignment="Center" Margin="5" BorderBrush="LightSkyBlue" BorderThickness="2"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="Purple">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-        <Button Content="Aceptar" Grid.Row="4" VerticalAlignment="Center" Margin="5" Width="80" Height="25" BorderBrush="Black" Background="LightGray" BorderThickness="1"  Click="btnAceptar_Click" />
+            <Button x:Name="btnClose"
+			Content="X"
+			Foreground="White"
+			FontSize="12"
+			Margin="5"
+			Click="btnClose_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFED107E">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+        <Viewbox Grid.Row="1" Grid.ColumnSpan="2">
+            <Label Content="Contraseña Actual:" VerticalAlignment="Center"/>
+        </Viewbox>
+        <Viewbox Grid.Row="2" Grid.ColumnSpan="2">
+            <PasswordBox x:Name="txtContrasenaActual" Grid.Row="1" VerticalAlignment="Center" BorderBrush="LightSkyBlue" BorderThickness="2" Width="80"/>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.ColumnSpan="2">
+            <Label Content="Nueva Contraseña:" Grid.Row="2" VerticalAlignment="Center"/>
+        </Viewbox>
+        <Viewbox Grid.Row="4" Grid.ColumnSpan="2">
+            <PasswordBox x:Name="txtNuevaContrasena" Grid.Row="3" VerticalAlignment="Center" BorderBrush="LightSkyBlue" BorderThickness="2" Width="80"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.ColumnSpan="2">
+            <Button Content="Aceptar" Grid.Row="4" VerticalAlignment="Center" Margin="5" Width="80" Height="25" BorderBrush="Black" Background="LightGray" BorderThickness="1"  Click="btnAceptar_Click" />
+        </Viewbox>
     </Grid>
 </Window>

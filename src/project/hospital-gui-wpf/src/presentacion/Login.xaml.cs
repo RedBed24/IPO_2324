@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using hospital_gui_wpf.src.dominio;
 
 namespace hospital_gui_wpf.src.presentacion
 {
@@ -13,21 +13,33 @@ namespace hospital_gui_wpf.src.presentacion
 	/// </summary>
 	public partial class Login : Window
 	{
-        private bool cerrarDesdeCodigo = false;
-        private TextBlock txtPassWatermark;
-        private readonly BitmapImage imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
-		private readonly BitmapImage imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
-		private readonly Dictionary<string, string> usuarios = new Dictionary<string, string>
-		{
-			{ "noelia", "1234" },
-			{ "samuel", "E5pej0" },
-			{ "antonio", "contrasena"}
-		};
+        public static Login InstanciaActual { get; set; }
+		public Gestor gestorDatos;
+        public bool cerrarDesdeCodigo = false;
+        private readonly BitmapImage imagCheck, imagCross;
 
 		public Login()
 		{
 			InitializeComponent();
-			txtUser.Focus();
+			try
+			{
+				gestorDatos = new Gestor();
+				InstanciaActual = this;
+				imagCheck = new BitmapImage(new Uri("/datos/imagenes/check.png", UriKind.Relative));
+				imagCross = new BitmapImage(new Uri("/datos/imagenes/cross.png", UriKind.Relative));
+			}
+			catch (Exception e)
+			{
+                MessageBox.Show("Error al cargar los datos de la aplicación: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                cerrarDesdeCodigo = true;
+                this.Close();
+            }
+			
+		}
+
+		public Usuario getUser(string nombreUsuario)
+		{
+			return gestorDatos.Usuarios.Find(u => u.NombreUsuario == nombreUsuario);
 		}
 
 		private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -49,7 +61,7 @@ namespace hospital_gui_wpf.src.presentacion
 		private bool ComprobarEntradaNombre(string valorIntroducido, Control componenteEntrada, Image imagenFeedBack)
 		{
 			bool valido = false;
-			if (usuarios.ContainsKey(valorIntroducido))
+			if (getUser(valorIntroducido) != null)
 			{
 				componenteEntrada.BorderBrush = Brushes.Green;
 				componenteEntrada.Background = Brushes.LightGreen;
@@ -75,7 +87,7 @@ namespace hospital_gui_wpf.src.presentacion
 		private bool ComprobarEntradaContraseña(string valorIntroducido, string valorValido, Control componenteEntrada, Image imagenFeedBack)
 		{
 			bool valido = false;
-			if (usuarios[valorIntroducido].Equals(valorValido))
+			if (getUser(valorIntroducido).Contrasena.Equals(valorValido))
 			{
 				componenteEntrada.BorderBrush = Brushes.Green;
 				componenteEntrada.Background = Brushes.LightGreen;
@@ -106,38 +118,47 @@ namespace hospital_gui_wpf.src.presentacion
 		{
 			if (ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser) && ComprobarEntradaContraseña(txtUser.Text, txtPass.Password, txtPass, imgPass))
 			{
-				MainWindow ventana_principal = new MainWindow();
+				MainWindow ventana_principal = new MainWindow(gestorDatos, getUser(txtUser.Text));
 				ventana_principal.Visibility = Visibility.Visible;
 				cerrarDesdeCodigo = true;
-				this.Close();
+				limpiarCampos();
+				this.Visibility = Visibility.Hidden;
+				
 			}
 		}
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void limpiarCampos()
+		{
+			txtUser.Text = string.Empty;
+			txtPass.Password = string.Empty;
+			cerrarDesdeCodigo = false;
+            txtUser.BorderBrush = Brushes.Gray;
+            txtUser.Background = Brushes.Transparent;
+			imgUser.ToolTip = "Usuario a loguearse";
+            imgUser.Source = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
+			txtPass.BorderBrush = Brushes.Gray;
+            txtPass.Background = Brushes.Transparent;
+			imgPass.ToolTip = "Contraseña del usuario, primero debes introducir un usuario válido";
+            imgPass.Source = new BitmapImage(new Uri("/datos/imagenes/baseline_help_white_24dp.png", UriKind.Relative));
+			txtUser.IsEnabled = true;
+
+			
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 				if (!cerrarDesdeCodigo)
 				{
-					MessageBox.Show("Gracias por usar nuestra aplicación...", "Despedida");
-				}
+                MessageBox.Show("Gracias por usar nuestra aplicación...\n\n¡Hasta luego!",
+                    "Despedida", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 		}
 
 		private void txtPass_GotFocus(object sender, RoutedEventArgs e)
 		{
-			ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser);
-            txtPassWatermark = (TextBlock)txtPass.Template.FindName("txtPassWatermark", txtPass);
-            txtPassWatermark.Visibility = Visibility.Collapsed;
+			if (ComprobarEntradaNombre(txtUser.Text, txtUser, imgUser))
+			{
+				txtPassWatermark.Visibility = Visibility.Collapsed;
+			}
         }
-
-
-		private void Image_MouseEnter(object sender, MouseEventArgs e)
-		{
-			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
-		}
-
-		private void Image_MouseLeave(object sender, MouseEventArgs e)
-		{
-			// TODO: Hacer algo con la imagen? tipo que parezca que el corazón late
-		}
-
         private void txtUser_GotFocus(object sender, RoutedEventArgs e)
         {
             txtUserWatermark.Visibility = Visibility.Collapsed;
@@ -153,11 +174,23 @@ namespace hospital_gui_wpf.src.presentacion
 
         private void txtPass_LostFocus(object sender, RoutedEventArgs e)
         {
-            txtPassWatermark = (TextBlock)txtPass.Template.FindName("txtPassWatermark", txtPass);
             if (string.IsNullOrEmpty(txtPass.Password))
             {
                 txtPassWatermark.Visibility = Visibility.Visible;
             }
+        }
+
+		private void txtPass_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Return || e.Key == Key.Tab)
+			{
+				btnLogin_Click(sender, e);
+			}
+		}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+			txtUser.Focus();
         }
     }
 }

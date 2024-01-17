@@ -1,49 +1,51 @@
 <Historiales>
 	<Historial>
-		<Nombre>Natalia</Nombre>
-		<Apellido>Patinio</Apellido>
-		<Edad>25</Edad>
-		<Telefono>620203687</Telefono>
-		<Direccion>Calle Aben Canes</Direccion>
-		<Genero>Mujer</Genero>
-		<Imagen>/imagenes/pacienteM1.jpg</Imagen>
-		<Correo>natalia.patinio14@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de ansiedad</Descripcion>
-	</Historial>
-
-	<Historial>
-		<Nombre>Laura</Nombre>
-		<Apellido>Pérez</Apellido>
-		<Edad>30</Edad>
-		<Telefono>620453678</Telefono>
-		<Direccion>Plaza de Agustín Salido</Direccion>
-		<Genero>Mujer</Genero>
-		<Imagen>/imagenes/pacienteM2.jpg</Imagen>
-		<Correo>lauraperez@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de depresión</Descripcion>
+		<Paciente>1</Paciente>
+		<Dolencias>Dolor de riñones por cargar con el peso de aprobar ISO2</Dolencias>
+		<Tratamientos>Cargar con IPO</Tratamientos>
+		<FechaAtencion>2023/12/22</FechaAtencion>
+		<Foto>/datos/imagenes/dolorRinon.jpg</Foto>
 	</Historial>
 	<Historial>
-		<Nombre>Rubén</Nombre>
-		<Apellido>Gómez</Apellido>
-		<Edad>32</Edad>
-		<Telefono>610328877</Telefono>
-		<Direccion>Avenida Alfonso X El Sabio</Direccion>
-		<Genero>Hombre</Genero>
-		<Imagen>/imagenes/pacienteH1.jpg</Imagen>
-		<Correo>rubengomez56@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de ansiedad</Descripcion>
+		<Paciente>2</Paciente>
+		<Dolencias>Insomio por cargar con ISO2</Dolencias>
+		<Tratamientos>Cargar con IPO</Tratamientos>
+		<FechaAtencion>2023/11/22</FechaAtencion>
+		<Foto>/datos/imagenes/dolorInsomnio.jpg</Foto>
 	</Historial>
-
 	<Historial>
-		<Nombre>Iciar</Nombre>
-		<Apellido>Carmona</Apellido>
-		<Edad>18</Edad>
-		<Telefono>610328877</Telefono>
-		<Direccion>Calle Alfonso XI</Direccion>
-		<Genero>Otro</Genero>
-		<Imagen>/imagenes/pacienteO1.jpg</Imagen>
-		<Correo>iciarCarmona@gmail.com</Correo>
-		<Descripcion>Paciente con problemas de depresión</Descripcion>
+		<Paciente>1</Paciente>
+		<Dolencias>Insomio por cargar con IPO1</Dolencias>
+		<Tratamientos>Cargar con ISO</Tratamientos>
+		<FechaAtencion>2023/11/24</FechaAtencion>
+		<Foto>/datos/imagenes/dolorInsomnio.jpg</Foto>
 	</Historial>
-
+	<Historial>
+		<Paciente>3</Paciente>
+		<Dolencias>Dolor de tobillo por tropezarse en la calle</Dolencias>
+		<Tratamientos>Reposo en casa</Tratamientos>
+		<FechaAtencion>2023/07/31</FechaAtencion>
+		<Foto>/datos/imagenes/dolorTobillo.png</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>3</Paciente>
+		<Dolencias>Muela picada por comer chuches</Dolencias>
+		<Tratamientos>Empaste y lavarse bien los dientes</Tratamientos>
+		<FechaAtencion>2024/01/04</FechaAtencion>
+		<Foto>/datos/imagenes/dolorMuela.jpg</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>1</Paciente>
+		<Dolencias>Placas debido a una infección</Dolencias>
+		<Tratamientos>Tomar antibióticos</Tratamientos>
+		<FechaAtencion>2023/11/13</FechaAtencion>
+		<Foto>/datos/imagenes/dolorGarganta.jpg</Foto>
+	</Historial>
+	<Historial>
+		<Paciente>4</Paciente>
+		<Dolencias>Muela del juicio necesaria de extraer</Dolencias>
+		<Tratamientos>Comer comida blanda e ibuprofeno</Tratamientos>
+		<FechaAtencion>2023/08/03</FechaAtencion>
+		<Foto>/datos/imagenes/dolorMuela.jpg</Foto>
+	</Historial>
 </Historiales>

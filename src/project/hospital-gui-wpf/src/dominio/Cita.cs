@@ -2,7 +2,7 @@
 
 namespace hospital_gui_wpf.src.dominio
 {
-	internal class Cita
+	public class Cita
 	{
 		public DateTime Fecha { get; set; }
 		public TimeSpan Duracion { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hospital_gui_wpf.src.dominio;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,16 +11,19 @@ namespace hospital_gui_wpf.src.presentacion
 {
     public partial class AboutUser : Window
     {
-        public AboutUser()
+        public Usuario UsuarioActual;
+        public Gestor GestorDatos;
+        public AboutUser(Usuario usuarioActual, Gestor gestorDatos)
         {
             InitializeComponent();
-            Usuario usuarioActual = new Usuario("Antoniocg73", "Antonio", "Campallo", "contrasena", new DateTime(2003, 9, 1), new Uri("/datos/imagenes/Antonio.jpg", UriKind.Relative));
             DataContext = usuarioActual;
+            UsuarioActual = usuarioActual;
+            GestorDatos = gestorDatos;
         }
 
         private void btnModificarContraseña_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CambiarContrasena cambiarContrasenaWindow = new CambiarContrasena();
+            CambiarContrasena cambiarContrasenaWindow = new CambiarContrasena(UsuarioActual, GestorDatos);
             bool? result = cambiarContrasenaWindow.ShowDialog();
 
             if (result == true)
@@ -31,6 +35,19 @@ namespace hospital_gui_wpf.src.presentacion
             {
                 MessageBox.Show("Cambio de contraseña cancelado.");
             }
+        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEnlarge_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
     }
 }

@@ -5,59 +5,127 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hospital_gui_wpf"
         mc:Ignorable="d"
-        Title="Perfil de usuario" Height="440" Width="276">
+        Title="Perfil de usuario" Height="490" Width="276" 
+        MinHeight="450" MinWidth="300"
+        MaxHeight="600" MaxWidth="476"
+        WindowStyle="None">
+
 
     <Grid Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="58"/>
-            <ColumnDefinition Width="160"/>
-            <ColumnDefinition Width="58"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
 
 
+        <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Width="80">
+            <Button x:Name="btnMinimize"
+	                Content="-"
+	                Foreground="White"
+	                FontSize="16"
+	                Margin="5"
+	                Click="btnMinimize_Click"
+                    VerticalAlignment="Center"> 
 
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFB207B4">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btnEnlarge"
+	                Content="□"
+	                Foreground="White"
+	                FontSize="12"
+	                Margin="5"
+	                Click="btnEnlarge_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="Purple">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name="btnClose"
+	                Content="X"
+	                Foreground="White"
+	                FontSize="12"
+	                Margin="5"
+	                Click="btnClose_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="9" Background="#FFED107E">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
         <Viewbox Grid.Row="0" Grid.Column="1">
-            <TextBox x:Name="txtNombreUsuario" TextWrapping="Wrap" VerticalAlignment="Center"
+            <TextBox x:Name="txtNombreUsuario" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True"
                  Text="{Binding NombreUsuario}" TextAlignment="Center" FontSize="16" FontWeight="DemiBold" Background="WhiteSmoke" BorderBrush="Transparent" Width="104"/>
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="1">
             <Border BorderBrush="LightSkyBlue" BorderThickness="2" Margin="5,5,5,5" >
-                <Image Source="{Binding Imagen}" Width="150" Height="130" Stretch="Uniform"/>
+                <Image Source="{Binding Imagen}" Stretch="Uniform"/>
             </Border>
         </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="1">
             <Label x:Name="lblNombreRealUsuario" Content="Nombre:" HorizontalAlignment="Center" VerticalAlignment="Top"  FontWeight="DemiBold" Height="26" Width="58" Grid.RowSpan="2"/>
         </Viewbox>
         <Viewbox Grid.Row="3" Grid.Column="1">
-            <TextBox x:Name="txtNombreRealUsuario" TextWrapping="Wrap" VerticalAlignment="Center" 
+            <TextBox x:Name="txtNombreRealUsuario" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True"
                  Text="{Binding Nombre}" TextAlignment="Center" FontSize="12" FontWeight="DemiBold"  BorderBrush="LightSkyBlue" BorderThickness="2" Height="20" Width="108"/>
         </Viewbox>
         <Viewbox Grid.Row="4" Grid.Column="1">
             <Label x:Name="lblApellidoPacientes" Content="Apellido:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="4" Grid.Column="1" FontWeight="DemiBold" Height="26" Width="58" Grid.RowSpan="2"/>
         </Viewbox>
         <Viewbox Grid.Row="5" Grid.Column="1">
-            <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center"
+            <TextBox x:Name="txtApellidoPacientes" TextWrapping="Wrap" VerticalAlignment="Center" IsReadOnly="True"
                  Text="{Binding Apellido}" TextAlignment="Center" FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Height="20" Width="108"/>
         </Viewbox>
         <Viewbox Grid.Row="6" Grid.Column="1">
             <Label x:Name="lblFechaContratacion" Content="Fecha de contratación:" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="DemiBold" Height="26" Width="132" Grid.RowSpan="2"/>
         </Viewbox>
         <Viewbox Grid.Row="7" Grid.Column="1">
-            <TextBox x:Name="txtFechaContratacion" TextWrapping="Wrap" VerticalAlignment="Center"
-                 Text="{Binding fechaContratacion, StringFormat='dd/MM/yyyy'}" TextAlignment="Center" FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="108"/>
+            <DatePicker x:Name="dpFechaContratacion" VerticalAlignment="Center" IsEnabled="False"
+                        SelectedDate="{Binding FechaContratacion}" 
+                        Text="{Binding FechaContratacion, StringFormat='dd/MM/yyyy'}" 
+                        FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="108"/>
         </Viewbox>
+        
         <Viewbox Grid.Row="8" Grid.Column="1">
+            <Label x:Name="lblFechaUltimoAcceso" Content="Último acceso:" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="DemiBold" Height="26" Width="132" Grid.RowSpan="2"/>
+        </Viewbox>
+        <Viewbox Grid.Row="9" Grid.Column="1">
+            <DatePicker x:Name="dpFechaUltimoAcceso" VerticalAlignment="Center" IsEnabled="False"
+                SelectedDate="{Binding UltimoAcceso}" 
+                Text="{Binding UltimoAcceso, StringFormat='dd/MM/yyyy'}" 
+                FontSize="12" FontWeight="DemiBold" BorderBrush="LightSkyBlue" BorderThickness="2" Width="108"/>
+        </Viewbox>
+
+        <Viewbox Grid.Row="10" Grid.Column="1">
             <Image x:Name="btnModificarContraseña" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Height="20" Source="\datos\imagenes\cambiarContra.png" ToolTip="Modificar contraseña" MouseDown="btnModificarContraseña_MouseDown"/>
         </Viewbox>
     </Grid>

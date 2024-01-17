@@ -4,21 +4,13 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="Login" Height="660" Width="847" WindowStyle="None" Closing="Window_Closing" MinWidth="600" MinHeight="600">
+		Title="Login" Height="660" Width="847" WindowStyle="None" Closing="Window_Closing" MinWidth="600" MinHeight="600" Loaded="Window_Loaded">
 
     <Grid>
         <Viewbox Stretch="UniformToFill">
             <Image Source="/datos/imagenes/ipo_login.jpg" />
         </Viewbox>
 
-        <Border>
-            <Border.Background>
-                <LinearGradientBrush Opacity="0.75">
-                    <GradientStop Color="#FF1E252B" Offset="0"/>
-                    <GradientStop Color="#FF403E4D" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -97,27 +89,26 @@
 
                 <Viewbox Grid.Row="1">
                     <Image Source="/datos/imagenes/icono.png" Width="190" Height="130"
-					VerticalAlignment="Center" HorizontalAlignment="Center" 
-                    MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" />
+					VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Viewbox>
 
                 <Viewbox Grid.Row="2">
                     <TextBlock Text="Iniciar sesión"
 						HorizontalAlignment="Center" VerticalAlignment="Bottom"
-						FontWeight="Medium" Foreground="White" Width="71" />
+						FontWeight="Medium" Foreground="#FF2E2B2B" Width="71" />
                 </Viewbox>
 
                 <Viewbox Grid.Row="3">
                     <TextBlock Text="¡Bienvenido al Hospital!"
-                    Foreground="White" FontWeight="Medium" TextAlignment="Center"
-                    VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"/>
+                    Foreground="#FF1C1919" FontWeight="Medium" TextAlignment="Center"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="32"/>
                 </Viewbox>
             </Grid>
 
             <Rectangle
 				Grid.Row="1"
 				Grid.Column="1"
-				Fill="#FF424242" 
+				Fill="#FF1D1C1C" 
 				RadiusX="10" RadiusY="10" Opacity="0.8"/>
 
             <Grid Grid.Column="1" Grid.Row="1">
@@ -157,21 +148,20 @@
                     <Border BorderBrush="White" BorderThickness="2" CornerRadius="4" Grid.Row="1" Grid.Column="1">
                         <Grid>
                             <TextBox x:Name="txtUser" 
-                 FontSize="13" 
-                 Foreground="White" 
-                 Background="#FF504E59" 
-                 HorizontalContentAlignment="Left" 
-                 VerticalContentAlignment="Center" 
-                 KeyDown="txtUsuario_KeyDown"
-                 GotFocus="txtUser_GotFocus"
-                 LostFocus="txtUser_LostFocus"/>
+                            FontSize="13" 
+                            Foreground="White" 
+                            Background="Transparent"
+                            HorizontalContentAlignment="Left" 
+                            VerticalContentAlignment="Center" 
+                            KeyDown="txtUsuario_KeyDown"
+                            GotFocus="txtUser_GotFocus"/>
                             <TextBlock x:Name="txtUserWatermark" 
-                   Text="Usuario" 
-                   Foreground="Gray" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Left"
-                   Margin="4,0,0,0"
-                   Visibility="Visible"/>
+                            Text="Usuario" 
+                            Foreground="Gray" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Left"
+                            Margin="4,0,0,0"
+                            Visibility="Visible"/>
                         </Grid>
                     </Border>
 
@@ -197,37 +187,28 @@
                         <ColumnDefinition Width="50*"/>
                         <ColumnDefinition Width="8"/>
                     </Grid.ColumnDefinitions>
-                    <PasswordBox x:Name="txtPass" 
-                    FontSize="13" 
-                    FontWeight="Medium" 
-                    Foreground="White" 
-                    Background="#FF504E59" 
-                    Grid.Row="1" 
-                    Grid.Column="1" 
-                    GotFocus="txtPass_GotFocus" 
-                    LostFocus="txtPass_LostFocus"
-                    BorderBrush="White" 
-                    BorderThickness="2"
-                    HorizontalContentAlignment="Left" 
-                    VerticalContentAlignment="Center" >
-                        <PasswordBox.Template>
-                            <ControlTemplate TargetType="PasswordBox">
-                                <Grid>
-                                    <Border Background="#FF504E59" BorderBrush="White" BorderThickness="2" CornerRadius="4">
-                                        <ScrollViewer x:Name="PART_ContentHost" />
-                                    </Border>
-                                    <TextBlock x:Name="txtPassWatermark" 
-                    Text="Contraseña" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Foreground="Gray" 
-                    Background="#FF504E59" 
-                    Margin="4,0,0,0"
-                    Visibility="Visible"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </PasswordBox.Template>
-                    </PasswordBox>
+                    <Border BorderBrush="White" BorderThickness="2" CornerRadius="4" Grid.Row="1" Grid.Column="1">
+                        <Grid>
+                            <PasswordBox x:Name="txtPass" 
+                            FontSize="13" 
+                            Foreground="White" 
+                            Background="Transparent" 
+                            HorizontalContentAlignment="Left" 
+                            VerticalContentAlignment="Center" 
+                            KeyDown="txtPass_KeyDown"
+                            GotFocus="txtPass_GotFocus"
+                            LostFocus="txtPass_LostFocus"
+                            IsEnabled="True"/>
+                            <TextBlock x:Name="txtPassWatermark" 
+                            Text="Contraseña" 
+                            Foreground="Gray" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Left"
+                            Margin="4,0,0,0"
+                            Visibility="Visible"/>
+                        </Grid>
+                    </Border>
+                
                 </Grid>
 
                 <Viewbox Grid.Column="3" Grid.Row="3">

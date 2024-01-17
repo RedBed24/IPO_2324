@@ -57,8 +57,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="src\dominio\Cita.cs" />
+    <Compile Include="src\dominio\Gestor.cs" />
     <Compile Include="src\dominio\Paciente.cs" />
     <Compile Include="src\dominio\Usuario.cs" />
+    <Compile Include="src\persistencia\DataReader.cs" />
     <Compile Include="src\presentacion\CambiarContrasena.xaml.cs">
       <DependentUpon>CambiarContrasena.xaml</DependentUpon>
     </Compile>
@@ -125,9 +127,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="datos\persona.xml" />
     <Resource Include="datos\historial.xml" />
     <Resource Include="datos\personal.xml" />
+    <Resource Include="datos\citas.xml" />
+    <Resource Include="datos\usuarios.xml" />
+    <Resource Include="datos\pacientes.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="datos\imagenes\baseline_help_white_24dp.png" />
@@ -139,7 +143,7 @@
     <Resource Include="datos\imagenes\interrogacion.jpg" />
     <Resource Include="datos\imagenes\ipo_login.jpg" />
     <Resource Include="datos\imagenes\pacienteM1.jpg" />
-    <Resource Include="datos\imagenes\pacienteM2.jpg" />
+    <Resource Include="datos\imagenes\limpiezaM1.jpg" />
     <Resource Include="datos\imagenes\pacienteO1.jpg" />
     <Resource Include="datos\imagenes\pacienteH1.jpg" />
     <Resource Include="datos\imagenes\pregunta.png" />
@@ -152,7 +156,16 @@
     <Resource Include="datos\imagenes\sanitario.png" />
     <Resource Include="datos\imagenes\Antonio.jpg" />
     <Resource Include="datos\imagenes\cambiarContra.png" />
+    <Resource Include="datos\imagenes\Samuel.jpg" />
+    <Resource Include="datos\imagenes\Noelia.jpg" />
+    <Resource Include="datos\imagenes\dolorGarganta.jpg" />
+    <Resource Include="datos\imagenes\dolorMuela.jpg" />
+    <Resource Include="datos\imagenes\dolorRinon.jpg" />
+    <Resource Include="datos\imagenes\dolorTobillo.png" />
+    <Resource Include="datos\imagenes\dolorInsomnio.jpg" />
+    <Resource Include="datos\imagenes\limpiezaH1.png" />
+    <Resource Include="datos\imagenes\sanitarioH1.png" />
+    <Resource Include="datos\imagenes\sanitarioM1.png" />
   </ItemGroup>
-  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
